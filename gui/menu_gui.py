@@ -17,7 +17,7 @@ class Menu:
 
         # Creando los sub-menu de cada Elemento
         # Sub-menu Inicio
-        menu_inicio.add_command(label="Nueva Empresa...", accelerator="Ctrl+N", command=MenuFunctions.empresa_nueva)
+        menu_inicio.add_command(label="Nueva Empresa...", accelerator="Ctrl+N",)
         menu_inicio.add_command(label="Seleccionar Datos de Trabajo")
         menu_inicio.add_separator()
         menu_inicio.add_command(label="Comprobantes")
@@ -29,7 +29,7 @@ class Menu:
         menu_inicio.add_separator()
         menu_inicio.add_command(label="Datos Generales")
         menu_inicio.add_separator()
-        menu_inicio.add_command(label="Salir", accelerator="Alt+F4", command=MenuFunctions.salir())
+        menu_inicio.add_command(label="Salir", accelerator="Alt+F4", )
 
         # Sub-menu Empresas
         menu_empresa.add_command(label="Nueva Empresa...", accelerator="Ctrl+N")

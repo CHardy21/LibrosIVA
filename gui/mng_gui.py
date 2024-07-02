@@ -4,7 +4,8 @@ import customtkinter as ctk
 from PIL import Image
 
 import config.general_config as conf
-import gui.menu_gui
+import gui.menu_gui as menu
+
 
 class Login:
     def __init__(self):
@@ -71,28 +72,42 @@ class Login:
         #         # Crea esta etiqueta siempre que el login sea correcto
         #         self.info_login = ctk.CTkLabel(self.root, text=f"Hola, {obtener_usuario}. Espere unos instantes...")
         #         self.info_login.pack()
-            # Se destruye la ventana de login
+        # Se destruye la ventana de login
         self.root.destroy()
-            # Se instancia la ventana de opciones del programa
+        # Se instancia la ventana de opciones del programa
         #ventana_opciones = VentanaOpciones()
         app = App()
 
-class App(tk.Tk):
+
+class App(ctk.CTk):
     COLOR_VENTANA = '#1d2d44'
     ICONO_VENTANA = "CH.ico"
     IMAGEN_FONDO_VENTANA = "VladStudio027.jpg"
 
     def __init__(self):
         super().__init__()
+        #self.app = tk.Tk()
 
         #self.geometry('900x600')
-        self.title('Sistema de Registración IVA')
-        self.configure(background=App.COLOR_VENTANA)
+        self.title('Sistema de Registración IVA 1.0')
+        self.configure(fg_color=App.COLOR_VENTANA)
         self.iconbitmap(os.path.join(conf.dir_images, App.ICONO_VENTANA))
 
-        self.Menu(self)
+        # Configurar donde se muestra la ventana de la App
+        ancho_app = 900
+        alto_app = 400
+        # Pantalla
+        ancho_pantalla = self.winfo_screenwidth()
+        alto_pantalla = self.winfo_screenheight()
 
+        coordenadas_x = int((ancho_pantalla / 2) - (ancho_app / 2))
+        coordenadas_y = int((alto_pantalla / 2) - (alto_app / 2)) - 37
 
+        self.geometry("{}x{}+{}+{}".format(ancho_app, alto_app, coordenadas_x, coordenadas_y))
 
+        # Maximizando la ventana
+        self.after(1, self.wm_state, 'zoomed')
 
+        menu.Menu(self)
 
+        self.mainloop()

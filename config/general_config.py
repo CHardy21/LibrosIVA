@@ -14,7 +14,7 @@ print(dir_images)
 print(dir_gui)
 
 # Modo de color y tema
-ctk.set_appearance_mode("system")
+ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
 # Fuente para algunos widgets
