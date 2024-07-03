@@ -1,5 +1,6 @@
+
 import os
-import tkinter as tk
+from tkinter.font import BOLD
 import customtkinter as ctk
 
 # ---> Rutas
@@ -18,7 +19,7 @@ ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
 # Fuente para algunos widgets
-font_widgets = ('Raleway', 16, tk.font.BOLD)
+font_widgets = ('Raleway', 16, BOLD)
 
 # Objeto para manejar bases de datos MySQL
 #base_datos = sqlbd.BaseDatos(**sqlbd.acceso_bd)

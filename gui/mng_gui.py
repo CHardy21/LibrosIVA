@@ -11,7 +11,7 @@ class Login:
     def __init__(self):
         # Creación de la ventana principal
         self.root = ctk.CTk()
-        self.root.title("Registración Libros IVA - Login")
+        self.root.title("CHardy© Estudios Contables - Login")
         self.root.iconbitmap(os.path.join(conf.dir_images, "CH.ico"))
         self.root.geometry("400x500")  # Tamaño de la ventana
         self.root.resizable(False, False)  # Bloqueo de redimensión de ventana en alto y ancho
@@ -78,7 +78,6 @@ class Login:
         #ventana_opciones = VentanaOpciones()
         app = App()
 
-
 class App(ctk.CTk):
     COLOR_VENTANA = '#1d2d44'
     ICONO_VENTANA = "CH.ico"
@@ -88,7 +87,6 @@ class App(ctk.CTk):
         super().__init__()
         #self.app = tk.Tk()
 
-        #self.geometry('900x600')
         self.title('Sistema de Registración IVA 1.0')
         self.configure(fg_color=App.COLOR_VENTANA)
         self.iconbitmap(os.path.join(conf.dir_images, App.ICONO_VENTANA))
