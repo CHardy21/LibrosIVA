@@ -21,9 +21,8 @@ class NewCompany:
 
     # CUIT
     companyCUIT_label = ctk.CTkLabel(marco, text="CUIT",).grid(row=0, column=0, padx=5, sticky="e")
-    companyCUIT_entry = ctk.CTkEntry(marco, textvariable=cuit,)
+    companyCUIT_entry = ctk.CTkEntry(marco, textvariable=cuit, width=90)
     companyCUIT_entry.grid(row=0, column=1, padx=5, pady=1, sticky="w")
-
 
     # Razón Social
     companyRZ_label = ctk.CTkLabel(marco, text="Razón Social")
