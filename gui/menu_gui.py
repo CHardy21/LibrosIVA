@@ -29,7 +29,7 @@ class Menu:
         menu_inicio.add_separator()
         menu_inicio.add_command(label="Datos Generales")
         menu_inicio.add_separator()
-        menu_inicio.add_command(label="Salir", accelerator="Alt+F4", )
+        menu_inicio.add_command(label="Salir", accelerator="Alt+F4", command=lambda : quit())
 
         # Sub-menu Empresas
         menu_empresa.add_command(label="Nueva Empresa...", accelerator="Ctrl+N")

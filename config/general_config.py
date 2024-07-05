@@ -7,12 +7,13 @@ import customtkinter as ctk
 dir_config = os.path.dirname(__file__)
 # Carpeta principal
 dir_ppal = dir_config[0:len(dir_config)-6]
-dir_images = os.path.join(dir_ppal, "images")
 dir_gui = os.path.join(dir_ppal, "gui")
+dir_images = os.path.join(dir_gui, "images")
 
 print(dir_ppal)
-print(dir_images)
 print(dir_gui)
+print(dir_images)
+
 
 # Modo de color y tema
 ctk.set_appearance_mode("dark")
