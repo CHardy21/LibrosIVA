@@ -3,6 +3,8 @@ from CTkMenuBar import *
 
 # https://github.com/Akascape/CTkMenuBar/tree/main
 
+customtkinter.set_appearance_mode("dark")
+
 root = customtkinter.CTk()
 root.geometry("600x200")
 

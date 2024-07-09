@@ -5,6 +5,7 @@ from CTkMessagebox import CTkMessagebox
 import customtkinter
 
 
+customtkinter.set_appearance_mode("dark")
 def show_info():
     # Default messagebox for showing some information
     CTkMessagebox(title="Info", message="This is a CTkMessagebox!", corner_radius=0)

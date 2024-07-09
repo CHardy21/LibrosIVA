@@ -93,8 +93,8 @@ class NewCompany:
     companySUSCC_entry.grid(row=8, column=1, padx=5)
 
     # Marco botonera
-    marco_btn = ctk.CTkFrame(marco)
-    marco_btn.grid(row=9, column=1, padx=5, pady=5, columnspan=4)
+    marco_btn = ctk.CTkFrame(marco, )
+    marco_btn.grid(row=9, column=2, columnspan=3)
 
     # Crea el botón limpiar formulario
     btn_limpiar = ctk.CTkButton(marco_btn,
@@ -111,9 +111,10 @@ class NewCompany:
                                 text="Guardar",
                                 command=lambda: guardar()
                                 )
-    btn_limpiar.grid(row=0, column=0, padx=5, )
-    btn_cancelar.grid(row=0, column=1, padx=5, )
-    btn_guardar.grid(row=0, column=2, padx=5, )
+
+    btn_limpiar.grid(row=0, column=3, padx=8, pady=8)
+    btn_cancelar.grid(row=0, column=4, padx=5, )
+    btn_guardar.grid(row=0, column=5, padx=5, )
 
     print("(filas, columnas)", marco.grid_size())
 

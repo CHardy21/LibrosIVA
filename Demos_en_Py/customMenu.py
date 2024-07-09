@@ -1,4 +1,4 @@
-
+import customtkinter
 import customtkinter as ctk
 import tkinter as tk
 from typing import Literal
@@ -47,4 +47,10 @@ class Menu:
                 activeforeground=text_color,
                 border=0,
             )
-            menu.menu.configure(bg=theme, fg=text_color)
+            menu.configure(bg=theme, fg=text_color)
+
+
+root = customtkinter.CTk()
+Menu(root)
+
+root.mainloop()
