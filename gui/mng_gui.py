@@ -5,6 +5,7 @@ from PIL import Image
 
 import config.general_config as conf
 import gui.menu_gui as menu
+from gui.windows_gui import *
 
 
 class Login:

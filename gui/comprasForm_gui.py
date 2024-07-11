@@ -1,8 +1,19 @@
 from tkinter import StringVar
 import customtkinter as ctk
 
+#import comprobanteShow_gui
+
 # Apariencia temporal, luego al finalizar quitar esta linea
 ctk.set_appearance_mode("dark")
+
+
+def selectInvoice():
+    print("Seleccionando comprobantes")
+
+    pass
+
+
+
 
 
 class BuyForm:
@@ -89,7 +100,7 @@ class BuyForm:
 
 
     # Diseño de Formulario (Etiquetas Button)
-    comprobante_btn = ctk.CTkButton(marco, text="Comprobante", )
+    comprobante_btn = ctk.CTkButton(marco, text="Comprobante",  command=lambda: selectInvoice())
     proveedor_btn = ctk.CTkButton(marco, text="Proveedor", )
     neto_btn = ctk.CTkButton(marco, text="Neto/Total", )
     iva_btn = ctk.CTkButton(marco, text="IVA incluido", )
@@ -97,7 +108,7 @@ class BuyForm:
     retPerc_btn = ctk.CTkButton(marco, text="Ret./Perc./Pgo.a Cta.", )
 
     # Publicación del Diseño de Formulario (Etiquetas Button)
-    comprobante_btn.place(x=10, y=10)
+    comprobante_btn.place(x=10, y=10,)
     proveedor_btn.place(x=10, y=45)
     neto_btn.place(x=50, y=240)
     iva_btn.place(x=50, y=275)
@@ -147,4 +158,9 @@ class BuyForm:
     total_entry.place(x=230, y=450)
 
 
-    app2.mainloop()
+
+
+
+if __name__ == '__main__':
+    ventana = BuyForm()
+    ventana.mainloop()

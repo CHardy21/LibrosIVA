@@ -17,7 +17,7 @@ class Menu:
 
         # Creando los sub-menu de cada Elemento
         # Sub-menu Inicio
-        menu_inicio.add_command(label="Nueva Empresa...", accelerator="Ctrl+N",)
+        menu_inicio.add_command(label="Nueva Empresa...", accelerator="Ctrl+N", command=lambda : NewCompany())
         menu_inicio.add_command(label="Seleccionar Datos de Trabajo")
         menu_inicio.add_separator()
         menu_inicio.add_command(label="Comprobantes")
