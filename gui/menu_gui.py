@@ -1,5 +1,12 @@
 import tkinter as tk
 
+import gui.mng_gui
+
+
+#import app
+#from gui.mng_gui import menuEvents
+
+
 class Menu:
     def __init__(self, parent):
         self.parent = parent
@@ -17,7 +24,8 @@ class Menu:
 
         # Creando los sub-menu de cada Elemento
         # Sub-menu Inicio
-        menu_inicio.add_command(label="Nueva Empresa...", accelerator="Ctrl+N", command=lambda : NewCompany())
+        menu_inicio.add_command(label="Nueva Empresa...", accelerator="Ctrl+N",
+                                command=lambda: gui.mng_gui.menuEvents("NewCompany"))
         menu_inicio.add_command(label="Seleccionar Datos de Trabajo")
         menu_inicio.add_separator()
         menu_inicio.add_command(label="Comprobantes")
@@ -29,10 +37,11 @@ class Menu:
         menu_inicio.add_separator()
         menu_inicio.add_command(label="Datos Generales")
         menu_inicio.add_separator()
-        menu_inicio.add_command(label="Salir", accelerator="Alt+F4", command=lambda : quit())
+        menu_inicio.add_command(label="Salir", accelerator="Alt+F4", command=lambda: quit())
 
         # Sub-menu Empresas
-        menu_empresa.add_command(label="Nueva Empresa...", accelerator="Ctrl+N")
+        menu_empresa.add_command(label="Nueva Empresa...", accelerator="Ctrl+N",
+                                 command=lambda: gui.mng_gui.menuEvents("NewCompany"))
         menu_empresa.add_command(label="Editar Empresa")
         menu_empresa.add_command(label="Seleccionar Empresa")
         menu_empresa.add_separator()

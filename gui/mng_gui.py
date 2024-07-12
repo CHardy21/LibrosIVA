@@ -5,7 +5,7 @@ from PIL import Image
 
 import config.general_config as conf
 import gui.menu_gui as menu
-from gui.windows_gui import *
+from gui.newCompanyForm_gui import NewCompany
 
 
 class Login:
@@ -79,6 +79,7 @@ class Login:
         #ventana_opciones = VentanaOpciones()
         app = App()
 
+
 class App(ctk.CTk):
     COLOR_VENTANA = '#1d2d44'
     ICONO_VENTANA = "CH.ico"
@@ -110,3 +111,9 @@ class App(ctk.CTk):
         menu.Menu(self)
 
         self.mainloop()
+
+
+def menuEvents(event):
+    print("evento: ", event)
+    form = NewCompany()
+    pass
