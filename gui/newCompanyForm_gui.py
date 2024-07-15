@@ -142,7 +142,7 @@ class NewCompany(ctk.CTk):
 
         print("(filas, columnas)", marco.grid_size())
 #
-#     app2.mainloop()
+#
 #
 #
 # def limpiar_form():
@@ -151,5 +151,6 @@ class NewCompany(ctk.CTk):
 #     pass
 #
 #
-# if __name__ == '__main__':
-#     ventana_login = NewCompany()
+if __name__ == '__main__':
+    ventana = NewCompany()
+    ventana.mainloop()

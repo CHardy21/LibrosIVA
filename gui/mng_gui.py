@@ -1,11 +1,12 @@
 import os
-import tkinter as tk
+#import tkinter as tk
 import customtkinter as ctk
 from PIL import Image
 
 import config.general_config as conf
 import gui.menu_gui as menu
 from gui.newCompanyForm_gui import NewCompany
+from gui.selectCompanyForm_gui import SelectCompany
 
 
 class Login:
@@ -115,5 +116,9 @@ class App(ctk.CTk):
 
 def menuEvents(event):
     print("evento: ", event)
-    form = NewCompany()
+    if event == "NewCompany":
+        form = NewCompany()
+    if event == "workData":
+        form = SelectCompany()
+
     pass

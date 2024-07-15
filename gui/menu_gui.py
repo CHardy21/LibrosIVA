@@ -26,7 +26,8 @@ class Menu:
         # Sub-menu Inicio
         menu_inicio.add_command(label="Nueva Empresa...", accelerator="Ctrl+N",
                                 command=lambda: gui.mng_gui.menuEvents("NewCompany"))
-        menu_inicio.add_command(label="Seleccionar Datos de Trabajo")
+        menu_inicio.add_command(label="Seleccionar Datos de Trabajo",
+                                command=lambda: gui.mng_gui.menuEvents("workData"))
         menu_inicio.add_separator()
         menu_inicio.add_command(label="Comprobantes")
         menu_inicio.add_command(label="Condiciones Fiscales")

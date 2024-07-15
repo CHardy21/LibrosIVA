@@ -161,6 +161,6 @@ class BuyForm:
 
 
 
-if __name__ == '__main__':
-    ventana = BuyForm()
-    ventana.mainloop()
+# if __name__ == '__main__':
+#     ventana = BuyForm()
+#     ventana.mainloop()
