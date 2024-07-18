@@ -5,7 +5,8 @@ import customtkinter as ctk
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, tkf.BOLD)
 
-class InvoiceForm(ctk.CTk):
+
+class InvoiceShowForm(ctk.CTk):
     def __init__(self):
         super().__init__()
         app2 = ctk.CTkToplevel()
@@ -95,5 +96,5 @@ class InvoiceForm(ctk.CTk):
 
 
 if __name__ == '__main__':
-    ventana = InvoiceForm()
+    ventana = InvoiceShowForm()
     ventana.mainloop()

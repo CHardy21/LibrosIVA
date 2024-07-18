@@ -6,38 +6,41 @@ from tkinter import ttk
 # Apariencia temporal, luego al finalizar quitar esta linea
 ctk.set_appearance_mode("dark")
 
-class invoiceShow:
-    app3 = ctk.CTkToplevel()
-    app3.title('Comprobantes')
-    #app3.grab_set()
+class InvoiceForm(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+        app2 = ctk.CTkToplevel()
+        app2.grab_set()
 
-    # create a list box
-    langs = ('Java', 'C#', 'C', 'C++', 'Python',
-             'Go', 'JavaScript', 'PHP', 'Swift')
+        app2.title('Comprobantes')
 
-    var = tk.Variable(value=langs)
+        # create a list box
+        langs = ('Java', 'C#', 'C', 'C++', 'Python',
+                 'Go', 'JavaScript', 'PHP', 'Swift')
 
-    listbox = tk.Listbox(
-        app3,
-        listvariable=var,
-        height=6,
-        selectmode=tk.EXTENDED
-    )
+        var = tk.Variable(value=langs)
 
-    listbox.pack(expand=True, fill=tk.BOTH)
+        listbox = tk.Listbox(
+            app2,
+            listvariable=var,
+            height=6,
+            selectmode=tk.EXTENDED
+        )
 
-
-    def items_selected(event):
-        # get all selected indices
-        selected_indices = listbox.curselection()
-        # get selected items
-        selected_langs = ",".join([listbox.get(i) for i in selected_indices])
-        msg = f'You selected: {selected_langs}'
-        #showinfo(title='Information', message=msg)
+        listbox.pack(expand=True, fill=tk.BOTH)
 
 
-    listbox.bind('<<ListboxSelect>>', items_selected)
+        def items_selected(event):
+            # get all selected indices
+            selected_indices = listbox.curselection()
+            # get selected items
+            selected_langs = ",".join([listbox.get(i) for i in selected_indices])
+            msg = f'You selected: {selected_langs}'
+            #showinfo(title='Information', message=msg)
 
-    #app3.mainloop()
 
-#invoiceShow()
+        listbox.bind('<<ListboxSelect>>', items_selected)
+
+if __name__ == '__main__':
+    ventana = InvoiceForm()
+    ventana.mainloop()
