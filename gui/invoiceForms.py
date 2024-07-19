@@ -1,33 +1,62 @@
 import tkinter as tk
 from tkinter import ttk
+
+import customtkinter as ctk
+from CTkTable import *
+
 from tkinter.messagebox import showerror, showinfo
 
-from cliente import Cliente
-from cliente_dao import ClienteDAO
+# from cliente import Cliente
+# from cliente_dao import ClienteDAO
 
 
-class App(tk.Tk):
+class InvoiceForm(ctk.CTk):
   COLOR_VENTANA = '#1d2d44'
 
   def __init__(self):
     super().__init__()
-    self.id_cliente = None
-    self.configurar_ventana()
-    self.configurar_grid()
-    self.mostrar_titulo()
-    self.mostrar_formulario()
-    self.cargar_tabla()
-    self.mostrar_botones()
+    self.id_invoice = None
 
+    app2 = ctk.CTkToplevel()
+    app2.title('Comprobantes')
+    app2.grab_set()
+
+    # self.configurar_ventana()
+    # self.configurar_grid()
+    # self.mostrar_titulo()
+    # self.mostrar_formulario()
+    # self.cargar_tabla()
+    # self.mostrar_botones()
+
+    tabview = ctk.CTkTabview(master=app2)
+    tabview.pack(padx=20, pady=20)
+
+    tabview.add("tab 1")  # add tab at the end
+    tabview.add("tab 2")  # add tab at the end
+    tabview.set("tab 2")  # set currently visible tab
+
+    button = ctk.CTkButton(master=tabview.tab("tab 1"))
+    button.pack(padx=20, pady=20)
+
+
+
+    value = [[1, 2, 3, 4, 5],
+             [1, 2, 3, 4, 5],
+             [1, 2, 3, 4, 5],
+             [1, 2, 3, 4, 5],
+             [1, 2, 3, 4, 5]]
+
+    table = CTkTable(master=app2, row=5, column=5, values=value, command=lambda :showerror(title='Atencion', message='Debe llenar el formulario'))
+    table.pack(expand=True, fill="both", padx=20, pady=20)
   def configurar_ventana(self):
-    self.geometry('900x600')
-    self.title('Zona Fit App')
-    self.configure(background=App.COLOR_VENTANA)
+    # self.geometry('900x600')
+    # self.title('Zona Fit App')
+    # self.configure(background=App.COLOR_VENTANA)
     # Aplicamos el estilo
     self.estilos = ttk.Style()
     self.estilos.theme_use('clam')
     self.estilos.configure(self,
-                           background=App.COLOR_VENTANA,
+                           # background=App.COLOR_VENTANA,
                            foreground='white',
                            fieldbackground='black')
 
@@ -66,7 +95,7 @@ class App(tk.Tk):
 
   def cargar_tabla(self):
     # Creamos un frame para mostrar la tabla
-    self.frame_tabla = ttk.Frame(self)
+    self.frame_tabla = ctk.CTkFrame(self)
     # Definimos los estilos de la tabla
     self.estilos.configure('Treeview',
                            background='black',
@@ -92,11 +121,11 @@ class App(tk.Tk):
     self.tabla.column('Membresia', anchor=tk.W, width=120)
 
     # Cargar los datos de la BD
-    clientes = ClienteDAO.seleccionar()
-    for c in clientes:
-      self.tabla.insert(parent='',
-                        index=tk.END,
-                        values=(c.id, c.nombre, c.apellido, c.membresia))
+    # clientes = ClienteDAO.seleccionar()
+    # for c in clientes:
+    #   self.tabla.insert(parent='',
+    #                     index=tk.END,
+    #                     values=(c.id, c.nombre, c.apellido, c.membresia))
 
     # agregar el scrollbar
     scrollbar = ttk.Scrollbar(self.frame_tabla, orient=tk.VERTICAL,
@@ -215,5 +244,5 @@ class App(tk.Tk):
 
 
 if __name__ == '__main__':
-  app = App()
+  app = InvoiceForm()
   app.mainloop()

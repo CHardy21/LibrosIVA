@@ -1,5 +1,5 @@
 class DB:
-    DATABASE = 'zona_fit_db'
+    DATABASE = 'iva_dat.db'
     USERNAME = 'root'
     PASSWORD = ''
     DB_PORT = '3306'
