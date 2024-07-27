@@ -5,11 +5,12 @@ class Database:
         self.conn = sqlite3.connect(db)
         self.cur = self.conn.cursor()
         self.cur.execute(
-            "CREATE TABLE IF NOT EXISTS expense_record (item_name text, item_price float, purchase_date date)")
+             "CREATE TABLE IF NOT EXISTS expense_record (item_name text, item_price float, purchase_date date)")
         self.conn.commit()
 
     def fetchRecord(self, query):
         self.cur.execute(query)
+        # self.conn.commit()
         rows = self.cur.fetchall()
         return rows
 
@@ -27,5 +28,5 @@ class Database:
                          (item_name, item_price, purchase_date, rid))
         self.conn.commit()
 
-    def __del__(self):
-        self.conn.close()
+    # def __del__(self):
+    #     self.conn.close()
