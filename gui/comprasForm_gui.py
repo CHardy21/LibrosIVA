@@ -3,8 +3,7 @@ import customtkinter as ctk
 
 #import comprobanteShow_gui
 
-# Apariencia temporal, luego al finalizar quitar esta linea
-ctk.set_appearance_mode("dark")
+
 
 
 def selectInvoice():

@@ -1,3 +1,5 @@
+import tkinter
+
 import customtkinter as ctk
 from CTkTable import *
 
@@ -7,66 +9,65 @@ import sqlite3
 import os
 from config.SQLite_DB import Database
 
-# from config.db_sys.SQLite_DB import Database
+# Apariencia temporal, luego al finalizar quitar esta linea
+ctk.set_appearance_mode("dark")
 
-# Obtenemos la raíz de la carpeta del proyecto
-carpeta_principal = os.path.dirname(__file__)
-
-carpeta_respaldo = os.path.join(carpeta_principal, "config/db_sys/iva_data.db")
-# from cliente import Cliente
-# from cliente_dao import ClienteDAO
 db = Database("../config/iva_data.db")
-# conx = sqlite3.connect("../config/iva_data.db")
+
 
 class InvoiceForm(ctk.CTk):
-   def __init__(self):
+    def __init__(self):
         super().__init__()
         self.id_invoice = None
 
         app2 = ctk.CTkToplevel()
         app2.title('Comprobantes')
         app2.grab_set()
+        app2.config(padx=10, pady=10)
+        # marco = ctk.CTkFrame(master=app2, width=400, height=250,)
+        marco = ctk.CTkScrollableFrame(master=app2,
+                                       width=400,
+                                       height=250,
+                                       corner_radius=0,
+                                       border_width=1,
+                                       border_color="black",
+                                       scrollbar_fg_color="black",
+                                       )
 
-        # self.configurar_ventana()
-        # self.configurar_grid()
-        # self.mostrar_titulo()
-        # self.mostrar_formulario()
-        # self.cargar_tabla()
-        # self.mostrar_botones()
+        marco.grid_rowconfigure(0, weight=1)
+        marco.grid_columnconfigure(0, weight=1)
 
-        value = [["FACT", "Factura", 3, 4, 5],
-                 [1, 2, 3, 4, 5],
-                 [1, 2, 3, 4, 5],
-                 [1, 2, 3, 4, 5],
-                 [1, 2, 3, 4, 5]]
 
-        fetch_records()
 
-        table = CTkTable(master=app2,
-                         row=3,
-                         column=2,
+        # recuperando comprobantes desde la base de datos (DB)
+        value = fetch_records()
+        # crea la tabla con los comprobantes existentes en la DB
+        table = CTkTable(master=marco,
+                         row=len(value),
+                         column=3,
                          values=value,
-                         border_width=1,
-                         corner_radius=1,
+                         border_width=0,
+                         corner_radius=0,
+
                          command=lambda e: showerror(title='Atencion', message=e))
 
-        table.edit_column(0, width=50)
+        table.edit_column(0, width=1, )
+        table.edit_column(1, width=50)
+        table.edit_column(2, width=350)
 
-        table.pack(expand=True, fill="both", padx=20, pady=20)
+
+        marco.pack()
+
+        table.grid(row=0, column=0,)
+
 
 def fetch_records():
     query = "SELECT ID,CODE,DESCRIPTION FROM invoices"
-    print(query)
     result = db.fetchRecord(query)
-
     print(result)
-        # global count
-        # for rec in f:
-        #     tv.insert(parent='', index='0', iid=count, values=(rec[0], rec[1], rec[2], rec[3]))
-        #     count += 1
-        # tv.after(400, refreshData)
+    return result
 
 
 if __name__ == '__main__':
-  app = InvoiceForm()
-  app.mainloop()
+    app = InvoiceForm()
+    app.mainloop()
