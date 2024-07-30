@@ -4,16 +4,16 @@ from CTkTable import CTkTable
 
 
 root = ctk.CTk()
-values = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-table = CTkTable(master=root, row=3, column=3, values=values)
+values = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15]]
+table = CTkTable(master=root, row=3, column=5, values=values)
+def on_hover(event):
+    # row = table.get(event.widget.row, 0)
+    print(f"Fila seleccionada: {event}")
+
+for row in range(3):
+    table.edit_row(row, hover=True)
+    print(row)
+    table.bind("<Enter>", on_hover)
+
 table.pack(expand=True, fill="both", padx=20, pady=20)
-def on_hover(event, row):
-    row = event.widget.get_selected_row()
-    print(f"Fila seleccionada: {row}")
-
-# row=1
-print(table.rows)
-for row in range(table.rows):
-    table.bind("<Enter>", on_hover, row+1)
-
 root.mainloop()
