@@ -1,6 +1,6 @@
 import tkinter as tk
 
-import gui.mng_gui
+import gui
 
 
 #import app
@@ -29,7 +29,8 @@ class Menu:
         menu_inicio.add_command(label="Seleccionar Datos de Trabajo",
                                 command=lambda: gui.mng_gui.menuEvents("workData"))
         menu_inicio.add_separator()
-        menu_inicio.add_command(label="Comprobantes")
+        menu_inicio.add_command(label="Comprobantes",
+                                command=lambda: gui.mng_gui.menuEvents("invoices"))
         menu_inicio.add_command(label="Condiciones Fiscales")
         menu_inicio.add_command(label="Alícuota")
         menu_inicio.add_command(label="Retencionres / Percepciones / Pagos a Cuenta")

@@ -7,7 +7,7 @@ import config.general_config as conf
 import gui.menu_gui as menu
 from gui.newCompanyForm_gui import NewCompany
 from gui.selectCompanyForm_gui import SelectCompany
-
+from gui.invoiceForms import InvoiceForm
 
 class Login:
     def __init__(self):
@@ -120,5 +120,7 @@ def menuEvents(event):
         form = NewCompany()
     if event == "workData":
         form = SelectCompany()
+    if event == "invoices":
+        form = InvoiceForm()
 
     pass

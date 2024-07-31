@@ -6,32 +6,8 @@ class NewCompany(ctk.CTk):
         super().__init__()
         app2 = ctk.CTkToplevel()
         app2.grab_set()
-
         app2.title('Sistema de Registración IVA 1.0')
-        # self.configure(fg_color=App.COLOR_VENTANA)
-        # self.iconbitmap(os.path.join(conf.dir_images, App.ICONO_VENTANA))
 
-        # Configurar donde se muestra la ventana de la App
-        #ancho_app = 900
-        #alto_app = 400
-        # Pantalla
-        # ancho_pantalla = self.winfo_screenwidth()
-        # alto_pantalla = self.winfo_screenheight()
-        #
-        # coordenadas_x = int((ancho_pantalla / 2) - (ancho_app / 2))
-        # coordenadas_y = int((alto_pantalla / 2) - (alto_app / 2)) - 37
-
-        # self.geometry("{}x{}+{}+{}".format(ancho_app, alto_app, coordenadas_x, coordenadas_y))
-        #
-        # # Maximizando la ventana
-        # self.after(1, self.wm_state, 'zoomed')
-
-
-
-#     app2 = ctk.CTkToplevel()
-#     app2.title('Módulo Empresas')
-#     app2.grab_set()
-#
         # Variables del Formulario
         cuit = StringVar()
 
