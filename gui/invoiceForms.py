@@ -1,16 +1,14 @@
-import os
+
 import customtkinter as ctk
 from tkinter import StringVar, font
 from CTkTable import *
-from config.SQLite_DB import Database
 
-dir_file = os.path.dirname(__file__)
-print("Archivo esta en: ", dir_file)
+from config.SQLite_DB import Database
 
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
 
-db = Database("config/iva_data.db")
+db = Database("../config/iva_data.db")
 selected_row = None
 
 def fetch_records():
@@ -40,7 +38,7 @@ def InvoiceMng(form):
 
 
 
-class InvoiceForm(ctk.CTk):
+class InvoiceForm(ctk.CTk,):
     def __init__(self, opt=None):
         super().__init__()
         self.code_invoice = None

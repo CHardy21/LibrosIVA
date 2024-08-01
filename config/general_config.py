@@ -1,6 +1,6 @@
 import os
-from tkinter.font import BOLD
 import customtkinter as ctk
+from tkinter.font import BOLD
 
 from config.SQLite_DB import Database
 
@@ -15,13 +15,14 @@ print(dir_ppal)
 print(dir_gui)
 print(dir_images)
 
+# Configurando Apariencia General de la App
 # Modo de color y tema
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
-
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 16, BOLD)
 
 # Objeto para manejar bases de datos MySQL
 #base_datos = sqlbd.BaseDatos(**sqlbd.acceso_bd)
-db = Database("iva_data.db")
+data = "../config/iva_data.db"
+db = Database(data)

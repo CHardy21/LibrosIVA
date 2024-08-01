@@ -5,9 +5,10 @@ from PIL import Image
 
 import config.general_config as conf
 import gui.menu_gui as menu
+from gui.invoices import invoice
 from gui.newCompanyForm_gui import NewCompany
 from gui.selectCompanyForm_gui import SelectCompany
-from gui.invoiceForms import InvoiceForm
+
 
 class Login:
     def __init__(self):
@@ -107,20 +108,20 @@ class App(ctk.CTk):
         self.geometry("{}x{}+{}+{}".format(ancho_app, alto_app, coordenadas_x, coordenadas_y))
 
         # Maximizando la ventana
-        self.after(1, self.wm_state, 'zoomed')
+        # self.after(1, self.wm_state, 'zoomed')
 
         menu.Menu(self)
 
         self.mainloop()
 
 
-def menuEvents(event):
-    print("evento: ", event)
+def on_click_menu(event):
+    print("Click en MENU: ", event)
     if event == "NewCompany":
         form = NewCompany()
     if event == "workData":
         form = SelectCompany()
     if event == "invoices":
-        form = InvoiceForm()
+        form = invoice()
 
     pass

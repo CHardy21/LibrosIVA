@@ -25,12 +25,12 @@ class Menu:
         # Creando los sub-menu de cada Elemento
         # Sub-menu Inicio
         menu_inicio.add_command(label="Nueva Empresa...", accelerator="Ctrl+N",
-                                command=lambda: gui.mng_gui.menuEvents("NewCompany"))
+                                command=lambda: gui.mng_gui.on_click_menu("NewCompany"))
         menu_inicio.add_command(label="Seleccionar Datos de Trabajo",
-                                command=lambda: gui.mng_gui.menuEvents("workData"))
+                                command=lambda: gui.mng_gui.on_click_menu("workData"))
         menu_inicio.add_separator()
         menu_inicio.add_command(label="Comprobantes",
-                                command=lambda: gui.mng_gui.menuEvents("invoices"))
+                                command=lambda: gui.mng_gui.on_click_menu("invoices"))
         menu_inicio.add_command(label="Condiciones Fiscales")
         menu_inicio.add_command(label="Alícuota")
         menu_inicio.add_command(label="Retencionres / Percepciones / Pagos a Cuenta")
@@ -43,7 +43,7 @@ class Menu:
 
         # Sub-menu Empresas
         menu_empresa.add_command(label="Nueva Empresa...", accelerator="Ctrl+N",
-                                 command=lambda: gui.mng_gui.menuEvents("NewCompany"))
+                                 command=lambda: gui.mng_gui.on_click_menu("NewCompany"))
         menu_empresa.add_command(label="Editar Empresa")
         menu_empresa.add_command(label="Seleccionar Empresa")
         menu_empresa.add_separator()
