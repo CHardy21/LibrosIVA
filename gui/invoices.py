@@ -41,7 +41,11 @@ class InvoiceWindow:
 
     def agregar_widget(self, widget):
         widget.pack()
-
+    def cerrar_ventana(self):
+        self.root.destroy()
+    def borrar_widgets(self):
+        for widget in self.root.winfo_children():
+            widget.destroy()
 
 # =================
 # Clase Secundaria.
@@ -51,6 +55,7 @@ class InvoiceWindow:
 class InvoiceWidgets:
     def __init__(self, ventana_principal):
         self.ventana_principal = ventana_principal
+
 
     def listForm(self):
         marco = ctk.CTkScrollableFrame(master=self.ventana_principal.root,
@@ -73,7 +78,6 @@ class InvoiceWidgets:
                          border_width=0,
                          corner_radius=0,
                          command=lambda e: select_invoice(table, e),
-                         # command=lambda e: showerror(title='Atencion', message=e)
                          )
         table.edit_column(0, width=50)
         table.edit_column(1, width=250, anchor="w")
@@ -90,9 +94,11 @@ class InvoiceWidgets:
                                   width=300,
                                   )
 
-        cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,)
+        cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
+                                   command=lambda: self.ventana_principal.cerrar_ventana())
         select_btn = ctk.CTkButton(marco_btns, text="Seleccionar", width=100, )
-        new_btn = ctk.CTkButton(marco_btns, text="Nuevo", width=100, command=lambda: invoice("new"),)
+        new_btn = ctk.CTkButton(marco_btns, text="Nuevo", width=100,
+                                command=lambda: invoice("new",self.ventana_principal),)
         edit_btn = ctk.CTkButton(marco_btns, text="Editar", width=100,)
         delete_btn = ctk.CTkButton(marco_btns, text="Eliminar", width=100, )
 
@@ -104,26 +110,61 @@ class InvoiceWidgets:
 
         self.ventana_principal.agregar_widget(marco_btns)
 
+# Clase para el formulario de nuevo comprobante
+class NewInvoiceForm:
+    def __init__(self, root):
+        self.root = ctk.CTkToplevel()
+        self.root.title('Nuevo Comprobante')
+        self.root.grab_set()
+        self.root.config(padx=10, pady=10)
+
+        self.create_form()
+
+    def create_form(self):
+        # Aquí puedes agregar los widgets para el formulario
+        label_code = ctk.CTkLabel(self.root, text="Código:")
+        label_code.pack(pady=5)
+        entry_code = ctk.CTkEntry(self.root)
+        entry_code.pack(pady=5)
+
+        label_description = ctk.CTkLabel(self.root, text="Descripción:")
+        label_description.pack(pady=5)
+        entry_description = ctk.CTkEntry(self.root)
+        entry_description.pack(pady=5)
+
+        save_btn = ctk.CTkButton(self.root, text="Guardar", command=self.save_invoice)
+        save_btn.pack(pady=10)
+
+    def save_invoice(self):
+        # Aquí puedes agregar la lógica para guardar el nuevo comprobante
+        print("Guardar nuevo comprobante")
+
 
 # Método que maneja la creación de widget de las distintas ventanas
-def invoice(opt=None):
-    # Crear la ventana principal
-    root = ctk.CTk()
-    ventana_principal = InvoiceWindow(root)
-    # Crear y agregar widgets desde la clase secundaria
-    crear_widgets = InvoiceWidgets(ventana_principal)
+def invoice(opt=None, ventana_principal=None):
+    # # Crear la ventana principal
+    # root = ctk.CTk()
+    # ventana_principal = InvoiceWindow(root)
+    # # Crear y agregar widgets desde la clase secundaria
+    # crear_widgets = InvoiceWidgets(ventana_principal)
 
     match opt:
         case "new":
-            if ventana_principal.winfo_exists():
-                print("El objeto root existe")
-                ventana_principal.destroy()
+            # Cerrar la ventana actual y abrir una nueva para el formulario
+            ventana_principal.cerrar_ventana()
+            root = ctk.CTk()
+            ventana_principal = InvoiceWindow(root)
+            # Crear y agregar widgets desde la clase secundaria
+            crear_widgets = InvoiceWidgets(ventana_principal)
+            # crear_widgets.newForm()
+            # NewInvoiceForm(ctk.CTk())
 
-
-            print("formulario - Nuevo Comprobante")
-            if root.winfo_exists():
-                print("El objeto root existe")
         case _:
+            # Crear la ventana principal
+            root = ctk.CTk()
+            ventana_principal = InvoiceWindow(root)
+            # Crear y agregar widgets desde la clase secundaria
+            crear_widgets = InvoiceWidgets(ventana_principal)
             crear_widgets.listForm()
 
 
