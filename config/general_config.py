@@ -11,9 +11,9 @@ dir_ppal = dir_config[0:len(dir_config) - 6]
 dir_gui = os.path.join(dir_ppal, "gui")
 dir_images = os.path.join(dir_gui, "images")
 
-print(dir_ppal)
-print(dir_gui)
-print(dir_images)
+# print(dir_ppal)
+# print(dir_gui)
+# print(dir_images)
 
 # Configurando Apariencia General de la App
 # Modo de color y tema

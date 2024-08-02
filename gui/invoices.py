@@ -29,8 +29,9 @@ def select_invoice(objeto, e):
     invoice_code = objeto.get(selected_row, 0)
     print(" Click en Row:", selected_row, "\n CODE Invoice: ", invoice_code)
 
-
-# Clase Principal
+# =================
+#  Clase Principal
+# =================
 class InvoiceWindow:
     def __init__(self, root):
         self.root = ctk.CTkToplevel()
@@ -52,8 +53,8 @@ class InvoiceWidgets:
         self.ventana_principal = ventana_principal
 
     def listForm(self):
-        marco = ctk.CTkScrollableFrame(width=300,
-                                       master=self.ventana_principal.root,
+        marco = ctk.CTkScrollableFrame(master=self.ventana_principal.root,
+                                       width=300,
                                        height=250,
                                        corner_radius=0,
                                        border_width=1,
@@ -77,8 +78,31 @@ class InvoiceWidgets:
         table.edit_column(0, width=50)
         table.edit_column(1, width=250, anchor="w")
         table.grid(row=0, column=0, )
+
         # Agregar el widget creado en la Clase Principal
         self.ventana_principal.agregar_widget(marco)
+        self.buttonsForm()
+
+    def buttonsForm(self):
+
+        # Botones de Acciones
+        marco_btns = ctk.CTkFrame(master=self.ventana_principal.root,
+                                  width=300,
+                                  )
+
+        cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,)
+        select_btn = ctk.CTkButton(marco_btns, text="Seleccionar", width=100, )
+        new_btn = ctk.CTkButton(marco_btns, text="Nuevo", width=100, command=lambda: invoice("new"),)
+        edit_btn = ctk.CTkButton(marco_btns, text="Editar", width=100,)
+        delete_btn = ctk.CTkButton(marco_btns, text="Eliminar", width=100, )
+
+        marco_btns.pack(pady=15)
+
+        cancel_btn.grid(row=1, column=0, padx=5, pady=5, )
+        edit_btn.grid(row=1, column=1, padx=5, pady=5, )
+        new_btn.grid(row=1, column=2, padx=5, pady=5, )
+
+        self.ventana_principal.agregar_widget(marco_btns)
 
 
 # Método que maneja la creación de widget de las distintas ventanas
@@ -86,22 +110,30 @@ def invoice(opt=None):
     # Crear la ventana principal
     root = ctk.CTk()
     ventana_principal = InvoiceWindow(root)
-
     # Crear y agregar widgets desde la clase secundaria
     crear_widgets = InvoiceWidgets(ventana_principal)
 
     match opt:
+        case "new":
+            if ventana_principal.winfo_exists():
+                print("El objeto root existe")
+                ventana_principal.destroy()
+
+
+            print("formulario - Nuevo Comprobante")
+            if root.winfo_exists():
+                print("El objeto root existe")
         case _:
             crear_widgets.listForm()
 
 
-if __name__ == '__main__':
-    # from config.SQLite_DB import Database
-    # from config import db
 
-    # db = Database("../config/iva_data.db")
-    # Apariencia
+
+
+if __name__ == '__main__':
+
     ctk.set_appearance_mode("dark")
 
-    app = Invoice()
+    app = ctk.CTk()
+    invoice()
     app.mainloop()
