@@ -188,5 +188,5 @@ def add_btns():
 if __name__ == '__main__':
     # Apariencia
     ctk.set_appearance_mode("dark")
-    app = InvoiceForm("shows")
+    app = InvoiceShowForm()
     app.mainloop()

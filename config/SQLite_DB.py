@@ -1,6 +1,8 @@
 import sqlite3
 
-
+# ===============================================================================================
+#  No olvidar al terminar el codigo de este archivo cerrar la conneccion despues de cada llamada.
+# ===============================================================================================
 class Database:
     def __init__(self, db):
         self.conn = sqlite3.connect(db)
@@ -15,10 +17,10 @@ class Database:
         rows = self.cur.fetchall()
         return rows
 
-    def insertRecord(self, item_name, item_price, purchase_date):
-        self.cur.execute("INSERT INTO expense_record VALUES (?, ?, ?)",
-                         (item_name, item_price, purchase_date))
+    def insertRecord(self, query):
+        self.cur.execute(query)
         self.conn.commit()
+
 
     def removeRecord(self, rwid):
         self.cur.execute("DELETE FROM expense_record WHERE rowid=?", (rwid,))
@@ -29,5 +31,5 @@ class Database:
                          (item_name, item_price, purchase_date, rid))
         self.conn.commit()
 
-    # def __del__(self):
-    #     self.conn.close()
+    def __del__(self):
+        self.conn.close()
