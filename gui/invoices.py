@@ -1,39 +1,42 @@
 import customtkinter as ctk
 from tkinter import StringVar, font
+
+from CTkMessagebox import CTkMessagebox
 from CTkTable import *
 
 from config import db
+import gui.invoices_functions as validar
 
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
 selected_row = None
 
-def saveRecord(self):
 
+def saveRecord(self):
     # Código para recuperar los datos y meterlos en un diccionario para luego pasarlo
     # a la funcion que los guarda en la base de datos
-
-    # Recuperando Datos Del Form
-    datos = dict(
-        "invoiceCode": self.invoiceCode_entry.get()
-        invoiceDescription = StringVar()
-        invoiceObs = StringVar()
-        invoiceTypeRet = StringVar()
-        invoiceTypeCert = StringVar()
-        invoiceTypeDC = StringVar()
-        invoiceOp1 = StringVar()
-        invoiceOp2 = StringVar()
-        invoiceOp3 = StringVar()
-        invoiceOp4 = StringVar()
-        invoiceCodeA = StringVar()
-        invoiceCodeB = StringVar()
-        invoiceCodeC = StringVar()
-        invoiceCodeE = StringVar()
-        invoiceCodeM = StringVar()
-        invoiceCodeT = StringVar()
-        invoiceCodeO = StringVar()
-    )
-
+    print(self)
+    # Recuperando Datos Del Formulario
+    datos = {
+        "invoiceCode": self.invoiceCode.get(),
+        # "invoiceDescription": self.invoiceDescription_entry.get(),
+        # "invoiceObs": self.invoice_obs.get()
+        # invoiceTypeRet = StringVar()
+        # invoiceTypeCert = StringVar()
+        # invoiceTypeDC = StringVar()
+        # invoiceOp1 = StringVar()
+        # invoiceOp2 = StringVar()
+        # invoiceOp3 = StringVar()
+        # invoiceOp4 = StringVar()
+        # invoiceCodeA = StringVar()
+        # invoiceCodeB = StringVar()
+        # invoiceCodeC = StringVar()
+        # invoiceCodeE = StringVar()
+        # invoiceCodeM = StringVar()
+        # invoiceCodeT = StringVar()
+        # invoiceCodeO = StringVar()
+    }
+    print(datos)
     # data.insertRecord(item_name=item_name.get(), item_price=item_amt.get(), purchase_date=transaction_date.get())
 
 
@@ -57,6 +60,7 @@ def select_invoice(objeto, e):
     invoice_code = objeto.get(selected_row, 0)
     print(" Click en Row:", selected_row, "\n CODE Invoice: ", invoice_code)
 
+
 # =================
 #  Clase Principal
 # =================
@@ -69,8 +73,10 @@ class InvoiceWindow:
 
     def agregar_widget(self, widget):
         widget.pack()
+
     def cerrar_ventana(self):
         self.root.destroy()
+
     def cambiar_titulo(self, titulo=None):
         self.root.title(titulo)
 
@@ -83,7 +89,6 @@ class InvoiceWindow:
 class InvoiceWidgets:
     def __init__(self, ventana_principal):
         self.ventana_principal = ventana_principal
-
 
     def listForm(self):
         marco = ctk.CTkScrollableFrame(master=self.ventana_principal.root,
@@ -126,8 +131,8 @@ class InvoiceWidgets:
                                    command=lambda: self.ventana_principal.cerrar_ventana())
         select_btn = ctk.CTkButton(marco_btns, text="Seleccionar", width=100, )
         new_btn = ctk.CTkButton(marco_btns, text="Nuevo", width=100,
-                                command=lambda: invoice("new",self.ventana_principal),)
-        edit_btn = ctk.CTkButton(marco_btns, text="Editar", width=100,)
+                                command=lambda: invoice("new", self.ventana_principal), )
+        edit_btn = ctk.CTkButton(marco_btns, text="Editar", width=100, )
         delete_btn = ctk.CTkButton(marco_btns, text="Eliminar", width=100, )
 
         marco_btns.pack(pady=15)
@@ -162,12 +167,11 @@ class InvoiceWidgets:
             invoiceCodeM = StringVar()
             invoiceCodeT = StringVar()
             invoiceCodeO = StringVar()
-        elif opt=="edit":
+        elif opt == "edit":
             # Recupera Valores del Formulario desde la Base de Datos
             pass
         else:
             print("ERROR: opcion no valida")
-
 
         # Crea el frame y añádelo a la ventana
         marco = ctk.CTkFrame(master=self.ventana_principal.root,
@@ -180,7 +184,8 @@ class InvoiceWidgets:
         # marco.pack(padx=5, pady=5)
 
         invoiceCode_label = ctk.CTkLabel(marco, text="Código", ).place(x=10, y=10)
-        invoiceCode_entry = ctk.CTkEntry(marco, textvariable=invoiceCode, width=40).place(x=110, y=10)
+        invoiceCode_entry = ctk.CTkEntry(marco, textvariable=invoiceCode, width=40,
+                                         validate="focusout", ).place(x=110, y=10)
         invoiceDescription_label = ctk.CTkLabel(marco, text="Descripción", ).place(x=10, y=40)
         invoiceDescription_entry = ctk.CTkEntry(marco, textvariable=invoiceDescription, width=180).place(x=110, y=40)
         invoiceObs_label = ctk.CTkLabel(marco, text="Observaciones:", ).place(x=10, y=70)
@@ -190,8 +195,8 @@ class InvoiceWidgets:
                                                   onvalue="on",
                                                   offvalue="off").place(x=10, y=115)
         invoiceTypeCert_checkbox = ctk.CTkCheckBox(marco, text="Certificado", variable=invoiceTypeCert,
-                                                   onvalue="on",
-                                                   offvalue="off").place(x=110, y=115)
+                                                  onvalue="on",
+                                                  offvalue="off").place(x=110, y=115)
 
         invoiceTypeDC_label = ctk.CTkLabel(marco, text="Débito o Crédito (D/C)", )
         invoiceTypeDC_label.place(x=(170 - len(invoiceTypeDC_label.cget("text")) * 6), y=145)
@@ -203,15 +208,14 @@ class InvoiceWidgets:
         invoiceOp2_label.place(x=(170 - len(invoiceOp2_label.cget("text")) * 6), y=205)
         invoiceOp2_entry = ctk.CTkEntry(marco, textvariable=invoiceOp2, width=25).place(x=180, y=205)
         invoiceOp3_label = ctk.CTkLabel(marco, text=" Activo en Ventas (S/N)", )
-        invoiceOp3_label.place(x=(170 - len(invoiceOp3_label.cget("text")) * 6), y=235)
-        print(180 - len(invoiceOp3_label.cget("text")))
+        invoiceOp3_label.place(x=(170-len(invoiceOp3_label.cget("text"))*6), y=235)
+        print(180-len(invoiceOp3_label.cget("text")))
         invoiceOp3_entry = ctk.CTkEntry(marco, textvariable=invoiceOp3, width=25).place(x=180, y=235)
         invoiceOp4_checkbox = ctk.CTkCheckBox(marco, text="Emitido por Controlador Fiscal", variable=invoiceOp4,
-                                              onvalue="on",
-                                              offvalue="off").place(x=10, y=265)
+                                                   onvalue="on",
+                                                   offvalue="off").place(x=10, y=265)
 
-        invoiceCodes_label = ctk.CTkLabel(marco, text="Cód. s/ RG 3685 (AFIP):", font=font_widgets, ).place(x=255,
-                                                                                                            y=115)
+        invoiceCodes_label = ctk.CTkLabel(marco, text="Cód. s/ RG 3685 (AFIP):", font=font_widgets,).place(x=255, y=115)
         invoiceCodeA_label = ctk.CTkLabel(marco, text="Comprobante Tipo A", ).place(x=240, y=145)
         invoiceCodeA_entry = ctk.CTkEntry(marco, textvariable=invoiceCodeA, width=40).place(x=370, y=145)
         invoiceCodeB_label = ctk.CTkLabel(marco, text="Comprobante Tipo B", ).place(x=240, y=175)
@@ -225,12 +229,13 @@ class InvoiceWidgets:
         invoiceCodeT_label = ctk.CTkLabel(marco, text="Comprobante Tipo T", ).place(x=240, y=295)
         invoiceCodeT_entry = ctk.CTkEntry(marco, textvariable=invoiceCodeA, width=40).place(x=370, y=295)
 
+
         #  command=lambda: selectInvoice()
         clear_btn = ctk.CTkButton(marco, text="Borrar", width=80, )
         cancel_btn = ctk.CTkButton(marco, text="Cancelar", width=80,
                                    command=lambda: self.ventana_principal.cerrar_ventana())
         ok_btn = ctk.CTkButton(marco, text="Guardar", width=120,
-                               command=lambda: saveRecord()
+                               command=lambda: validation_form(self)
                                )
 
         clear_btn.place(x=12, y=340)
@@ -239,9 +244,67 @@ class InvoiceWidgets:
 
         self.ventana_principal.agregar_widget(marco)
 
+        def validation_form(self):
+            datos = dict()
+            error = {}
+            count = 0
+
+            if validar.validate_txt(invoiceCode.get(), 1, 4, str):
+                datos["Code"] = invoiceCode.get()
+            else:
+                count += 1
+                error[count] = "Código de Comprobante debe contener 1-4 caracteres."
+
+            if validar.validate_txt(invoiceDescription.get(), 1, 24, str):
+                datos["Description"] = invoiceCode.get()
+            else:
+                count += 1
+                error[count] = "Descripción de Comprobante debe contener 1-24 caracteres."
+
+            if validar.validar_string(invoiceTypeDC.get(),"DCdc"):
+                datos["invoiceTypeDC"] = invoiceTypeDC.get()
+            else:
+                count += 1
+                error[count] = "Debe indicar Débito o Crédito (D/C)."
+
+            print(datos, "Cantidad de elementos: ", len(datos))
+            print(error, "Cantidad de elementos: ", len(error))
+            msg = ""
+            if len(error)>0:
+                for txt,i in enumerate(error):
+                    msg += "* " + error[i]+"\n"
+                    print(i)
+                CTkMessagebox(title="Error", message=msg, icon="cancel")
+            # else:
+            #     CTkMessagebox(title="Error", message=error[1], icon="cancel")
+            # Recuperando Datos Del Formulario
+            # datos = {
+            #     "invoiceCode": invoiceCode_entry.get(),
+            # "invoiceDescription": self.invoiceDescription_entry.get(),
+            # "invoiceObs": self.invoice_obs.get()
+            # invoiceTypeRet = StringVar()
+            # invoiceTypeCert = StringVar()
+            # invoiceTypeDC = StringVar()
+            # invoiceOp1 = StringVar()
+            # invoiceOp2 = StringVar()
+            # invoiceOp3 = StringVar()
+            # invoiceOp4 = StringVar()
+            # invoiceCodeA = StringVar()
+            # invoiceCodeB = StringVar()
+            # invoiceCodeC = StringVar()
+            # invoiceCodeE = StringVar()
+            # invoiceCodeM = StringVar()
+            # invoiceCodeT = StringVar()
+            # invoiceCodeO = StringVar()
+            # }
+            # print(datos)
+
+            pass
 
 
-# Método que maneja la creación de widget de las distintas ventanas
+# ===================================================================
+#  Método que maneja la creación de widget de las distintas ventanas
+# ===================================================================
 def invoice(opt=None, ventana_principal=None):
     # # Crear la ventana principal
     # root = ctk.CTk()
@@ -269,13 +332,8 @@ def invoice(opt=None, ventana_principal=None):
             crear_widgets.listForm()
 
 
-
-
-
 if __name__ == '__main__':
-
     ctk.set_appearance_mode("dark")
-
     app = ctk.CTk()
     invoice()
     app.mainloop()
