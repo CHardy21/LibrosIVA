@@ -10,26 +10,44 @@ import gui.invoices_functions as validar
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
 selected_row = None
+invoice_code = None
 
 
-def saveRecord(datos):
+def save_record(datos):
     print(datos)
+    # datos_mapping= {
+    #     'Code': 'code', 'Description': 'description', 'Obs': 'observation', 'TypeRet': 'type_ret', 'TypeCert': 'type_cert',
+    #     'TypeDC': 'type_dc', 'Op1': 'active_buy', 'Op2': 'active_sell', 'Op3': 'numeration', 'Op4': 'c_fiscal', 'CodeA': 'code_a',
+    #     'CodeB': 'code_b', 'CodeC': 'code_c', 'CodeE': 'code_e', 'CodeM': 'code_m', 'CodeT': 'code_t', 'CodeO': 'code_o'
+    # }
+    # for db_column, dict_key in column_mapping.items():
+    #     cursor.execute(f'INSERT INTO datos ({db_column}) VALUES (?)', (sample_dict[dict_key],))
 
-    # data.insertRecord(item_name=item_name.get(), item_price=item_amt.get(), purchase_date=transaction_date.get())
+    query = """
+        INSERT INTO invoices (code, description, observations, type_ret, type_cert, type_dc, active_buy, active_sell, numeration, c_fiscal, code_a, code_b, code_c, code_e, code_m, code_t, code_o)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """
+    values = (datos['Code'], datos['Description'], datos['Obs'], datos['TypeRet'], datos['TypeCert'], datos['TypeDC'],
+              datos['Op1'], datos['Op2'], datos['Op3'], datos['Op4'], datos['CodeA'], datos['CodeB'], datos['CodeC'],
+              datos['CodeE'], datos['CodeM'], datos['CodeT'], datos['CodeO'])
 
+    result = db.insertRecord(query, values)
+    if result:
+        return True
 
 def fetch_records():
     query = "SELECT CODE,DESCRIPTION FROM invoices"
-    result = db.fetchRecord(query)
+    result = db.fetchRecords(query)
     print(result)
     return result
 
-def get_records(record):
+
+def get_record(record):
     query = f"SELECT * FROM invoices WHERE code = '{record}'"
     result = db.fetchRecord(query)
-
     print("valor devuelto: ", result)
     return result
+
 
 def select_invoice(objeto, e):
     print(e)
@@ -110,6 +128,9 @@ class InvoiceWidgets:
 
         cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
                                    command=lambda: self.ventana_principal.cerrar_ventana())
+        delete_btn = ctk.CTkButton(marco_btns, text="Borrar", width=100,
+
+                                   )
         new_btn = ctk.CTkButton(marco_btns, text="Nuevo", width=100,
                                 command=lambda: invoice("new", self.ventana_principal), )
         edit_btn = ctk.CTkButton(marco_btns, text="Editar", width=100,
@@ -119,19 +140,21 @@ class InvoiceWidgets:
                                                     message="Debe seleccionar un Comprobante para editar",
                                                     icon="cancel"),
                                  )
-        delete_btn = ctk.CTkButton(marco_btns, text="Eliminar", width=100, )
 
         marco_btns.pack(pady=15)
 
-        cancel_btn.grid(row=1, column=0, padx=5, pady=5, )
-        edit_btn.grid(row=1, column=1, padx=5, pady=5, )
-        new_btn.grid(row=1, column=2, padx=5, pady=5, )
+        delete_btn.grid(row=1, column=0, padx=15, pady=5, )
+        cancel_btn.grid(row=1, column=1, padx=5, pady=5, )
+        edit_btn.grid(row=1, column=2, padx=5, pady=5, )
+        new_btn.grid(row=1, column=3, padx=5, pady=5, )
 
         # Agregar widget creados en la Clase Principal
         self.ventana_principal.agregar_widget(marco_btns)
 
     def dataForm(self, opt=None):
         datos = {}
+        # opt="new" - Muestra el formulario vacío.
+        # opt="edit" - Muestra el formulario con los datos del registro seleccionado para ser editado
         if opt == "new":
             titulo_ventana = "Nuevo Comprobante"
             self.ventana_principal.cambiar_titulo(titulo_ventana)
@@ -160,41 +183,33 @@ class InvoiceWidgets:
             self.ventana_principal.cambiar_titulo(titulo_ventana)
             print("Editar Code: ", selected_row, " - ", invoice_code)
             # Recupera Valores del Formulario desde la Base de Datos
-            result = get_records(invoice_code)
-            #
-            # tuplas = [(3, 'FAC1', 'Factura', None, 0, 0, 'D', 'S', 'S', 'S', 0, 1, 6, 11, None, 51, None, 99)]
-            #
-            # # Lista de claves
-            # claves = ['id', 'Code', 'Description', 'Obs', 'TypeRet', 'TypeCert', 'TypeDC', 'Op1', 'Op2',
-            #           'Op3', 'Op4', 'CodeA', 'campo13', 'campo14', 'campo15', 'campo16', 'campo17', 'campo18']
-            # # Crear el diccionario
-            # data = {clave: valor for clave, valor in zip(claves, result[0])}
-            # print(">>> ", result[0][2])
+            result = get_record(invoice_code)
+
             datos = {
-                "id": StringVar(value=result[0][0]),
-                "Code": StringVar(value=result[0][1]),
-                "Description": StringVar(value=result[0][2]),
-                "Obs": StringVar(value=result[0][3]),
-                "TypeRet": StringVar(value=result[0][4]),
-                "TypeCert": StringVar(value=result[0][5]),
-                "TypeDC": StringVar(value=result[0][6]),
-                "Op1": StringVar(value=result[0][7]),
-                "Op2": StringVar(value=result[0][8]),
-                "Op3": StringVar(value=result[0][9]),
-                "Op4": StringVar(value=result[0][10]),
-                "CodeA": StringVar(value=result[0][11]),
-                "CodeB": StringVar(value=result[0][12]),
-                "CodeC": StringVar(value=result[0][13]),
-                "CodeE": StringVar(value=result[0][14]),
-                "CodeM": StringVar(value=result[0][15]),
-                "CodeT": StringVar(value=result[0][16]),
-                "CodeO": StringVar(value=result[0][17]),
+                "id": StringVar(value=result[0]),
+                "Code": StringVar(value=result[1]),
+                "Description": StringVar(value=result[2]),
+                "Obs": StringVar(value=result[3]),
+                "TypeRet": StringVar(value=result[4]),
+                "TypeCert": StringVar(value=result[5]),
+                "TypeDC": StringVar(value=result[6]),
+                "Op1": StringVar(value=result[7]),
+                "Op2": StringVar(value=result[8]),
+                "Op3": StringVar(value=result[9]),
+                "Op4": StringVar(value=result[10]),
+                "CodeA": StringVar(value=result[11]),
+                "CodeB": StringVar(value=result[12]),
+                "CodeC": StringVar(value=result[13]),
+                "CodeE": StringVar(value=result[14]),
+                "CodeM": StringVar(value=result[15]),
+                "CodeT": StringVar(value=result[16]),
+                "CodeO": StringVar(value=result[17]),
             }
-            print("=> ", datos)
+            # print("=> ", datos)
         else:
             print("ERROR: opcion no valida")
 
-        # Crea el frame y añádelo a la ventana
+        # Crea el frame y lo añade a la ventana
         marco = ctk.CTkFrame(master=self.ventana_principal.root,
                              width=420,
                              height=420,
@@ -202,7 +217,6 @@ class InvoiceWidgets:
                              border_width=1,
                              border_color="black",
                              )
-        # marco.pack(padx=5, pady=5)
 
         invoiceCode_label = ctk.CTkLabel(marco, text="Código", ).place(x=10, y=10)
         invoiceCode_entry = ctk.CTkEntry(marco, textvariable=datos['Code'], width=40,
@@ -253,8 +267,7 @@ class InvoiceWidgets:
         invoiceCodeO_label = ctk.CTkLabel(marco, text="Otros", ).place(x=240, y=325)
         invoiceCodeO_entry = ctk.CTkEntry(marco, textvariable=datos['CodeO'], width=40).place(x=370, y=325)
 
-        #  command=lambda: selectInvoice()
-        clear_btn = ctk.CTkButton(marco, text="Borrar", width=80, )
+        clear_btn = ctk.CTkButton(marco, text="Vaciar", width=80, )
         cancel_btn = ctk.CTkButton(marco, text="Cancelar", width=80,
                                    command=lambda: self.ventana_principal.cerrar_ventana())
         ok_btn = ctk.CTkButton(marco, text="Guardar", width=120,
@@ -270,15 +283,15 @@ class InvoiceWidgets:
         def validation_form(self, dataForm):
             # Recuperando Datos Del Formulario
             datos = {
-                "Code": dataForm['Code'].get(),
+                "Code": dataForm['Code'].get().upper(),
                 "Description": dataForm['Description'].get(),
                 "Obs": dataForm['Obs'].get(),
                 "TypeRet": dataForm['TypeRet'].get(),
                 "TypeCert": dataForm['TypeCert'].get(),
-                "TypeDC": dataForm['TypeDC'].get(),
-                "Op1": dataForm['Op1'].get(),
-                "Op2": dataForm['Op2'].get(),
-                "Op3": dataForm['Op3'].get(),
+                "TypeDC": dataForm['TypeDC'].get().upper(),
+                "Op1": dataForm['Op1'].get().upper(),
+                "Op2": dataForm['Op2'].get().upper(),
+                "Op3": dataForm['Op3'].get().upper(),
                 "Op4": dataForm['Op4'].get(),
                 "CodeA": dataForm['CodeA'].get(),
                 "CodeB": dataForm['CodeB'].get(),
@@ -326,10 +339,13 @@ class InvoiceWidgets:
                 CTkMessagebox(title="Error", message=msg, icon="cancel")
             else:
                 print("Se validaron todos los Datos.")
-                saveRecord(datos)
-            #     CTkMessagebox(title="Error", message=error[1], icon="cancel")
+                save = save_record(datos)
+                if save:
+                    CTkMessagebox(title="Ok", message="El registro fue guardado correctamente.", icon="check",)
+                    self.ventana_principal.cerrar_ventana()
+                else:
+                    CTkMessagebox(title="Error", message="Ha ocurrido un error.", icon="cancel")
 
-            pass
 
 
 # ===================================================================

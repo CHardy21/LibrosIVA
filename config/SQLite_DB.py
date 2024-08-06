@@ -23,13 +23,30 @@ class Database:
     def fetchRecord(self, query):
         self.cur.execute(query)
         # self.conn.commit()
+        row = self.cur.fetchone()
+        return row
+
+    def fetchRecords(self, query):
+        self.cur.execute(query)
+        # self.conn.commit()
         rows = self.cur.fetchall()
         return rows
 
-    def insertRecord(self, query):
-        self.cur.execute(query)
-        self.conn.commit()
-
+    def insertRecord(self, query, values):
+        """
+        Ejecuta una consulta SQL para insertar datos en la base de datos.
+        Args:
+            query (str): Consulta SQL con marcadores de posición (?).
+            values (tuple): Tupla de valores a insertar en la consulta.
+        Returns:
+            None
+        """
+        try:
+            self.cur.execute(query, values)
+            self.conn.commit()
+            print("Registro insertado correctamente.")
+        except sqlite3.Error as e:
+            print(f"Error al insertar el registro: {e}")
 
     def removeRecord(self, rwid):
         self.cur.execute("DELETE FROM expense_record WHERE rowid=?", (rwid,))
