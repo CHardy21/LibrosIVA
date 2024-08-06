@@ -25,10 +25,12 @@ def fetch_records():
     return result
 
 def get_records(record):
-    query = f"SELECT * FROM invoices WHERE 'invoiceCode' = '{record}'"
+    query = f"SELECT * FROM invoices WHERE code = '{record}'"
     result = db.fetchRecord(query)
-    print(result)
+
+    print("valor devuelto: ", result)
     return result
+
 def select_invoice(objeto, e):
     print(e)
     global selected_row
@@ -159,8 +161,36 @@ class InvoiceWidgets:
             print("Editar Code: ", selected_row, " - ", invoice_code)
             # Recupera Valores del Formulario desde la Base de Datos
             result = get_records(invoice_code)
-            print(result)
-            pass
+            #
+            # tuplas = [(3, 'FAC1', 'Factura', None, 0, 0, 'D', 'S', 'S', 'S', 0, 1, 6, 11, None, 51, None, 99)]
+            #
+            # # Lista de claves
+            # claves = ['id', 'Code', 'Description', 'Obs', 'TypeRet', 'TypeCert', 'TypeDC', 'Op1', 'Op2',
+            #           'Op3', 'Op4', 'CodeA', 'campo13', 'campo14', 'campo15', 'campo16', 'campo17', 'campo18']
+            # # Crear el diccionario
+            # data = {clave: valor for clave, valor in zip(claves, result[0])}
+            # print(">>> ", result[0][2])
+            datos = {
+                "id": StringVar(value=result[0][0]),
+                "Code": StringVar(value=result[0][1]),
+                "Description": StringVar(value=result[0][2]),
+                "Obs": StringVar(value=result[0][3]),
+                "TypeRet": StringVar(value=result[0][4]),
+                "TypeCert": StringVar(value=result[0][5]),
+                "TypeDC": StringVar(value=result[0][6]),
+                "Op1": StringVar(value=result[0][7]),
+                "Op2": StringVar(value=result[0][8]),
+                "Op3": StringVar(value=result[0][9]),
+                "Op4": StringVar(value=result[0][10]),
+                "CodeA": StringVar(value=result[0][11]),
+                "CodeB": StringVar(value=result[0][12]),
+                "CodeC": StringVar(value=result[0][13]),
+                "CodeE": StringVar(value=result[0][14]),
+                "CodeM": StringVar(value=result[0][15]),
+                "CodeT": StringVar(value=result[0][16]),
+                "CodeO": StringVar(value=result[0][17]),
+            }
+            print("=> ", datos)
         else:
             print("ERROR: opcion no valida")
 

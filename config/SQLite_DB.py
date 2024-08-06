@@ -7,9 +7,18 @@ class Database:
     def __init__(self, db):
         self.conn = sqlite3.connect(db)
         self.cur = self.conn.cursor()
-        self.cur.execute(
-             "CREATE TABLE IF NOT EXISTS expense_record (item_name text, item_price float, purchase_date date)")
-        self.conn.commit()
+        # self.cur.execute(
+        #      "CREATE TABLE IF NOT EXISTS expense_record (item_name text, item_price float, purchase_date date)")
+        # self.conn.commit()
+    def selectRecord(self, query):
+        self.conn.row_factory = sqlite3.Row  # Para obtener los resultados como diccionarios
+        self.cur.execute(query)
+        # Obtén los nombres de las columnas
+        column_names = [description[0] for description in self.cur.description]
+        # Construye los diccionarios manualmente
+        result = [dict(zip(column_names, row)) for row in self.cur.fetchall()]
+
+        return result
 
     def fetchRecord(self, query):
         self.cur.execute(query)
