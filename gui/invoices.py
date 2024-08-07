@@ -15,18 +15,9 @@ invoice_code = None
 
 def save_record(datos):
     print(datos)
-    # datos_mapping= {
-    #     'Code': 'code', 'Description': 'description', 'Obs': 'observation', 'TypeRet': 'type_ret', 'TypeCert': 'type_cert',
-    #     'TypeDC': 'type_dc', 'Op1': 'active_buy', 'Op2': 'active_sell', 'Op3': 'numeration', 'Op4': 'c_fiscal', 'CodeA': 'code_a',
-    #     'CodeB': 'code_b', 'CodeC': 'code_c', 'CodeE': 'code_e', 'CodeM': 'code_m', 'CodeT': 'code_t', 'CodeO': 'code_o'
-    # }
-    # for db_column, dict_key in column_mapping.items():
-    #     cursor.execute(f'INSERT INTO datos ({db_column}) VALUES (?)', (sample_dict[dict_key],))
-
-    query = """
-        INSERT INTO invoices (code, description, observations, type_ret, type_cert, type_dc, active_buy, active_sell, numeration, c_fiscal, code_a, code_b, code_c, code_e, code_m, code_t, code_o)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """
+    query = """INSERT INTO invoices (code, description, observations, type_ret, type_cert, type_dc, active_buy, 
+    active_sell, numeration, c_fiscal, code_a, code_b, code_c, code_e, code_m, code_t, code_o) VALUES (?, ?, ?, ?, ?, 
+    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
     values = (datos['Code'], datos['Description'], datos['Obs'], datos['TypeRet'], datos['TypeCert'], datos['TypeDC'],
               datos['Op1'], datos['Op2'], datos['Op3'], datos['Op4'], datos['CodeA'], datos['CodeB'], datos['CodeC'],
               datos['CodeE'], datos['CodeM'], datos['CodeT'], datos['CodeO'])
@@ -34,6 +25,7 @@ def save_record(datos):
     result = db.insertRecord(query, values)
     if result:
         return True
+
 
 def fetch_records():
     query = "SELECT CODE,DESCRIPTION FROM invoices"
@@ -50,7 +42,7 @@ def get_record(record):
 
 
 def select_invoice(objeto, e):
-    print(e)
+    # 'e' tiene los datos pasados por el widget tabla de donde se hizo el  Click
     global selected_row
     global invoice_code
 
@@ -60,7 +52,19 @@ def select_invoice(objeto, e):
     objeto.select_row(e["row"])
     selected_row = e["row"]
     invoice_code = objeto.get(selected_row, 0)
-    print(" Click en Row:", selected_row, "\n CODE Invoice: ", invoice_code)
+    print(" CODE Invoice Selected: ", invoice_code)
+    print(e)
+
+
+def delete_invoice(self):
+    print("Eliminar Registro: ", invoice_code)
+    query = f"DELETE FROM invoices WHERE code='{invoice_code}'"
+    result = db.removeRecord(query)
+    if result:
+        CTkMessagebox(title="Ok", message="El registro fue borrado correctamente.", icon="check", )
+        self.ventana_principal.cerrar_ventana()
+
+    pass
 
 
 # =================
@@ -86,7 +90,7 @@ class InvoiceWindow:
 # =================
 # Clase Secundaria.
 # =================
-# En esta clase los métodos configuran los widget que se muestran en
+# En esta clase, los métodos configuran los widget que se muestran en
 # las distintas ventanas relacionadas con los comprobantes.
 class InvoiceWidgets:
     def __init__(self, ventana_principal):
@@ -114,11 +118,12 @@ class InvoiceWidgets:
                          corner_radius=0,
                          command=lambda e: select_invoice(table, e),
                          )
+
         table.edit_column(0, width=50)
         table.edit_column(1, width=250, anchor="w")
         table.grid(row=0, column=0, )
 
-        # Agregar widget creados en la Clase Principal
+        # Agregar widget creado en la Clase Principal
         self.ventana_principal.agregar_widget(marco)
 
         # Botones de Acciones
@@ -129,7 +134,11 @@ class InvoiceWidgets:
         cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
                                    command=lambda: self.ventana_principal.cerrar_ventana())
         delete_btn = ctk.CTkButton(marco_btns, text="Borrar", width=100,
-
+                                   command=lambda: delete_invoice(self)
+                                   if selected_row is not None
+                                   else CTkMessagebox(title="Error",
+                                                      message="Debe seleccionar un Comprobante para Borrar",
+                                                      icon="cancel"),
                                    )
         new_btn = ctk.CTkButton(marco_btns, text="Nuevo", width=100,
                                 command=lambda: invoice("new", self.ventana_principal), )
@@ -158,7 +167,7 @@ class InvoiceWidgets:
         if opt == "new":
             titulo_ventana = "Nuevo Comprobante"
             self.ventana_principal.cambiar_titulo(titulo_ventana)
-            # Variables del Formulario
+            # Inicializa el dict datos[...] con las Variables del Formulario
             datos = {
                 "Code": StringVar(),
                 "Description": StringVar(),
@@ -178,13 +187,13 @@ class InvoiceWidgets:
                 "CodeT": StringVar(),
                 "CodeO": StringVar(),
             }
+
         elif opt == "edit":
             titulo_ventana = "Editar Comprobante"
             self.ventana_principal.cambiar_titulo(titulo_ventana)
             print("Editar Code: ", selected_row, " - ", invoice_code)
-            # Recupera Valores del Formulario desde la Base de Datos
+            # Recupera Valores del Formulario desde la DB y se carga al dict datos[...]
             result = get_record(invoice_code)
-
             datos = {
                 "id": StringVar(value=result[0]),
                 "Code": StringVar(value=result[1]),
@@ -205,11 +214,11 @@ class InvoiceWidgets:
                 "CodeT": StringVar(value=result[16]),
                 "CodeO": StringVar(value=result[17]),
             }
-            # print("=> ", datos)
+
         else:
             print("ERROR: opcion no valida")
 
-        # Crea el frame y lo añade a la ventana
+        # Crea el frame con el formulario y lo añade a la ventana
         marco = ctk.CTkFrame(master=self.ventana_principal.root,
                              width=420,
                              height=420,
@@ -330,6 +339,7 @@ class InvoiceWidgets:
                 count += 1
                 error[count] = "Debe indicar si esta activo para Ventas (S/N)."
 
+            print("'Resultado de la Validación'")
             print(datos, "Cantidad de elementos:      ", len(datos))
             print(error, "Cant. Errores de Validacón: ", len(error))
 
@@ -341,11 +351,10 @@ class InvoiceWidgets:
                 print("Se validaron todos los Datos.")
                 save = save_record(datos)
                 if save:
-                    CTkMessagebox(title="Ok", message="El registro fue guardado correctamente.", icon="check",)
+                    CTkMessagebox(title="Ok", message="El registro fue guardado correctamente.", icon="check", )
                     self.ventana_principal.cerrar_ventana()
                 else:
                     CTkMessagebox(title="Error", message="Ha ocurrido un error.", icon="cancel")
-
 
 
 # ===================================================================

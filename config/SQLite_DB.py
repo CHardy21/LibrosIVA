@@ -1,5 +1,6 @@
 import sqlite3
 
+
 # ===============================================================================================
 #  No olvidar al terminar el codigo de este archivo cerrar la conneccion despues de cada llamada.
 # ===============================================================================================
@@ -10,6 +11,7 @@ class Database:
         # self.cur.execute(
         #      "CREATE TABLE IF NOT EXISTS expense_record (item_name text, item_price float, purchase_date date)")
         # self.conn.commit()
+
     def selectRecord(self, query):
         self.conn.row_factory = sqlite3.Row  # Para obtener los resultados como diccionarios
         self.cur.execute(query)
@@ -22,13 +24,13 @@ class Database:
 
     def fetchRecord(self, query):
         self.cur.execute(query)
-        # self.conn.commit()
+        self.conn.commit()
         row = self.cur.fetchone()
         return row
 
     def fetchRecords(self, query):
         self.cur.execute(query)
-        # self.conn.commit()
+        self.conn.commit()
         rows = self.cur.fetchall()
         return rows
 
@@ -48,9 +50,15 @@ class Database:
         except sqlite3.Error as e:
             print(f"Error al insertar el registro: {e}")
 
-    def removeRecord(self, rwid):
-        self.cur.execute("DELETE FROM expense_record WHERE rowid=?", (rwid,))
-        self.conn.commit()
+    def removeRecord(self, query):
+        try:
+            print(query)
+            self.cur.execute(query)
+            self.conn.commit()
+            print("Registro Eliminado correctamente.")
+            return True
+        except sqlite3.Error as e:
+            print(f"Error al eliminar el registro: {e}")
 
     def updateRecord(self, item_name, item_price, purchase_date, rid):
         self.cur.execute("UPDATE expense_record SET item_name = ?, item_price = ?, purchase_date = ? WHERE rowid = ?",
@@ -59,3 +67,6 @@ class Database:
 
     def __del__(self):
         self.conn.close()
+
+    def error_mng(self, e):
+        return e
