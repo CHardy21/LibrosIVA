@@ -27,6 +27,25 @@ def save_record(datos):
         return True
 
 
+def update_record(datos):
+    print(datos)
+    query = """
+        UPDATE invoices
+        SET code = ?, description = ?, observations = ?, type_ret = ?, type_cert = ?, type_dc = ?,
+            active_buy = ?, active_sell = ?, numeration = ?, c_fiscal = ?, code_a = ?, code_b = ?,
+            code_c = ?, code_e = ?, code_m = ?, code_t = ?, code_o = ?
+        WHERE id = ?
+    """
+    values = (datos['Code'], datos['Description'], datos['Obs'], datos['TypeRet'], datos['TypeCert'],
+              datos['TypeDC'], datos['Op1'], datos['Op2'], datos['Op3'], datos['Op4'], datos['CodeA'],
+              datos['CodeB'], datos['CodeC'], datos['CodeE'], datos['CodeM'], datos['CodeT'],
+              datos['CodeO'], datos['Id'])
+    result = db.updateRecord(query, values)
+
+    if result:
+        return True
+
+
 def fetch_records():
     query = "SELECT CODE,DESCRIPTION FROM invoices"
     result = db.fetchRecords(query)
@@ -61,10 +80,8 @@ def delete_invoice(self):
     query = f"DELETE FROM invoices WHERE code='{invoice_code}'"
     result = db.removeRecord(query)
     if result:
-        CTkMessagebox(title="Ok", message="El registro fue borrado correctamente.", icon="check", )
+        CTkMessagebox(title="Ok", message="El registro fue borrado correctamente.", icon="check", sound=True)
         self.ventana_principal.cerrar_ventana()
-
-    pass
 
 
 # =================
@@ -81,6 +98,7 @@ class InvoiceWindow:
         widget.pack()
 
     def cerrar_ventana(self):
+        self.root.winfo_parent()
         self.root.destroy()
 
     def cambiar_titulo(self, titulo=None):
@@ -169,6 +187,7 @@ class InvoiceWidgets:
             self.ventana_principal.cambiar_titulo(titulo_ventana)
             # Inicializa el dict datos[...] con las Variables del Formulario
             datos = {
+                "Id": None,
                 "Code": StringVar(),
                 "Description": StringVar(),
                 "Obs": StringVar(),
@@ -195,7 +214,7 @@ class InvoiceWidgets:
             # Recupera Valores del Formulario desde la DB y se carga al dict datos[...]
             result = get_record(invoice_code)
             datos = {
-                "id": StringVar(value=result[0]),
+                "Id": StringVar(value=result[0]),
                 "Code": StringVar(value=result[1]),
                 "Description": StringVar(value=result[2]),
                 "Obs": StringVar(value=result[3]),
@@ -276,11 +295,12 @@ class InvoiceWidgets:
         invoiceCodeO_label = ctk.CTkLabel(marco, text="Otros", ).place(x=240, y=325)
         invoiceCodeO_entry = ctk.CTkEntry(marco, textvariable=datos['CodeO'], width=40).place(x=370, y=325)
 
-        clear_btn = ctk.CTkButton(marco, text="Vaciar", width=80, )
+        clear_btn = ctk.CTkButton(marco, text="Vaciar", width=80,
+                                  command=lambda: limpiar_form(marco))
         cancel_btn = ctk.CTkButton(marco, text="Cancelar", width=80,
                                    command=lambda: self.ventana_principal.cerrar_ventana())
         ok_btn = ctk.CTkButton(marco, text="Guardar", width=120,
-                               command=lambda: validation_form(self, datos)
+                               command=lambda: validation_form(self, datos, opt)
                                )
 
         clear_btn.place(x=12, y=370)
@@ -289,9 +309,16 @@ class InvoiceWidgets:
 
         self.ventana_principal.agregar_widget(marco)
 
-        def validation_form(self, dataForm):
+        def validation_form(self, dataForm, optt):
+
+            if dataForm['Id'] is not None:
+                value = dataForm['Id'].get()  # Accede al método get() aquí
+            else:
+                value = ""  # Maneja el caso en que dataForm['Id'] es None, o sea cuando opt = "new"
+
             # Recuperando Datos Del Formulario
             datos = {
+                "Id": value,
                 "Code": dataForm['Code'].get().upper(),
                 "Description": dataForm['Description'].get(),
                 "Obs": dataForm['Obs'].get(),
@@ -349,12 +376,31 @@ class InvoiceWidgets:
                 CTkMessagebox(title="Error", message=msg, icon="cancel")
             else:
                 print("Se validaron todos los Datos.")
-                save = save_record(datos)
-                if save:
-                    CTkMessagebox(title="Ok", message="El registro fue guardado correctamente.", icon="check", )
-                    self.ventana_principal.cerrar_ventana()
-                else:
-                    CTkMessagebox(title="Error", message="Ha ocurrido un error.", icon="cancel")
+                if optt == "new":
+                    save = save_record(datos)
+                    if save:
+                        CTkMessagebox(title="Ok", message="El registro fue guardado correctamente.", icon="check", )
+                        self.ventana_principal.cerrar_ventana()
+                    else:
+                        CTkMessagebox(title="Error", message="Ha ocurrido un error.", icon="cancel")
+                elif optt == "edit":
+                    print("La edicion fue exiosa (Ahora cree la funcion update_record()  :)")
+                    print(datos)
+                    update = update_record(datos)
+                    if update:
+                        CTkMessagebox(title="Ok", message="El registro fue Actualizado correctamente.", icon="check", )
+                        self.ventana_principal.cerrar_ventana()
+                    else:
+                        CTkMessagebox(title="Error", message="Ha ocurrido un error.", icon="cancel")
+
+        def limpiar_form(widget):
+            widgets = widget.winfo_children()
+            print(widgets)
+            for entry in widgets:
+                if isinstance(entry, ctk.CTkEntry):
+                    entry.delete(0, ctk.END)  # Borrar el valor actual
+                    entry.insert(0, '')  # Insertar el nuevo valor
+                    # print(entry.winfo_name())
 
 
 # ===================================================================

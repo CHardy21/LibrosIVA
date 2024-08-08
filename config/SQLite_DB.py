@@ -47,8 +47,10 @@ class Database:
             self.cur.execute(query, values)
             self.conn.commit()
             print("Registro insertado correctamente.")
+            return True
         except sqlite3.Error as e:
             print(f"Error al insertar el registro: {e}")
+            return False, e
 
     def removeRecord(self, query):
         try:
@@ -60,10 +62,17 @@ class Database:
         except sqlite3.Error as e:
             print(f"Error al eliminar el registro: {e}")
 
-    def updateRecord(self, item_name, item_price, purchase_date, rid):
-        self.cur.execute("UPDATE expense_record SET item_name = ?, item_price = ?, purchase_date = ? WHERE rowid = ?",
-                         (item_name, item_price, purchase_date, rid))
-        self.conn.commit()
+    def updateRecord(self, query, values):
+        try:
+            print("=> ", query)
+            self.cur.execute(query, values)
+            self.conn.commit()
+            print("Registro Actualizado correctamente.")
+            return True
+        except sqlite3.Error as e:
+            print(f"Error al Actualizar el registro: {e}")
+
+
 
     def __del__(self):
         self.conn.close()
