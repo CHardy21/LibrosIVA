@@ -10,7 +10,7 @@ import gui.invoices_functions as validar
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
 selected_row = None
-invoice_code = None
+company_code = None
 
 
 def save_record(datos):
@@ -60,24 +60,24 @@ def get_record(record):
     return result
 
 
-def select_invoice(objeto, e):
+def select_company(objeto, e):
     # 'e' tiene los datos pasados por el widget tabla de donde se hizo el  Click
     global selected_row
-    global invoice_code
+    global company_code
 
-    if selected_row != None:
+    if selected_row is not None:
         objeto.deselect_row(selected_row)
 
     objeto.select_row(e["row"])
     selected_row = e["row"]
-    invoice_code = objeto.get(selected_row, 0)
-    print(" CODE Invoice Selected: ", invoice_code)
+    company_code = objeto.get(selected_row, 0)
+    print(" CODE Company Selected: ", company_code)
     print(e)
 
 
-def delete_invoice(self):
-    print("Eliminar Registro: ", invoice_code)
-    query = f"DELETE FROM invoices WHERE code='{invoice_code}'"
+def delete_company(self):
+    print("Eliminar Registro: ", company_code)
+    query = f"DELETE FROM invoices WHERE code='{company_code}'"
     result = db.removeRecord(query)
     if result:
         CTkMessagebox(title="Ok", message="El registro fue borrado correctamente.", icon="check", sound=True)
@@ -87,10 +87,10 @@ def delete_invoice(self):
 # =================
 #  Clase Principal
 # =================
-class InvoiceWindow:
+class CompanyWindow:
     def __init__(self, root):
         self.root = ctk.CTkToplevel()
-        self.root.title('Comprobantes')
+        self.root.title('Empresas')
         self.root.grab_set()
         self.root.config(padx=10, pady=10)
 
@@ -110,7 +110,7 @@ class InvoiceWindow:
 # =================
 # En esta clase, los métodos configuran los widget que se muestran en
 # las distintas ventanas relacionadas con los comprobantes.
-class InvoiceWidgets:
+class CompanyWidgets:
     def __init__(self, ventana_principal):
         self.ventana_principal = ventana_principal
 
@@ -183,12 +183,12 @@ class InvoiceWidgets:
         # opt="new" - Muestra el formulario vacío.
         # opt="edit" - Muestra el formulario con los datos del registro seleccionado para ser editado
         if opt == "new":
-            titulo_ventana = "Nuevo Comprobante"
+            titulo_ventana = "Nueva Empresa"
             self.ventana_principal.cambiar_titulo(titulo_ventana)
             # Inicializa el dict datos[...] con las Variables del Formulario
             datos = {
                 "Id": None,
-                "Code": StringVar(),
+                "CUIT": StringVar(),
                 "Description": StringVar(),
                 "Obs": StringVar(),
                 "TypeRet": StringVar(),
@@ -208,14 +208,14 @@ class InvoiceWidgets:
             }
 
         elif opt == "edit":
-            titulo_ventana = "Editar Comprobante"
+            titulo_ventana = "Editar Empresa"
             self.ventana_principal.cambiar_titulo(titulo_ventana)
-            print("Editar Code: ", selected_row, " - ", invoice_code)
+            print("Editar Code: ", selected_row, " - ", company_code)
             # Recupera Valores del Formulario desde la DB y se carga al dict datos[...]
-            result = get_record(invoice_code)
+            result = get_record(company_code)
             datos = {
                 "Id": StringVar(value=result[0]),
-                "Code": StringVar(value=result[1]),
+                "CUIT": StringVar(value=result[1]),
                 "Description": StringVar(value=result[2]),
                 "Obs": StringVar(value=result[3]),
                 "TypeRet": StringVar(value=result[4]),
@@ -239,62 +239,87 @@ class InvoiceWidgets:
 
         # Crea el frame con el formulario y lo añade a la ventana
         marco = ctk.CTkFrame(master=self.ventana_principal.root,
-                             width=420,
+                             width=520,
                              height=420,
                              corner_radius=0,
                              border_width=1,
                              border_color="black",
                              )
 
-        invoiceCode_label = ctk.CTkLabel(marco, text="Código", ).place(x=10, y=10)
-        invoiceCode_entry = ctk.CTkEntry(marco, textvariable=datos['Code'], width=47,
-                                         validate="focusout", ).place(x=110, y=10)
-        invoiceDescription_label = ctk.CTkLabel(marco, text="Descripción", ).place(x=10, y=40)
-        invoiceDescription_entry = ctk.CTkEntry(marco, textvariable=datos['Description'], width=180).place(x=110, y=40)
-        invoiceObs_label = ctk.CTkLabel(marco, text="Observaciones:", ).place(x=10, y=70)
-        invoiceObs_entry = ctk.CTkEntry(marco, textvariable=datos['Obs'], width=300).place(x=110, y=70)
+        # CUIT
+        companyCUIT_label = ctk.CTkLabel(marco, text="CUIT", ).place(x=10, y=10)
+        companyCUIT_entry = ctk.CTkEntry(marco, textvariable=datos['CUIT'], width=100).place(x=50, y=10)
 
-        invoiceTypeRet_checkbox = ctk.CTkCheckBox(marco, text="Retencion", variable=datos['TypeRet'],
-                                                  onvalue="on",
-                                                  offvalue="off").place(x=10, y=115)
-        invoiceTypeCert_checkbox = ctk.CTkCheckBox(marco, text="Certificado", variable=datos['TypeCert'],
-                                                   onvalue="on",
-                                                   offvalue="off").place(x=110, y=115)
-
-        invoiceTypeDC_label = ctk.CTkLabel(marco, text="Débito o Crédito (D/C)", )
-        invoiceTypeDC_label.place(x=(170 - len(invoiceTypeDC_label.cget("text")) * 6), y=145)
-        invoiceTypeDC_entry = ctk.CTkEntry(marco, textvariable=datos['TypeDC'], width=25).place(x=180, y=145)
-        invoiceOp1_label = ctk.CTkLabel(marco, text="  Tiene Numeración (S/N) ", )
-        invoiceOp1_label.place(x=(170 - len(invoiceOp1_label.cget("text")) * 6), y=175)
-        invoiceOp1_entry = ctk.CTkEntry(marco, textvariable=datos['Op1'], width=25).place(x=180, y=175)
-        invoiceOp2_label = ctk.CTkLabel(marco, text=" Activo en Compras (S/N) ", )
-        invoiceOp2_label.place(x=(170 - len(invoiceOp2_label.cget("text")) * 6), y=205)
-        invoiceOp2_entry = ctk.CTkEntry(marco, textvariable=datos['Op2'], width=25).place(x=180, y=205)
-        invoiceOp3_label = ctk.CTkLabel(marco, text=" Activo en Ventas (S/N)", )
-        invoiceOp3_label.place(x=(170 - len(invoiceOp3_label.cget("text")) * 6), y=235)
-        print(180 - len(invoiceOp3_label.cget("text")))
-        invoiceOp3_entry = ctk.CTkEntry(marco, textvariable=datos['Op3'], width=25).place(x=180, y=235)
-        invoiceOp4_checkbox = ctk.CTkCheckBox(marco, text="Emitido por Controlador Fiscal", variable=datos['Op4'],
-                                              onvalue="on",
-                                              offvalue="off").place(x=10, y=265)
-
-        invoiceCodes_label = ctk.CTkLabel(marco, text="Cód. s/ RG 3685 (AFIP):", font=font_widgets, ).place(x=255,
-                                                                                                            y=115)
-        invoiceCodeA_label = ctk.CTkLabel(marco, text="Comprobante Tipo A", ).place(x=240, y=145)
-        invoiceCodeA_entry = ctk.CTkEntry(marco, textvariable=datos['CodeA'], width=40).place(x=370, y=145)
-        invoiceCodeB_label = ctk.CTkLabel(marco, text="Comprobante Tipo B", ).place(x=240, y=175)
-        invoiceCodeB_entry = ctk.CTkEntry(marco, textvariable=datos['CodeB'], width=40).place(x=370, y=175)
-        invoiceCodeC_label = ctk.CTkLabel(marco, text="Comprobante Tipo C", ).place(x=240, y=205)
-        invoiceCodeC_entry = ctk.CTkEntry(marco, textvariable=datos['CodeC'], width=40).place(x=370, y=205)
-        invoiceCodeE_label = ctk.CTkLabel(marco, text="Comprobante Tipo E", ).place(x=240, y=235)
-        invoiceCodeE_entry = ctk.CTkEntry(marco, textvariable=datos['CodeE'], width=40).place(x=370, y=235)
-        invoiceCodeM_label = ctk.CTkLabel(marco, text="Comprobante Tipo M", ).place(x=240, y=265)
-        invoiceCodeM_entry = ctk.CTkEntry(marco, textvariable=datos['CodeM'], width=40).place(x=370, y=265)
-        invoiceCodeT_label = ctk.CTkLabel(marco, text="Comprobante Tipo T", ).place(x=240, y=295)
-        invoiceCodeT_entry = ctk.CTkEntry(marco, textvariable=datos['CodeT'], width=40).place(x=370, y=295)
-        invoiceCodeO_label = ctk.CTkLabel(marco, text="Otros", ).place(x=240, y=325)
-        invoiceCodeO_entry = ctk.CTkEntry(marco, textvariable=datos['CodeO'], width=40).place(x=370, y=325)
-
+        #
+        # # Razón Social
+        # companyRZ_label = ctk.CTkLabel(marco, text="Razón Social")
+        # companyRZ_label.grid(row=1, column=0, padx=5, sticky="e")
+        #
+        # companyRZ_entry = ctk.CTkEntry(marco,)
+        # companyRZ_entry.grid(row=1, column=1, padx=5, pady=1, columnspan=2, sticky="w",)
+        #
+        # # Nombre de Fantasia
+        # companyNF_label = ctk.CTkLabel(marco, text="Nombre de Fantasia",)
+        # companyNF_label.grid(row=2, column=0, padx=5)
+        #
+        # companyNF_entry = ctk.CTkEntry(marco,)
+        # companyNF_entry.grid(row=2, column=1, padx=5, sticky="w")
+        #
+        # # Dirección
+        # companyDIR_label = ctk.CTkLabel(marco, text="Dirección",)
+        # companyDIR_label.grid(row=3, column=0, padx=5)
+        #
+        # companyDIR_entry = ctk.CTkEntry(marco,)
+        # companyDIR_entry.grid(row=3, column=1, padx=5)
+        #
+        # # Teléfono
+        # companyTEL_label = ctk.CTkLabel(marco, text="Teléfono",)
+        # companyTEL_label.grid(row=3, column=2, padx=5)
+        #
+        # companyTEL_entry = ctk.CTkEntry(marco,)
+        # companyTEL_entry.grid(row=3, column=3, padx=5)
+        #
+        # # Número de Dependencia DGI-AFIP
+        # companyNDA_label = ctk.CTkLabel(marco, text="Dep. AFIP/DGI",)
+        # companyNDA_label.grid(row=4, column=0, padx=5)
+        #
+        # companyNDA_entry = ctk.CTkEntry(marco,)
+        # companyNDA_entry.grid(row=4, column=1, padx=5)
+        #
+        # # Código de Actividad
+        # companyCODA_label = ctk.CTkLabel(marco, text="Cód. Actividad",)
+        # companyCODA_label.grid(row=5, column=0, padx=5)
+        #
+        # companyCODA_entry = ctk.CTkEntry(marco,)
+        # companyCODA_entry.grid(row=5, column=1, padx=5)
+        #
+        # companyCODAD_label = ctk.CTkLabel(marco, text="...",)
+        # companyCODAD_label.grid(row=5, column=2, padx=5)
+        #
+        # # Condición ante el IVA
+        # companyIVA_label = ctk.CTkLabel(marco, text="Cond. IVA",)
+        # companyIVA_label.grid(row=6, column=0, padx=5)
+        #
+        # companyIVA_entry = ctk.CTkEntry(marco,)
+        # companyIVA_entry.grid(row=6, column=1, padx=5)
+        #
+        # companyIVAD_label = ctk.CTkLabel(marco, text="...", )
+        # companyIVAD_label.grid(row=6, column=2, padx=5)
+        #
+        # # El que Suscribe...
+        # companySUSCR_label = ctk.CTkLabel(marco, text="El que Suscribe",)
+        # companySUSCR_label.grid(row=7, column=0, padx=5)
+        #
+        # companySUSCR_entry = ctk.CTkEntry(marco,)
+        # companySUSCR_entry.grid(row=7, column=1, padx=5)
+        #
+        # # En su Carácter de ...
+        # companySUSCC_label = ctk.CTkLabel(marco, text="Carácter",)
+        # companySUSCC_label.grid(row=8, column=0, padx=5)
+        #
+        # companySUSCC_entry = ctk.CTkEntry(marco,)
+        # companySUSCC_entry.grid(row=8, column=1, padx=5)
+        #
         clear_btn = ctk.CTkButton(marco, text="Vaciar", width=80,
                                   command=lambda: limpiar_form(marco))
         cancel_btn = ctk.CTkButton(marco, text="Cancelar", width=80,
@@ -406,7 +431,7 @@ class InvoiceWidgets:
 # ===================================================================
 #  Método que maneja la creación de widget de las distintas ventanas
 # ===================================================================
-def invoice(opt=None, ventana_principal=None):
+def company(opt=None, ventana_principal=None):
     # # Crear la ventana principal
     # root = ctk.CTk()
     # ventana_principal = InvoiceWindow(root)
@@ -418,31 +443,31 @@ def invoice(opt=None, ventana_principal=None):
             # Cerrar la ventana actual y abrir una nueva para el formulario
             ventana_principal.cerrar_ventana()
             root = ctk.CTk()
-            ventana_principal = InvoiceWindow(root)
+            ventana_principal = CompanyWindow(root)
             # Crear y agregar widgets desde la clase secundaria
-            crear_widgets = InvoiceWidgets(ventana_principal)
+            crear_widgets = CompanyWidgets(ventana_principal)
             crear_widgets.dataForm("new")
 
         case "edit":
             # Cerrar la ventana actual y abrir una nueva para el formulario
             ventana_principal.cerrar_ventana()
             root = ctk.CTk()
-            ventana_principal = InvoiceWindow(root)
+            ventana_principal = CompanyWindow(root)
             # Crear y agregar widgets desde la clase secundaria
-            crear_widgets = InvoiceWidgets(ventana_principal)
+            crear_widgets = CompanyWidgets(ventana_principal)
             crear_widgets.dataForm("edit")
 
         case _:
             # Crear la ventana principal
             root = ctk.CTk()
-            ventana_principal = InvoiceWindow(root)
+            ventana_principal = CompanyWindow(root)
             # Crear y agregar widgets desde la clase secundaria
-            crear_widgets = InvoiceWidgets(ventana_principal)
+            crear_widgets = CompanyWidgets(ventana_principal)
             crear_widgets.listForm()
 
 
 if __name__ == '__main__':
     ctk.set_appearance_mode("dark")
     app = ctk.CTk()
-    invoice()
+    company()
     app.mainloop()
