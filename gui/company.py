@@ -47,7 +47,7 @@ def update_record(datos):
 
 
 def fetch_records():
-    query = "SELECT CODE,DESCRIPTION FROM invoices"
+    query = "SELECT cuit, fantasy_name, company_name FROM company"
     result = db.fetchRecords(query)
     print(result)
     return result
@@ -116,7 +116,7 @@ class CompanyWidgets:
 
     def listForm(self):
         marco = ctk.CTkScrollableFrame(master=self.ventana_principal.root,
-                                       width=300,
+                                       width=500,
                                        height=250,
                                        corner_radius=0,
                                        border_width=1,
@@ -130,15 +130,16 @@ class CompanyWidgets:
         # Crear tabla con los comprobantes existentes en la DB
         table = CTkTable(master=marco,
                          row=len(value),
-                         column=2,
+                         column=3,
                          values=value,
                          border_width=0,
                          corner_radius=0,
-                         command=lambda e: select_invoice(table, e),
+                         command=lambda e: select_company(table, e),
                          )
 
-        table.edit_column(0, width=50)
-        table.edit_column(1, width=250, anchor="w")
+        table.edit_column(0, width=100)
+        table.edit_column(1, width=200, anchor="w")
+        table.edit_column(2, width=200, anchor="w")
         table.grid(row=0, column=0, )
 
         # Agregar widget creado en la Clase Principal

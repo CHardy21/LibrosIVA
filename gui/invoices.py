@@ -404,8 +404,18 @@ class InvoiceWidgets:
 
 
 # ===================================================================
-#  Método que maneja la creación de widget de las distintas ventanas
+#  Métodos que manejan la creación de widget de las distintas ventanas
 # ===================================================================
+
+def create_window():
+    # Crear la ventana principal
+    root = ctk.CTk()
+    ventana_principal = InvoiceWindow(root)
+    # Crear y agregar widgets desde la clase secundaria
+    crear_widgets = InvoiceWidgets(ventana_principal)
+    return crear_widgets
+
+
 def invoice(opt=None, ventana_principal=None):
     # # Crear la ventana principal
     # root = ctk.CTk()
@@ -415,29 +425,19 @@ def invoice(opt=None, ventana_principal=None):
 
     match opt:
         case "new":
-            # Cerrar la ventana actual y abrir una nueva para el formulario
+            # Cerrar la ventana actual
             ventana_principal.cerrar_ventana()
-            root = ctk.CTk()
-            ventana_principal = InvoiceWindow(root)
-            # Crear y agregar widgets desde la clase secundaria
-            crear_widgets = InvoiceWidgets(ventana_principal)
+            crear_widgets = create_window()
             crear_widgets.dataForm("new")
 
         case "edit":
-            # Cerrar la ventana actual y abrir una nueva para el formulario
+            # Cerrar la ventana actual
             ventana_principal.cerrar_ventana()
-            root = ctk.CTk()
-            ventana_principal = InvoiceWindow(root)
-            # Crear y agregar widgets desde la clase secundaria
-            crear_widgets = InvoiceWidgets(ventana_principal)
+            crear_widgets = create_window()
             crear_widgets.dataForm("edit")
 
         case _:
-            # Crear la ventana principal
-            root = ctk.CTk()
-            ventana_principal = InvoiceWindow(root)
-            # Crear y agregar widgets desde la clase secundaria
-            crear_widgets = InvoiceWidgets(ventana_principal)
+            crear_widgets = create_window()
             crear_widgets.listForm()
 
 
