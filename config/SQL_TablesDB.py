@@ -37,3 +37,7 @@ CREATE TABLE company (
 	undersigned TEXT(50),
 	undersigner_character TEXT(15)
 );
+
+CREATE TABLE tax_status (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
+);

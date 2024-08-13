@@ -10,24 +10,20 @@ class NewCompany(ctk.CTk):
 
         # Variables del Formulario
         datos = {
-            "id": None,
-            "cuit": StringVar(),
-            "razon_social": StringVar(),
-            "nombre_fantasia": StringVar(),
-            "direccion": StringVar(),
-            "telefono": StringVar(),
-            "TypeDC": StringVar(),
-            "Op1": StringVar(),
-            "Op2": StringVar(),
-            "Op3": StringVar(),
-            "Op4": StringVar(),
-            "CodeA": StringVar(),
-            "CodeB": StringVar(),
-            "CodeC": StringVar(),
-            "CodeE": StringVar(),
-            "CodeM": StringVar(),
-            "CodeT": StringVar(),
-            "CodeO": StringVar(),
+            'id': StringVar(),
+            'cuit': StringVar(),
+            'company_name': StringVar(),
+            'fantasy_name': StringVar(),
+            'working_path': StringVar(),
+            'address': StringVar(),
+            'phone': StringVar(),
+            'dependency_afip': StringVar(),
+            'activity_code': StringVar(),
+            'iva_conditions': StringVar(),
+            'month_close': StringVar(),
+            'taxpayer_type': StringVar(),
+            'undersigned': StringVar(),
+            'undersigned_character': StringVar()
         }
 
         marco = ctk.CTkFrame(master=app2,
@@ -41,60 +37,37 @@ class NewCompany(ctk.CTk):
 
         # CUIT
         companyCUIT_label = ctk.CTkLabel(marco, text="CUIT",).place(x=10, y=10)
-        companyCUIT_entry = ctk.CTkEntry(marco, textvariable=datos['cuit'], width=100).place(x=150, y=10)
+        companyCUIT_entry = ctk.CTkEntry(marco, textvariable=datos['cuit'], width=100).place(x=115, y=10)
         # Razón Social
         companyRZ_label = ctk.CTkLabel(marco, text="Razón Social").place(x=10, y=40)
-        companyRZ_entry = ctk.CTkEntry(marco, textvariable=datos['razon_social'], width=300).place(x=150, y=40)
+        companyRZ_entry = ctk.CTkEntry(marco, textvariable=datos['company_name'], width=300).place(x=115, y=40)
         # Nombre de Fantasia
-        companyNF_label = ctk.CTkLabel(marco, text="Nombre de Fantasia",).place(x=10, y=70)
-        companyNF_entry = ctk.CTkEntry(marco, textvariable=datos['nombre_fantasia'], width=300).place(x=150, y=70)
+        companyNF_label = ctk.CTkLabel(marco, text="Nombre Fantasia",).place(x=10, y=70)
+        companyNF_entry = ctk.CTkEntry(marco, textvariable=datos['fantasy_name'], width=300).place(x=115, y=70)
         # Dirección
         companyDIR_label = ctk.CTkLabel(marco, text="Dirección",).place(x=10, y=100)
-        companyDIR_entry = ctk.CTkEntry(marco, textvariable=datos['direccion'], width=220).place(x=150, y=100)
+        companyDIR_entry = ctk.CTkEntry(marco, textvariable=datos['address'], width=220).place(x=115, y=100)
         # Teléfono
-        companyTEL_label = ctk.CTkLabel(marco, text="Teléfono",).place(x=380, y=100)
-        companyTEL_entry = ctk.CTkEntry(marco,textvariable=datos['telefono'], width=100).place(x=440, y=100)
+        companyTEL_label = ctk.CTkLabel(marco, text="Teléfono",).place(x=350, y=100)
+        companyTEL_entry = ctk.CTkEntry(marco, textvariable=datos['phone'], width=100).place(x=415, y=100)
         # Número de Dependencia DGI-AFIP
-        # companyNDA_label = ctk.CTkLabel(marco, text="Dep. AFIP/DGI",)
-        # companyNDA_label.grid(row=4, column=0, padx=5)
-        #
-        # companyNDA_entry = ctk.CTkEntry(marco,)
-        # companyNDA_entry.grid(row=4, column=1, padx=5)
-        #
-        # # Código de Actividad
-        # companyCODA_label = ctk.CTkLabel(marco, text="Cód. Actividad",)
-        # companyCODA_label.grid(row=5, column=0, padx=5)
-        #
-        # companyCODA_entry = ctk.CTkEntry(marco,)
-        # companyCODA_entry.grid(row=5, column=1, padx=5)
-        #
-        # companyCODAD_label = ctk.CTkLabel(marco, text="...",)
-        # companyCODAD_label.grid(row=5, column=2, padx=5)
-        #
-        # # Condición ante el IVA
-        # companyIVA_label = ctk.CTkLabel(marco, text="Cond. IVA",)
-        # companyIVA_label.grid(row=6, column=0, padx=5)
-        #
-        # companyIVA_entry = ctk.CTkEntry(marco,)
-        # companyIVA_entry.grid(row=6, column=1, padx=5)
-        #
-        # companyIVAD_label = ctk.CTkLabel(marco, text="...", )
-        # companyIVAD_label.grid(row=6, column=2, padx=5)
-        #
-        # # El que Suscribe...
-        # companySUSCR_label = ctk.CTkLabel(marco, text="El que Suscribe",)
-        # companySUSCR_label.grid(row=7, column=0, padx=5)
-        #
-        # companySUSCR_entry = ctk.CTkEntry(marco,)
-        # companySUSCR_entry.grid(row=7, column=1, padx=5)
-        #
-        # # En su Carácter de ...
-        # companySUSCC_label = ctk.CTkLabel(marco, text="Carácter",)
-        # companySUSCC_label.grid(row=8, column=0, padx=5)
-        #
-        # companySUSCC_entry = ctk.CTkEntry(marco,)
-        # companySUSCC_entry.grid(row=8, column=1, padx=5)
-        #
+        companyNDA_label = ctk.CTkLabel(marco, text="Dep. AFIP/DGI",).place(x=10, y=130)
+        companyNDA_entry = ctk.CTkEntry(marco, textvariable=datos['dependency_afip'], width=40).place(x=115, y=130)
+        # Código de Actividad
+        companyCODA_label = ctk.CTkLabel(marco, text="Cód. Actividad",).place(x=10, y=160)
+        companyCODA_entry = ctk.CTkEntry(marco, textvariable=datos['activity_code'], width=60).place(x=115, y=160)
+        companyCODAD_label = ctk.CTkLabel(marco, text="...",).place(x=185, y=160)
+        # Condición ante el IVA
+        companyIVA_label = ctk.CTkLabel(marco, text="Cond. IVA",).place(x=10, y=190)
+        companyIVA_entry = ctk.CTkEntry(marco, textvariable=datos['iva_conditions'], width=40).place(x=115, y=190)
+        companyIVAD_label = ctk.CTkLabel(marco, text="...", ).place(x=165, y=190)
+        # El que Suscribe...
+        companySUSCR_label = ctk.CTkLabel(marco, text="El que Suscribe",).place(x=10, y=220)
+        companySUSCR_entry = ctk.CTkEntry(marco, textvariable=datos['undersigned'], width=300).place(x=115, y=220)
+        # En su Carácter de ...
+        companySUSCC_label = ctk.CTkLabel(marco, text="Carácter",).place(x=10, y=250)
+        companySUSCC_entry = ctk.CTkEntry(marco, textvariable=datos['undersigned_character'], width=200).place(x=115, y=250)
+
         # # Marco botonera
         # marco_btn = ctk.CTkFrame(marco, )
         # marco_btn.grid(row=9, column=2, columnspan=3)

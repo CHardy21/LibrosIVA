@@ -4,8 +4,10 @@ from PIL import Image
 
 import config.general_config as conf
 import gui.menu_gui as menu
+
 from gui.invoices import invoice
-from gui.newCompanyForm_gui import NewCompany
+from gui.company import company
+
 from gui.selectCompanyForm_gui import SelectCompany
 
 
@@ -117,7 +119,7 @@ class App(ctk.CTk):
 def on_click_menu(event):
     print("Click en MENU: ", event)
     if event == "NewCompany":
-        form = NewCompany()
+        form = company('new')
     if event == "workData":
         form = SelectCompany()
     if event == "invoices":

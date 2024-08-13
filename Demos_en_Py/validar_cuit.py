@@ -1,18 +1,3 @@
-def validate_txt(value, min, max, type):
-    validate = False
-    if min <= len(value) <= max:
-        validate = True
-    return validate
-
-
-# Función para validar el string
-def validar_string(s, caracteres):
-    if len(s) < 1:
-        return False
-    caracteres_permitidos = set(caracteres)
-    return set(s).issubset(caracteres_permitidos)
-
-
 def validar_cuit(cuit):
     # Validaciones mínimas
     if len(cuit) != 11:
@@ -22,7 +7,7 @@ def validar_cuit(cuit):
     base = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2]
 
     # Remover guiones
-    # cuit = cuit.replace("-", "")
+    cuit = cuit.replace("-", "")
 
     # Calcular el dígito verificador
     aux = 0
@@ -37,3 +22,6 @@ def validar_cuit(cuit):
 
     return aux == int(cuit[10])
 
+
+# Ejemplo de uso
+print(validar_cuit("20245092042"))  # Devuelve True o False dependiendo de la validez del CUIT

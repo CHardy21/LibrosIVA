@@ -6,6 +6,7 @@ from CTkTable import *
 
 from config import db
 import gui.invoices_functions as validar
+import config.functions_grals as fn
 
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
@@ -54,7 +55,7 @@ def fetch_records():
 
 
 def get_record(record):
-    query = f"SELECT * FROM invoices WHERE code = '{record}'"
+    query = f"SELECT * FROM company WHERE cuit = '{record}'"
     result = db.fetchRecord(query)
     print("valor devuelto: ", result)
     return result
@@ -160,9 +161,9 @@ class CompanyWidgets:
                                                       icon="cancel"),
                                    )
         new_btn = ctk.CTkButton(marco_btns, text="Nuevo", width=100,
-                                command=lambda: invoice("new", self.ventana_principal), )
+                                command=lambda: company("new", self.ventana_principal), )
         edit_btn = ctk.CTkButton(marco_btns, text="Editar", width=100,
-                                 command=lambda: invoice("edit", self.ventana_principal)
+                                 command=lambda: company("edit", self.ventana_principal)
                                  if selected_row is not None
                                  else CTkMessagebox(title="Error",
                                                     message="Debe seleccionar un Comprobante para editar",
@@ -187,25 +188,22 @@ class CompanyWidgets:
             titulo_ventana = "Nueva Empresa"
             self.ventana_principal.cambiar_titulo(titulo_ventana)
             # Inicializa el dict datos[...] con las Variables del Formulario
+            # Variables del Formulario
             datos = {
-                "Id": None,
-                "CUIT": StringVar(),
-                "Description": StringVar(),
-                "Obs": StringVar(),
-                "TypeRet": StringVar(),
-                "TypeCert": StringVar(),
-                "TypeDC": StringVar(),
-                "Op1": StringVar(),
-                "Op2": StringVar(),
-                "Op3": StringVar(),
-                "Op4": StringVar(),
-                "CodeA": StringVar(),
-                "CodeB": StringVar(),
-                "CodeC": StringVar(),
-                "CodeE": StringVar(),
-                "CodeM": StringVar(),
-                "CodeT": StringVar(),
-                "CodeO": StringVar(),
+                'id': StringVar(),
+                'cuit': StringVar(),
+                'company_name': StringVar(),
+                'fantasy_name': StringVar(),
+                'working_path': StringVar(),
+                'address': StringVar(),
+                'phone': StringVar(),
+                'dependency_afip': StringVar(),
+                'activity_code': StringVar(),
+                'iva_conditions': StringVar(),
+                'month_close': StringVar(),
+                'taxpayer_type': StringVar(),
+                'undersigned': StringVar(),
+                'undersigned_character': StringVar()
             }
 
         elif opt == "edit":
@@ -214,33 +212,31 @@ class CompanyWidgets:
             print("Editar Code: ", selected_row, " - ", company_code)
             # Recupera Valores del Formulario desde la DB y se carga al dict datos[...]
             result = get_record(company_code)
+            # Variables del Formulario
             datos = {
-                "Id": StringVar(value=result[0]),
-                "CUIT": StringVar(value=result[1]),
-                "Description": StringVar(value=result[2]),
-                "Obs": StringVar(value=result[3]),
-                "TypeRet": StringVar(value=result[4]),
-                "TypeCert": StringVar(value=result[5]),
-                "TypeDC": StringVar(value=result[6]),
-                "Op1": StringVar(value=result[7]),
-                "Op2": StringVar(value=result[8]),
-                "Op3": StringVar(value=result[9]),
-                "Op4": StringVar(value=result[10]),
-                "CodeA": StringVar(value=result[11]),
-                "CodeB": StringVar(value=result[12]),
-                "CodeC": StringVar(value=result[13]),
-                "CodeE": StringVar(value=result[14]),
-                "CodeM": StringVar(value=result[15]),
-                "CodeT": StringVar(value=result[16]),
-                "CodeO": StringVar(value=result[17]),
+                'id': StringVar(value=result[0]),
+                'cuit': StringVar(value=result[1]),
+                'company_name': StringVar(value=result[2]),
+                'fantasy_name': StringVar(value=result[3]),
+                'working_path': StringVar(value=result[4]),
+                'address': StringVar(value=result[5]),
+                'phone': StringVar(value=result[6]),
+                'dependency_afip': StringVar(value=result[7]),
+                'activity_code': StringVar(value=result[8]),
+                'iva_conditions': StringVar(value=result[9]),
+                'month_close': StringVar(value=result[10]),
+                'taxpayer_type': StringVar(value=result[11]),
+                'undersigned': StringVar(value=result[12]),
+                'undersigned_character': StringVar(value=result[13])
             }
+
 
         else:
             print("ERROR: opcion no valida")
 
         # Crea el frame con el formulario y lo añade a la ventana
         marco = ctk.CTkFrame(master=self.ventana_principal.root,
-                             width=520,
+                             width=620,
                              height=420,
                              corner_radius=0,
                              border_width=1,
@@ -248,79 +244,40 @@ class CompanyWidgets:
                              )
 
         # CUIT
-        companyCUIT_label = ctk.CTkLabel(marco, text="CUIT", ).place(x=10, y=10)
-        companyCUIT_entry = ctk.CTkEntry(marco, textvariable=datos['CUIT'], width=100).place(x=50, y=10)
+        companyCUIT_label = ctk.CTkLabel(marco, text="CUIT",).place(x=10, y=10)
+        companyCUIT_entry = ctk.CTkEntry(marco, textvariable=datos['cuit'], width=100).place(x=115, y=10)
+        # Razón Social
+        companyRZ_label = ctk.CTkLabel(marco, text="Razón Social").place(x=10, y=40)
+        companyRZ_entry = ctk.CTkEntry(marco, textvariable=datos['company_name'], width=300).place(x=115, y=40)
+        # Nombre de Fantasia
+        companyNF_label = ctk.CTkLabel(marco, text="Nombre Fantasia",).place(x=10, y=70)
+        companyNF_entry = ctk.CTkEntry(marco, textvariable=datos['fantasy_name'], width=300).place(x=115, y=70)
+        # Dirección
+        companyDIR_label = ctk.CTkLabel(marco, text="Dirección",).place(x=10, y=100)
+        companyDIR_entry = ctk.CTkEntry(marco, textvariable=datos['address'], width=220).place(x=115, y=100)
+        # Teléfono
+        companyTEL_label = ctk.CTkLabel(marco, text="Teléfono",).place(x=350, y=100)
+        companyTEL_entry = ctk.CTkEntry(marco, textvariable=datos['phone'], width=100).place(x=415, y=100)
+        # Número de Dependencia DGI-AFIP
+        companyNDA_label = ctk.CTkLabel(marco, text="Dep. AFIP/DGI",).place(x=10, y=130)
+        companyNDA_entry = ctk.CTkEntry(marco, textvariable=datos['dependency_afip'], width=40).place(x=115, y=130)
+        # Código de Actividad
+        companyCODA_label = ctk.CTkLabel(marco, text="Cód. Actividad",).place(x=10, y=160)
+        companyCODA_entry = ctk.CTkEntry(marco, textvariable=datos['activity_code'], width=60).place(x=115, y=160)
+        companyCODAD_label = ctk.CTkLabel(marco, text="...",).place(x=185, y=160)
+        # Condición ante el IVA
+        companyIVA_label = ctk.CTkLabel(marco, text="Cond. IVA",).place(x=10, y=190)
+        companyIVA_entry = ctk.CTkEntry(marco, textvariable=datos['iva_conditions'], width=40).place(x=115, y=190)
+        companyIVAD_label = ctk.CTkLabel(marco, text="...", ).place(x=165, y=190)
+        # El que Suscribe...
+        companySUSCR_label = ctk.CTkLabel(marco, text="El que Suscribe",).place(x=10, y=220)
+        companySUSCR_entry = ctk.CTkEntry(marco, textvariable=datos['undersigned'], width=300).place(x=115, y=220)
+        # En su Carácter de ...
+        companySUSCC_label = ctk.CTkLabel(marco, text="Carácter",).place(x=10, y=250)
+        companySUSCC_entry = ctk.CTkEntry(marco, textvariable=datos['undersigned_character'], width=200).place(x=115, y=250)
 
-        #
-        # # Razón Social
-        # companyRZ_label = ctk.CTkLabel(marco, text="Razón Social")
-        # companyRZ_label.grid(row=1, column=0, padx=5, sticky="e")
-        #
-        # companyRZ_entry = ctk.CTkEntry(marco,)
-        # companyRZ_entry.grid(row=1, column=1, padx=5, pady=1, columnspan=2, sticky="w",)
-        #
-        # # Nombre de Fantasia
-        # companyNF_label = ctk.CTkLabel(marco, text="Nombre de Fantasia",)
-        # companyNF_label.grid(row=2, column=0, padx=5)
-        #
-        # companyNF_entry = ctk.CTkEntry(marco,)
-        # companyNF_entry.grid(row=2, column=1, padx=5, sticky="w")
-        #
-        # # Dirección
-        # companyDIR_label = ctk.CTkLabel(marco, text="Dirección",)
-        # companyDIR_label.grid(row=3, column=0, padx=5)
-        #
-        # companyDIR_entry = ctk.CTkEntry(marco,)
-        # companyDIR_entry.grid(row=3, column=1, padx=5)
-        #
-        # # Teléfono
-        # companyTEL_label = ctk.CTkLabel(marco, text="Teléfono",)
-        # companyTEL_label.grid(row=3, column=2, padx=5)
-        #
-        # companyTEL_entry = ctk.CTkEntry(marco,)
-        # companyTEL_entry.grid(row=3, column=3, padx=5)
-        #
-        # # Número de Dependencia DGI-AFIP
-        # companyNDA_label = ctk.CTkLabel(marco, text="Dep. AFIP/DGI",)
-        # companyNDA_label.grid(row=4, column=0, padx=5)
-        #
-        # companyNDA_entry = ctk.CTkEntry(marco,)
-        # companyNDA_entry.grid(row=4, column=1, padx=5)
-        #
-        # # Código de Actividad
-        # companyCODA_label = ctk.CTkLabel(marco, text="Cód. Actividad",)
-        # companyCODA_label.grid(row=5, column=0, padx=5)
-        #
-        # companyCODA_entry = ctk.CTkEntry(marco,)
-        # companyCODA_entry.grid(row=5, column=1, padx=5)
-        #
-        # companyCODAD_label = ctk.CTkLabel(marco, text="...",)
-        # companyCODAD_label.grid(row=5, column=2, padx=5)
-        #
-        # # Condición ante el IVA
-        # companyIVA_label = ctk.CTkLabel(marco, text="Cond. IVA",)
-        # companyIVA_label.grid(row=6, column=0, padx=5)
-        #
-        # companyIVA_entry = ctk.CTkEntry(marco,)
-        # companyIVA_entry.grid(row=6, column=1, padx=5)
-        #
-        # companyIVAD_label = ctk.CTkLabel(marco, text="...", )
-        # companyIVAD_label.grid(row=6, column=2, padx=5)
-        #
-        # # El que Suscribe...
-        # companySUSCR_label = ctk.CTkLabel(marco, text="El que Suscribe",)
-        # companySUSCR_label.grid(row=7, column=0, padx=5)
-        #
-        # companySUSCR_entry = ctk.CTkEntry(marco,)
-        # companySUSCR_entry.grid(row=7, column=1, padx=5)
-        #
-        # # En su Carácter de ...
-        # companySUSCC_label = ctk.CTkLabel(marco, text="Carácter",)
-        # companySUSCC_label.grid(row=8, column=0, padx=5)
-        #
-        # companySUSCC_entry = ctk.CTkEntry(marco,)
-        # companySUSCC_entry.grid(row=8, column=1, padx=5)
-        #
+
+
         clear_btn = ctk.CTkButton(marco, text="Vaciar", width=80,
                                   command=lambda: limpiar_form(marco))
         cancel_btn = ctk.CTkButton(marco, text="Cancelar", width=80,
@@ -337,60 +294,57 @@ class CompanyWidgets:
 
         def validation_form(self, dataForm, optt):
 
-            if dataForm['Id'] is not None:
-                value = dataForm['Id'].get()  # Accede al método get() aquí
+            if dataForm['id'] is not None:
+                value = dataForm['id'].get()  # Accede al método get() aquí
             else:
                 value = ""  # Maneja el caso en que dataForm['Id'] es None, o sea cuando opt = "new"
 
             # Recuperando Datos Del Formulario
             datos = {
-                "Id": value,
-                "Code": dataForm['Code'].get().upper(),
-                "Description": dataForm['Description'].get(),
-                "Obs": dataForm['Obs'].get(),
-                "TypeRet": dataForm['TypeRet'].get(),
-                "TypeCert": dataForm['TypeCert'].get(),
-                "TypeDC": dataForm['TypeDC'].get().upper(),
-                "Op1": dataForm['Op1'].get().upper(),
-                "Op2": dataForm['Op2'].get().upper(),
-                "Op3": dataForm['Op3'].get().upper(),
-                "Op4": dataForm['Op4'].get(),
-                "CodeA": dataForm['CodeA'].get(),
-                "CodeB": dataForm['CodeB'].get(),
-                "CodeC": dataForm['CodeC'].get(),
-                "CodeE": dataForm['CodeE'].get(),
-                "CodeM": dataForm['CodeM'].get(),
-                "CodeT": dataForm['CodeT'].get(),
-                "CodeO": dataForm['CodeO'].get(),
+                'id': value,
+                'cuit': dataForm['cuit'].get(),
+                'company_name': dataForm['company_name'].get(),
+                'fantasy_name': dataForm['fantasy_name'].get(),
+                'working_path': dataForm['working_path'].get(),
+                'address': dataForm['address'].get(),
+                'phone': dataForm['phone'].get(),
+                'dependency_afip': dataForm['dependency_afip'].get(),
+                'activity_code': dataForm['activity_code'].get(),
+                'iva_conditions': dataForm['iva_conditions'].get(),
+                'month_close': dataForm['month_close'].get(),
+                'taxpayer_type': dataForm['taxpayer_type'].get(),
+                'undersigned': dataForm['undersigned'].get(),
+                'undersigned_character': dataForm['undersigned_character'].get()
             }
+
             error = {}
             count = 0
             msg = ""
 
             # Validando los Datos del Formulario
-            if not validar.validate_txt(datos['Code'], 1, 4, str):
+            if not fn.validar_cuit(datos['cuit']):
                 count += 1
-                error[count] = "Código de Comprobante debe contener 1-4 caracteres."
+                error[count] = "CUIT incorrecto."
 
-            if not validar.validate_txt(datos['Description'], 1, 24, str):
+            if not fn.validate_txt(datos['company_name'], 5, 50, str):
                 count += 1
-                error[count] = "Descripción de Comprobante debe contener 1-24 caracteres."
+                error[count] = "Razón Social debe contener 5-50 caracteres."
 
-            if not validar.validar_string(datos['TypeDC'], "DCdc"):
-                count += 1
-                error[count] = "Debe indicar Débito o Crédito (D/C)."
-
-            if not validar.validar_string(datos['Op1'], "SNsn "):
-                count += 1
-                error[count] = "Debe indicar si tiene numeración (S/N)."
-
-            if not validar.validar_string(datos['Op2'], "SNsn"):
-                count += 1
-                error[count] = "Debe indicar si esta activo para Compras (S/N)."
-
-            if not validar.validar_string(datos['Op3'], "SNsn"):
-                count += 1
-                error[count] = "Debe indicar si esta activo para Ventas (S/N)."
+            # if not validar.validar_string(datos['TypeDC'], "DCdc"):
+            #     count += 1
+            #     error[count] = "Debe indicar Débito o Crédito (D/C)."
+            #
+            # if not validar.validar_string(datos['Op1'], "SNsn "):
+            #     count += 1
+            #     error[count] = "Debe indicar si tiene numeración (S/N)."
+            #
+            # if not validar.validar_string(datos['Op2'], "SNsn"):
+            #     count += 1
+            #     error[count] = "Debe indicar si esta activo para Compras (S/N)."
+            #
+            # if not validar.validar_string(datos['Op3'], "SNsn"):
+            #     count += 1
+            #     error[count] = "Debe indicar si esta activo para Ventas (S/N)."
 
             print("'Resultado de la Validación'")
             print(datos, "Cantidad de elementos:      ", len(datos))
@@ -432,38 +386,33 @@ class CompanyWidgets:
 # ===================================================================
 #  Método que maneja la creación de widget de las distintas ventanas
 # ===================================================================
+
+def create_window():
+    # Crear la ventana principal
+    root = ctk.CTk()
+    ventana_principal = CompanyWindow(root)
+    # Crear widgets desde la clase secundaria
+    crear_widgets = CompanyWidgets(ventana_principal)
+    return crear_widgets
+
 def company(opt=None, ventana_principal=None):
-    # # Crear la ventana principal
-    # root = ctk.CTk()
-    # ventana_principal = InvoiceWindow(root)
-    # # Crear y agregar widgets desde la clase secundaria
-    # crear_widgets = InvoiceWidgets(ventana_principal)
 
     match opt:
         case "new":
-            # Cerrar la ventana actual y abrir una nueva para el formulario
-            ventana_principal.cerrar_ventana()
-            root = ctk.CTk()
-            ventana_principal = CompanyWindow(root)
-            # Crear y agregar widgets desde la clase secundaria
-            crear_widgets = CompanyWidgets(ventana_principal)
+            # Cerrar la ventana actual
+            if ventana_principal is not None:
+                ventana_principal.cerrar_ventana()
+            crear_widgets = create_window()
             crear_widgets.dataForm("new")
 
         case "edit":
-            # Cerrar la ventana actual y abrir una nueva para el formulario
+            # Cerrar la ventana actual
             ventana_principal.cerrar_ventana()
-            root = ctk.CTk()
-            ventana_principal = CompanyWindow(root)
-            # Crear y agregar widgets desde la clase secundaria
-            crear_widgets = CompanyWidgets(ventana_principal)
+            crear_widgets = create_window()
             crear_widgets.dataForm("edit")
 
         case _:
-            # Crear la ventana principal
-            root = ctk.CTk()
-            ventana_principal = CompanyWindow(root)
-            # Crear y agregar widgets desde la clase secundaria
-            crear_widgets = CompanyWidgets(ventana_principal)
+            crear_widgets = create_window()
             crear_widgets.listForm()
 
 
