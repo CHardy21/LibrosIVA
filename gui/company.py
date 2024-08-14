@@ -157,7 +157,7 @@ class CompanyWidgets:
                                    command=lambda: delete_invoice(self)
                                    if selected_row is not None
                                    else CTkMessagebox(title="Error",
-                                                      message="Debe seleccionar un Comprobante para Borrar",
+                                                      message="Debe seleccionar una Empresa para Borrar",
                                                       icon="cancel"),
                                    )
         new_btn = ctk.CTkButton(marco_btns, text="Nuevo", width=100,
@@ -166,7 +166,7 @@ class CompanyWidgets:
                                  command=lambda: company("edit", self.ventana_principal)
                                  if selected_row is not None
                                  else CTkMessagebox(title="Error",
-                                                    message="Debe seleccionar un Comprobante para editar",
+                                                    message="Debe seleccionar una Empresa para editar",
                                                     icon="cancel"),
                                  )
 

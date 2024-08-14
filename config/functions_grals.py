@@ -14,15 +14,15 @@ def validar_string(s, caracteres):
 
 
 def validar_cuit(cuit):
+    # Remover guiones
+    cuit = cuit.replace("-", "")
+
     # Validaciones mínimas
     if len(cuit) != 11:
         return False
 
     # Pesos para el cálculo del dígito verificador
     base = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2]
-
-    # Remover guiones
-    # cuit = cuit.replace("-", "")
 
     # Calcular el dígito verificador
     aux = 0
