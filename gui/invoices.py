@@ -5,7 +5,7 @@ from CTkMessagebox import CTkMessagebox
 from CTkTable import *
 
 from config import db
-import gui.invoices_functions as validar
+import config.functions_grals as fn
 
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
@@ -65,7 +65,7 @@ def select_invoice(objeto, e):
     global selected_row
     global invoice_code
 
-    if selected_row != None:
+    if selected_row is not None:
         objeto.deselect_row(selected_row)
 
     objeto.select_row(e["row"])
@@ -342,27 +342,27 @@ class InvoiceWidgets:
             msg = ""
 
             # Validando los Datos del Formulario
-            if not validar.validate_txt(datos['Code'], 1, 4, str):
+            if not fn.validate_txt(datos['Code'], 1, 4, str):
                 count += 1
                 error[count] = "Código de Comprobante debe contener 1-4 caracteres."
 
-            if not validar.validate_txt(datos['Description'], 1, 24, str):
+            if not fn.validate_txt(datos['Description'], 1, 24, str):
                 count += 1
                 error[count] = "Descripción de Comprobante debe contener 1-24 caracteres."
 
-            if not validar.validar_string(datos['TypeDC'], "DCdc"):
+            if not fn.validar_string(datos['TypeDC'], "DCdc"):
                 count += 1
                 error[count] = "Debe indicar Débito o Crédito (D/C)."
 
-            if not validar.validar_string(datos['Op1'], "SNsn "):
+            if not fn.validar_string(datos['Op1'], "SNsn "):
                 count += 1
                 error[count] = "Debe indicar si tiene numeración (S/N)."
 
-            if not validar.validar_string(datos['Op2'], "SNsn"):
+            if not fn.validar_string(datos['Op2'], "SNsn"):
                 count += 1
                 error[count] = "Debe indicar si esta activo para Compras (S/N)."
 
-            if not validar.validar_string(datos['Op3'], "SNsn"):
+            if not fn.validar_string(datos['Op3'], "SNsn"):
                 count += 1
                 error[count] = "Debe indicar si esta activo para Ventas (S/N)."
 
@@ -417,12 +417,6 @@ def create_window():
 
 
 def invoice(opt=None, ventana_principal=None):
-    # # Crear la ventana principal
-    # root = ctk.CTk()
-    # ventana_principal = InvoiceWindow(root)
-    # # Crear y agregar widgets desde la clase secundaria
-    # crear_widgets = InvoiceWidgets(ventana_principal)
-
     match opt:
         case "new":
             # Cerrar la ventana actual
@@ -432,7 +426,8 @@ def invoice(opt=None, ventana_principal=None):
 
         case "edit":
             # Cerrar la ventana actual
-            ventana_principal.cerrar_ventana()
+            if ventana_principal is not None:
+                ventana_principal.cerrar_ventana()
             crear_widgets = create_window()
             crear_widgets.dataForm("edit")
 
