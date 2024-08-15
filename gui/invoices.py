@@ -27,7 +27,10 @@ def save_record(datos):
         return True
 
 
-def update_record(datos):
+def update_record(self, datos):
+    global selected_row
+    global invoice_code
+
     print(datos)
     query = """
         UPDATE invoices
@@ -43,8 +46,23 @@ def update_record(datos):
     result = db.updateRecord(query, values)
 
     if result:
-        return True
+        msgbox = CTkMessagebox(title="Ok",
+                               message="El registro fue Actualizado correctamente.",
+                               icon="check",
+                               sound=True,
+                               wraplength=400,
+                               corner_radius=2,
+                               option_1="Aceptar",
+                               )
+        response = msgbox.get()
 
+        if response == "Aceptar":
+            selected_row = None
+            invoice_code = ''
+            self.ventana_principal.cerrar_ventana()
+            invoice()
+    else:
+        CTkMessagebox(title="Error", message="Ha ocurrido un error.", icon="cancel")
 
 def fetch_records():
     query = "SELECT CODE,DESCRIPTION FROM invoices"
@@ -76,12 +94,30 @@ def select_invoice(objeto, e):
 
 
 def delete_invoice(self):
+
+    global selected_row
+    global invoice_code
     print("Eliminar Registro: ", invoice_code)
     query = f"DELETE FROM invoices WHERE code='{invoice_code}'"
     result = db.removeRecord(query)
     if result:
-        CTkMessagebox(title="Ok", message="El registro fue borrado correctamente.", icon="check", sound=True)
-        self.ventana_principal.cerrar_ventana()
+        msgbox = CTkMessagebox(title="Ok",
+                               message="El registro fue borrado correctamente.",
+                               icon="check",
+                               sound=True,
+                               wraplength=400,
+                               corner_radius=2,
+                               option_1="Aceptar",
+                               )
+        response = msgbox.get()
+
+        if response == "Aceptar":
+            selected_row = None
+            invoice_code = ''
+            self.ventana_principal.cerrar_ventana()
+            invoice()
+        else:
+            print("Click 'Yes' to exit!")
 
 
 # =================
@@ -384,14 +420,8 @@ class InvoiceWidgets:
                     else:
                         CTkMessagebox(title="Error", message="Ha ocurrido un error.", icon="cancel")
                 elif optt == "edit":
-                    print("La edicion fue exiosa (Ahora cree la funcion update_record()  :)")
-                    print(datos)
                     update = update_record(datos)
-                    if update:
-                        CTkMessagebox(title="Ok", message="El registro fue Actualizado correctamente.", icon="check", )
-                        self.ventana_principal.cerrar_ventana()
-                    else:
-                        CTkMessagebox(title="Error", message="Ha ocurrido un error.", icon="cancel")
+
 
         def limpiar_form(widget):
             widgets = widget.winfo_children()

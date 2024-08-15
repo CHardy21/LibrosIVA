@@ -76,13 +76,27 @@ def select_tax_status(objeto, e):
 
 
 def delete_tax_status(self):
+    global selected_row
+    global tax_status_code
     print("Eliminar Registro: ", tax_status_code)
     # query = f"DELETE FROM invoices WHERE code='{tax_status_code}'"
     query = ""
     result = db.removeRecord(query)
     if result:
-        CTkMessagebox(title="Ok", message="El registro fue borrado correctamente.", icon="check", sound=True)
-        self.ventana_principal.cerrar_ventana()
+        msgbox = CTkMessagebox(title="Ok",
+                               message="El registro fue borrado correctamente.",
+                               icon="check",
+                               sound=True,
+                               wraplength=400,
+                               corner_radius=2,
+                               option_1="Aceptar",
+                               )
+        response = msgbox.get()
+        if response == "Aceptar":
+            selected_row = None
+            tax_status_code = ''
+            self.ventana_principal.cerrar_ventana()
+            tax_status()
 
 
 # =================

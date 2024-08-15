@@ -14,7 +14,7 @@ def show_info():
 def show_checkmark():
     # Show some positive message with the checkmark icon
     CTkMessagebox(message="CTkMessagebox is successfully installed.",
-                  icon="check", option_1="Thanks")
+                  icon="check", option_1="Thanks",)
 
 
 def show_error():
