@@ -31,7 +31,8 @@ class Menu:
         menu_inicio.add_separator()
         menu_inicio.add_command(label="Comprobantes",
                                 command=lambda: gui.mng_gui.on_click_menu("invoices"))
-        menu_inicio.add_command(label="Condiciones Fiscales")
+        menu_inicio.add_command(label="Condiciones Fiscales",
+                                command=lambda: gui.mng_gui.on_click_menu("tax_status"))
         menu_inicio.add_command(label="Alícuota")
         menu_inicio.add_command(label="Retencionres / Percepciones / Pagos a Cuenta")
         menu_inicio.add_command(label="Imp. Déb. / Créd. Bancarios")

@@ -49,23 +49,23 @@ def update_record(datos):
 def fetch_records():
     query = "SELECT code, description FROM tax_status"
     result = db.fetchRecords(query)
-    print(result)
+    print("fetchall: ", result)
     return result
 
 
 def get_record(record):
     query = f"SELECT * FROM tax_status WHERE code = '{record}'"
     result = db.fetchRecord(query)
-    print("valor devuelto: ", result)
+    print("fetchone: ", result)
     return result
 
 
 def select_tax_status(objeto, e):
-    # 'e' tiene los datos pasados por el widget tabla de donde se hizo el  Click
+    # 'e' tiene los datos pasados por el widget tabla de donde se hizo el Click
     global selected_row
     global tax_status_code
 
-    if selected_row != None:
+    if selected_row is not None:
         objeto.deselect_row(selected_row)
 
     objeto.select_row(e["row"])
@@ -76,8 +76,9 @@ def select_tax_status(objeto, e):
 
 
 def delete_tax_status(self):
-    print("Eliminar Registro: ", invoice_code)
-    query = f"DELETE FROM invoices WHERE code='{invoice_code}'"
+    print("Eliminar Registro: ", tax_status_code)
+    # query = f"DELETE FROM invoices WHERE code='{tax_status_code}'"
+    query = ""
     result = db.removeRecord(query)
     if result:
         CTkMessagebox(title="Ok", message="El registro fue borrado correctamente.", icon="check", sound=True)
@@ -152,7 +153,7 @@ class TaxStatusWidgets:
         cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
                                    command=lambda: self.ventana_principal.cerrar_ventana())
         delete_btn = ctk.CTkButton(marco_btns, text="Borrar", width=100,
-                                   command=lambda: delete_invoice(self)
+                                   command=lambda: delete_tax_status(self)
                                    if selected_row is not None
                                    else CTkMessagebox(title="Error",
                                                       message="Debe seleccionar un Comprobante para Borrar",
@@ -226,7 +227,7 @@ class TaxStatusWidgets:
 
         code_label = ctk.CTkLabel(marco, text="Código", ).place(x=10, y=10)
         code_entry = ctk.CTkEntry(marco, textvariable=datos['code'], width=47,
-                                         validate="focusout", ).place(x=110, y=10)
+                                  validate="focusout", ).place(x=110, y=10)
         description_label = ctk.CTkLabel(marco, text="Descripción", ).place(x=10, y=40)
         description_entry = ctk.CTkEntry(marco, textvariable=datos['description'], width=180).place(x=110, y=40)
         # obs_label = ctk.CTkLabel(marco, text="Observaciones:", ).place(x=10, y=70)

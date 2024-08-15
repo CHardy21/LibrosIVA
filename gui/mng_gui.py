@@ -7,8 +7,10 @@ import gui.menu_gui as menu
 
 from gui.invoices import invoice
 from gui.company import company
+from gui.tax_status import tax_status
 
 from gui.selectCompanyForm_gui import SelectCompany
+
 
 
 class Login:
@@ -124,5 +126,8 @@ def on_click_menu(event):
         form = SelectCompany()
     if event == "invoices":
         form = invoice()
+    if event == "tax_status":
+        form = tax_status()
+
 
     pass
