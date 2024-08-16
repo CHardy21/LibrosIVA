@@ -1,9 +1,16 @@
 import sqlite3
+import sys
+import traceback
 
 
 # ===============================================================================================
 #  No olvidar al terminar el codigo de este archivo cerrar la conneccion despues de cada llamada.
 # ===============================================================================================
+def error_mng(e):
+    print("DB Error: ", e)
+    return e
+
+
 class Database:
     def __init__(self, db):
         self.conn = sqlite3.connect(db)
@@ -57,10 +64,11 @@ class Database:
             print(query)
             self.cur.execute(query)
             self.conn.commit()
-            print("Registro Eliminado correctamente.")
-            return True
+            print("DB: Registro Eliminado correctamente.")
+
         except sqlite3.Error as e:
-            print(f"Error al eliminar el registro: {e}")
+            # print(f"DB Error: {e}")
+            error_mng(e)
 
     def updateRecord(self, query, values):
         try:
@@ -71,11 +79,7 @@ class Database:
             return True
         except sqlite3.Error as e:
             print(f"Error al Actualizar el registro: {e}")
-
-
+            error_mng(e)
 
     def __del__(self):
         self.conn.close()
-
-    def error_mng(self, e):
-        return e

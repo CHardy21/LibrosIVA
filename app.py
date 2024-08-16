@@ -1,4 +1,4 @@
-# from config.general_config import *
+from config.general_config import *
 
 import gui.mng_gui as gui
 

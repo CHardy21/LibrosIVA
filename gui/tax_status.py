@@ -15,12 +15,12 @@ tax_status_code = None
 
 def save_record(datos):
     print(datos)
-    query = """INSERT INTO tax_status (code, description, observations, type_ret, type_cert, type_dc, active_buy, 
-    active_sell, numeration, c_fiscal, code_a, code_b, code_c, code_e, code_m, code_t, code_o) VALUES (?, ?, ?, ?, ?, 
-    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
-    values = (datos['Code'], datos['Description'], datos['Obs'], datos['TypeRet'], datos['TypeCert'], datos['TypeDC'],
-              datos['Op1'], datos['Op2'], datos['Op3'], datos['Op4'], datos['CodeA'], datos['CodeB'], datos['CodeC'],
-              datos['CodeE'], datos['CodeM'], datos['CodeT'], datos['CodeO'])
+    query = """
+    NSERT INTO tax_status (code,description,detail_buy,detail_sell,monotributo,magnetic_bracket) 
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+    """
+    values = (datos['Code'], datos['description'], datos['detail_buy'], datos['detail_sell'], datos['monotributo'],
+              datos['magnetic_bracket'])
 
     result = db.insertRecord(query, values)
     if result:
@@ -31,15 +31,12 @@ def update_record(datos):
     print(datos)
     query = """
         UPDATE tax_status
-        SET code = ?, description = ?, observations = ?, type_ret = ?, type_cert = ?, type_dc = ?,
-            active_buy = ?, active_sell = ?, numeration = ?, c_fiscal = ?, code_a = ?, code_b = ?,
-            code_c = ?, code_e = ?, code_m = ?, code_t = ?, code_o = ?
+        SET code = ?, description = ?,detail_buy = ?, detail_sell V,
+        monotributo = ?, magnetic_bracket= ?
         WHERE id = ?
     """
-    values = (datos['Code'], datos['Description'], datos['Obs'], datos['TypeRet'], datos['TypeCert'],
-              datos['TypeDC'], datos['Op1'], datos['Op2'], datos['Op3'], datos['Op4'], datos['CodeA'],
-              datos['CodeB'], datos['CodeC'], datos['CodeE'], datos['CodeM'], datos['CodeT'],
-              datos['CodeO'], datos['Id'])
+    values = (datos['Code'], datos['description'], datos['detail_buy'], datos['detail_sell'], datos['monotributo'],
+              datos['magnetic_bracket'], datos['Id'])
     result = db.updateRecord(query, values)
 
     if result:
@@ -60,35 +57,28 @@ def get_record(record):
     return result
 
 
-def select_tax_status(objeto, e):
-    # 'e' tiene los datos pasados por el widget tabla de donde se hizo el Click
-    global selected_row
-    global tax_status_code
-
-    if selected_row is not None:
-        objeto.deselect_row(selected_row)
-
-    objeto.select_row(e["row"])
-    selected_row = e["row"]
-    tax_status_code = objeto.get(selected_row, 0)
-    print(" CODE Tax Status Selected: ", tax_status_code)
-    print(e)
-
-
 def delete_tax_status(self):
     global selected_row
     global tax_status_code
     print("Eliminar Registro: ", tax_status_code)
-    # query = f"DELETE FROM invoices WHERE code='{tax_status_code}'"
-    query = ""
+
+    if selected_row is None:
+        CTkMessagebox(title="Error",
+                      message="Debe seleccionar un registro para Borrar",
+                      icon="cancel")
+        return
+
+    query = f"DELETE FROM tax_statu WHERE code='{tax_status_code}'"
+    # query = ""
     result = db.removeRecord(query)
+
     if result:
-        msgbox = CTkMessagebox(title="Ok",
+        msgbox = CTkMessagebox(title="Borrar Condición Fiscal",
+                               header=True,
                                message="El registro fue borrado correctamente.",
                                icon="check",
                                sound=True,
                                wraplength=400,
-                               corner_radius=2,
                                option_1="Aceptar",
                                )
         response = msgbox.get()
@@ -97,6 +87,36 @@ def delete_tax_status(self):
             tax_status_code = ''
             self.ventana_principal.cerrar_ventana()
             tax_status()
+    else:
+        print("=> ERROR con DB...(Front MSG)")
+
+
+def select_tax_status(objeto, e):
+    # 'e' tiene los datos pasados por el widget tabla de donde se hizo el Click
+    global selected_row
+    global tax_status_code
+    try:
+        if selected_row is not None:
+            objeto.deselect_row(selected_row)
+
+        objeto.select_row(e["row"])
+        selected_row = e["row"]
+        tax_status_code = objeto.get(selected_row, 0)
+        print(" CODE Selected: ", tax_status_code)
+        # print(e)
+    except:
+        msgbox = CTkMessagebox(title="Error",
+                               header=True,
+                               message="Ha ocurrido un error desconocido.",
+                               icon="warning",
+                               sound=True,
+                               wraplength=400,
+                               option_1="Aceptar",
+                               )
+        response = msgbox.get()
+        if response == "Aceptar":
+            selected_row = None
+            tax_status_code = ''
 
 
 # =================
@@ -163,15 +183,10 @@ class TaxStatusWidgets:
         marco_btns = ctk.CTkFrame(master=self.ventana_principal.root,
                                   width=300,
                                   )
-
         cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
                                    command=lambda: self.ventana_principal.cerrar_ventana())
         delete_btn = ctk.CTkButton(marco_btns, text="Borrar", width=100,
                                    command=lambda: delete_tax_status(self)
-                                   if selected_row is not None
-                                   else CTkMessagebox(title="Error",
-                                                      message="Debe seleccionar un Comprobante para Borrar",
-                                                      icon="cancel"),
                                    )
         new_btn = ctk.CTkButton(marco_btns, text="Nuevo", width=100,
                                 command=lambda: tax_status("new", self.ventana_principal), )
@@ -302,62 +317,36 @@ class TaxStatusWidgets:
 
         self.ventana_principal.agregar_widget(marco)
 
-        def validation_form(self, dataForm, optt):
+        def validation_form(self, dataForm, opt):
 
-            if dataForm['Id'] is not None:
+            if dataForm['id'] is not None:
                 value = dataForm['Id'].get()  # Accede al método get() aquí
             else:
                 value = ""  # Maneja el caso en que dataForm['Id'] es None, o sea cuando opt = "new"
 
             # Recuperando Datos Del Formulario
             datos = {
-                "Id": value,
-                "Code": dataForm['Code'].get().upper(),
-                "Description": dataForm['Description'].get(),
-                "Obs": dataForm['Obs'].get(),
-                "TypeRet": dataForm['TypeRet'].get(),
-                "TypeCert": dataForm['TypeCert'].get(),
-                "TypeDC": dataForm['TypeDC'].get().upper(),
-                "Op1": dataForm['Op1'].get().upper(),
-                "Op2": dataForm['Op2'].get().upper(),
-                "Op3": dataForm['Op3'].get().upper(),
-                "Op4": dataForm['Op4'].get(),
-                "CodeA": dataForm['CodeA'].get(),
-                "CodeB": dataForm['CodeB'].get(),
-                "CodeC": dataForm['CodeC'].get(),
-                "CodeE": dataForm['CodeE'].get(),
-                "CodeM": dataForm['CodeM'].get(),
-                "CodeT": dataForm['CodeT'].get(),
-                "CodeO": dataForm['CodeO'].get(),
+                'id': value,
+                'code': dataForm['code'].get().upper(),
+                'description': dataForm['description'].get(),
+                'detail_buy': dataForm['detail_buy'].get(),
+                'detail_sell': dataForm['detail_sell'].get(),
+                'monotributo': dataForm['monotributo'].get(),
+                'magnetic_bracket': dataForm['magnetic_bracket'].get(),
             }
             error = {}
             count = 0
             msg = ""
 
             # Validando los Datos del Formulario
-            if not fn.validate_txt(datos['Code'], 1, 4, str):
+            if not fn.validate_txt(datos['code'], 1, 4, str):
                 count += 1
-                error[count] = "Código de Comprobante debe contener 1-4 caracteres."
+                error[count] = "Código de Condición debe contener 1-4 caracteres."
 
-            if not fn.validate_txt(datos['Description'], 1, 24, str):
+            if not fn.validate_txt(datos['description'], 1, 24, str):
                 count += 1
-                error[count] = "Descripción de Comprobante debe contener 1-24 caracteres."
+                error[count] = "Descripción debe contener 1-24 caracteres."
 
-            if not fn.validar_string(datos['TypeDC'], "DCdc"):
-                count += 1
-                error[count] = "Debe indicar Débito o Crédito (D/C)."
-
-            if not fn.validar_string(datos['Op1'], "SNsn "):
-                count += 1
-                error[count] = "Debe indicar si tiene numeración (S/N)."
-
-            if not fn.validar_string(datos['Op2'], "SNsn"):
-                count += 1
-                error[count] = "Debe indicar si esta activo para Compras (S/N)."
-
-            if not fn.validar_string(datos['Op3'], "SNsn"):
-                count += 1
-                error[count] = "Debe indicar si esta activo para Ventas (S/N)."
 
             print("'Resultado de la Validación'")
             print(datos, "Cantidad de elementos:      ", len(datos))
@@ -369,14 +358,14 @@ class TaxStatusWidgets:
                 CTkMessagebox(title="Error", message=msg, icon="cancel")
             else:
                 print("Se validaron todos los Datos.")
-                if optt == "new":
+                if opt == "new":
                     save = save_record(datos)
                     if save:
                         CTkMessagebox(title="Ok", message="El registro fue guardado correctamente.", icon="check", )
                         self.ventana_principal.cerrar_ventana()
                     else:
                         CTkMessagebox(title="Error", message="Ha ocurrido un error.", icon="cancel")
-                elif optt == "edit":
+                elif opt == "edit":
                     print("La edicion fue exiosa (Ahora cree la funcion update_record()  :)")
                     print(datos)
                     update = update_record(datos)
