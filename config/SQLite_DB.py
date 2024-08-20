@@ -55,9 +55,10 @@ class Database:
             self.conn.commit()
             print("Registro insertado correctamente.")
             return True
+
         except sqlite3.Error as e:
-            print(f"Error al insertar el registro: {e}")
-            return False, e
+            # print(f"DB Error: {e}")
+            error_mng(e)
 
     def removeRecord(self, query):
         try:

@@ -13,18 +13,35 @@ selected_row = None
 company_code = None
 
 
-def save_record(datos):
+def save_record(self, datos):
     print(datos)
-    query = """INSERT INTO invoices (code, description, observations, type_ret, type_cert, type_dc, active_buy, 
-    active_sell, numeration, c_fiscal, code_a, code_b, code_c, code_e, code_m, code_t, code_o) VALUES (?, ?, ?, ?, ?, 
-    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
-    values = (datos['Code'], datos['Description'], datos['Obs'], datos['TypeRet'], datos['TypeCert'], datos['TypeDC'],
-              datos['Op1'], datos['Op2'], datos['Op3'], datos['Op4'], datos['CodeA'], datos['CodeB'], datos['CodeC'],
-              datos['CodeE'], datos['CodeM'], datos['CodeT'], datos['CodeO'])
+    query = """
+            INSERT INTO company 
+            (cuit,company_name,fantasy_name,working_path,address,phone,dependency_afip,activity_code,iva_conditions,
+            month_close,taxpayer_type,undersigned,undersigned_character) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """
+    values = (datos['cuit'], datos['company_name'], datos['fantasy_name'], datos['working_path'], datos['address'],
+              datos['phone'], datos['dependency_afip'], datos['activity_code'], datos['iva_conditions'],
+              datos['month_close'], datos['taxpayer_type'], datos['undersigned'], datos['undersigned_character'])
 
     result = db.insertRecord(query, values)
+
     if result:
-        return True
+        msgbox = CTkMessagebox(title="Nueva Empresa",
+                               header=True,
+                               message="La Empresa fue creada correctamente.",
+                               icon="check",
+                               sound=True,
+                               wraplength=400,
+                               option_1="Aceptar",
+                               )
+        response = msgbox.get()
+        if response == "Aceptar":
+            self.ventana_principal.cerrar_ventana()
+            company()
+    else:
+        print("=> ERROR con DB...(Front MSG)")
 
 
 def update_record(datos):
@@ -150,7 +167,7 @@ class CompanyWidgets:
 
         # Botones de Acciones
         marco_btns = ctk.CTkFrame(master=self.ventana_principal.root,
-                                  width=300,
+                                  width=500,
                                   )
 
         cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
@@ -238,7 +255,7 @@ class CompanyWidgets:
 
         # Crea el frame con el formulario y lo añade a la ventana
         marco = ctk.CTkFrame(master=self.ventana_principal.root,
-                             width=620,
+                             width=520,
                              height=420,
                              corner_radius=0,
                              border_width=1,
@@ -287,19 +304,25 @@ class CompanyWidgets:
                                   corner_radius=0,
                                   fg_color='transparent'
                                   )
+        marco_btns.grid_rowconfigure(0, weight=1)
+        marco_btns.grid_columnconfigure(0, weight=1)
 
-        clear_btn = ctk.CTkButton(marco_btns, text="Vaciar", width=80,
+        clear_btn = ctk.CTkButton(marco_btns, text="Vaciar", width=120,
                                   fg_color='transparent',
                                   command=lambda: limpiar_form(marco))
-        cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=80,
+        cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=120,
+                                   fg_color='orange',
+                                   hover_color='dark orange',
                                    command=lambda: self.ventana_principal.cerrar_ventana())
         ok_btn = ctk.CTkButton(marco_btns, text="Guardar", width=120,
                                fg_color='green',
+                               hover_color='dark green',
+                               compound='right',
                                command=lambda: validation_form(self, datos, opt)
                                )
 
-        clear_btn.grid(row=0, column=0, columnspan=2,  padx=15, pady=5, )
-        cancel_btn.grid(row=0, column=2, padx=15, pady=5, )
+        clear_btn.grid(row=0, column=0, columnspan=2, padx=15, pady=5, )
+        cancel_btn.grid(row=0, column=2, padx=10, pady=5, )
         ok_btn.grid(row=0, column=3, padx=15, pady=5, )
 
         print(marco.grid_slaves())
@@ -371,12 +394,8 @@ class CompanyWidgets:
             else:
                 print("Se validaron todos los Datos.")
                 if optt == "new":
-                    save = save_record(datos)
-                    if save:
-                        CTkMessagebox(title="Ok", message="El registro fue guardado correctamente.", icon="check", )
-                        self.ventana_principal.cerrar_ventana()
-                    else:
-                        CTkMessagebox(title="Error", message="Ha ocurrido un error.", icon="cancel")
+                    save_record(self, datos)
+
                 elif optt == "edit":
                     print("La edicion fue exiosa (Ahora cree la funcion update_record()  :)")
                     print(datos)
