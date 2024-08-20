@@ -13,6 +13,35 @@ selected_row = None
 company_code = None
 
 
+def select_company(objeto, e):
+    # 'e' tiene los datos pasados por el widget tabla de donde se hizo el  Click
+    global selected_row
+    global company_code
+
+    if selected_row is not None:
+        objeto.deselect_row(selected_row)
+
+    objeto.select_row(e["row"])
+    selected_row = e["row"]
+    company_code = objeto.get(selected_row, 0)
+    print(" CODE Company Selected: ", company_code)
+    print(e)
+
+
+def fetch_records():
+    query = "SELECT cuit, fantasy_name, company_name FROM company"
+    result = db.fetchRecords(query)
+    print(result)
+    return result
+
+
+def get_record(record):
+    query = f"SELECT * FROM company WHERE cuit = '{record}'"
+    result = db.fetchRecord(query)
+    print("valor devuelto: ", result)
+    return result
+
+
 def save_record(self, datos):
     print(datos)
     query = """
@@ -44,62 +73,58 @@ def save_record(self, datos):
         print("=> ERROR con DB...(Front MSG)")
 
 
-def update_record(datos):
+def update_record(self, datos):
     print(datos)
     query = """
-        UPDATE invoices
-        SET code = ?, description = ?, observations = ?, type_ret = ?, type_cert = ?, type_dc = ?,
-            active_buy = ?, active_sell = ?, numeration = ?, c_fiscal = ?, code_a = ?, code_b = ?,
-            code_c = ?, code_e = ?, code_m = ?, code_t = ?, code_o = ?
+        UPDATE company
+        SET cuit=?, company_name=?, fantasy_name=?, working_path=?, address=?,phone=?, dependency_afip=?,
+        activity_code=?, iva_conditions=?, month_close=?, taxpayer_type=?, undersigned=?, undersigned_character=?
         WHERE id = ?
     """
-    values = (datos['Code'], datos['Description'], datos['Obs'], datos['TypeRet'], datos['TypeCert'],
-              datos['TypeDC'], datos['Op1'], datos['Op2'], datos['Op3'], datos['Op4'], datos['CodeA'],
-              datos['CodeB'], datos['CodeC'], datos['CodeE'], datos['CodeM'], datos['CodeT'],
-              datos['CodeO'], datos['Id'])
+    values = (datos['cuit'], datos['company_name'], datos['fantasy_name'], datos['working_path'], datos['address'],
+              datos['phone'], datos['dependency_afip'], datos['activity_code'], datos['iva_conditions'],
+              datos['month_close'], datos['taxpayer_type'], datos['undersigned'], datos['undersigned_character'],
+              datos['id'])
+
     result = db.updateRecord(query, values)
 
     if result:
-        return True
-
-
-def fetch_records():
-    query = "SELECT cuit, fantasy_name, company_name FROM company"
-    result = db.fetchRecords(query)
-    print(result)
-    return result
-
-
-def get_record(record):
-    query = f"SELECT * FROM company WHERE cuit = '{record}'"
-    result = db.fetchRecord(query)
-    print("valor devuelto: ", result)
-    return result
-
-
-def select_company(objeto, e):
-    # 'e' tiene los datos pasados por el widget tabla de donde se hizo el  Click
-    global selected_row
-    global company_code
-
-    if selected_row is not None:
-        objeto.deselect_row(selected_row)
-
-    objeto.select_row(e["row"])
-    selected_row = e["row"]
-    company_code = objeto.get(selected_row, 0)
-    print(" CODE Company Selected: ", company_code)
-    print(e)
+        msgbox = CTkMessagebox(title="Actualizando datos Empresa",
+                               header=True,
+                               message="La Empresa fue actualizada correctamente.",
+                               icon="check",
+                               sound=True,
+                               wraplength=400,
+                               option_1="Aceptar",
+                               )
+        response = msgbox.get()
+        if response == "Aceptar":
+            self.ventana_principal.cerrar_ventana()
+            company()
+    else:
+        print("=> ERROR con DB...(Front MSG)")
 
 
 def delete_company(self):
     print("Eliminar Registro: ", company_code)
     query = f"DELETE FROM invoices WHERE code='{company_code}'"
     result = db.removeRecord(query)
-    if result:
-        CTkMessagebox(title="Ok", message="El registro fue borrado correctamente.", icon="check", sound=True)
-        self.ventana_principal.cerrar_ventana()
 
+    if result:
+        msgbox = CTkMessagebox(title="Eliminar Empresa",
+                               header=True,
+                               message="La Empresa fue eliminada correctamente.",
+                               icon="check",
+                               sound=True,
+                               wraplength=400,
+                               option_1="Aceptar",
+                               )
+        response = msgbox.get()
+        if response == "Aceptar":
+            self.ventana_principal.cerrar_ventana()
+            company()
+    else:
+        print("=> ERROR con DB...(Front MSG)")
 
 # =================
 #  Clase Principal
@@ -397,14 +422,8 @@ class CompanyWidgets:
                     save_record(self, datos)
 
                 elif optt == "edit":
-                    print("La edicion fue exiosa (Ahora cree la funcion update_record()  :)")
-                    print(datos)
-                    update = update_record(datos)
-                    if update:
-                        CTkMessagebox(title="Ok", message="El registro fue Actualizado correctamente.", icon="check", )
-                        self.ventana_principal.cerrar_ventana()
-                    else:
-                        CTkMessagebox(title="Error", message="Ha ocurrido un error.", icon="cancel")
+                    update_record(self, datos)
+
 
         def limpiar_form(widget):
             widgets = widget.winfo_children()
