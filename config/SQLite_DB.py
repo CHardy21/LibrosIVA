@@ -66,6 +66,7 @@ class Database:
             self.cur.execute(query)
             self.conn.commit()
             print("DB: Registro Eliminado correctamente.")
+            return True
 
         except sqlite3.Error as e:
             # print(f"DB Error: {e}")

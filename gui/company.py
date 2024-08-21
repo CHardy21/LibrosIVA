@@ -107,7 +107,7 @@ def update_record(self, datos):
 
 def delete_company(self):
     print("Eliminar Registro: ", company_code)
-    query = f"DELETE FROM invoices WHERE code='{company_code}'"
+    query = f"DELETE FROM company WHERE cuit='{company_code}'"
     result = db.removeRecord(query)
 
     if result:
@@ -125,6 +125,7 @@ def delete_company(self):
             company()
     else:
         print("=> ERROR con DB...(Front MSG)")
+
 
 # =================
 #  Clase Principal
@@ -198,7 +199,7 @@ class CompanyWidgets:
         cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
                                    command=lambda: self.ventana_principal.cerrar_ventana())
         delete_btn = ctk.CTkButton(marco_btns, text="Borrar", width=100,
-                                   command=lambda: delete_invoice(self)
+                                   command=lambda: delete_company(self)
                                    if selected_row is not None
                                    else CTkMessagebox(title="Error",
                                                       message="Debe seleccionar una Empresa para Borrar",
@@ -311,17 +312,30 @@ class CompanyWidgets:
         companyCODA_label = ctk.CTkLabel(marco, text="Cód. Actividad", ).place(x=10, y=160)
         companyCODA_entry = ctk.CTkEntry(marco, textvariable=datos['activity_code'], width=60).place(x=115, y=160)
         companyCODAD_label = ctk.CTkLabel(marco, text="...", ).place(x=185, y=160)
+
+        # companyIVA = ctk.CTkOptionMenu(marco,
+        #                                dynamic_resizing=False,
+        #                                values=fn.obtener_condIVA(),
+        #                                )
         # Condición ante el IVA
         companyIVA_label = ctk.CTkLabel(marco, text="Cond. IVA", ).place(x=10, y=190)
         companyIVA_entry = ctk.CTkEntry(marco, textvariable=datos['iva_conditions'], width=40).place(x=115, y=190)
         companyIVAD_label = ctk.CTkLabel(marco, text="...", ).place(x=165, y=190)
+        month_default = datos['month_close'].get()
+
+        print('=> ', month_default)
+
+        # Mes de cierre...
+        companyMonthClose_label = ctk.CTkLabel(marco, text="Mes de cierre:", ).place(x=10, y=220)
+        companyMonthClose_entry = ctk.CTkEntry(marco, textvariable=datos['month_close'], width=30).place(x=115, y=220)
+
         # El que Suscribe...
-        companySUSCR_label = ctk.CTkLabel(marco, text="El que Suscribe", ).place(x=10, y=220)
-        companySUSCR_entry = ctk.CTkEntry(marco, textvariable=datos['undersigned'], width=300).place(x=115, y=220)
+        companySUSCR_label = ctk.CTkLabel(marco, text="El que Suscribe", ).place(x=10, y=250)
+        companySUSCR_entry = ctk.CTkEntry(marco, textvariable=datos['undersigned'], width=300).place(x=115, y=250)
         # En su Carácter de ...
-        companySUSCC_label = ctk.CTkLabel(marco, text="Carácter", ).place(x=10, y=250)
+        companySUSCC_label = ctk.CTkLabel(marco, text="Carácter", ).place(x=10, y=280)
         companySUSCC_entry = ctk.CTkEntry(marco, textvariable=datos['undersigned_character'], width=200).place(x=115,
-                                                                                                               y=250)
+                                                                                                               y=280)
 
         marco_btns = ctk.CTkFrame(master=self.ventana_principal.root,
                                   width=620,
@@ -392,18 +406,21 @@ class CompanyWidgets:
                 count += 1
                 error[count] = "Razón Social debe contener 5-50 caracteres."
 
-            # if not validar.validar_string(datos['TypeDC'], "DCdc"):
-            #     count += 1
-            #     error[count] = "Debe indicar Débito o Crédito (D/C)."
-            #
-            # if not validar.validar_string(datos['Op1'], "SNsn "):
-            #     count += 1
-            #     error[count] = "Debe indicar si tiene numeración (S/N)."
-            #
-            # if not validar.validar_string(datos['Op2'], "SNsn"):
-            #     count += 1
-            #     error[count] = "Debe indicar si esta activo para Compras (S/N)."
-            #
+            if len(datos['fantasy_name']) == 0:
+                datos['fantasy_name'] = datos['company_name']
+
+            if not fn.validate_txt(datos['address'], 5, 50, str):
+                count += 1
+                error[count] = "Debe escribir un domicilio."
+
+            if not fn.validate_codActividad(datos['activity_code']):
+                count += 1
+                error[count] = "Debe escribir un Código de Actividad Válido."
+
+            if not fn.validate_condIVA(datos['iva_conditions']):
+                count += 1
+                error[count] = "Condición ante IVA No Válido."
+
             # if not validar.validar_string(datos['Op3'], "SNsn"):
             #     count += 1
             #     error[count] = "Debe indicar si esta activo para Ventas (S/N)."
@@ -415,7 +432,14 @@ class CompanyWidgets:
             if len(error) > 0:
                 for txt, i in enumerate(error):
                     msg += "* " + error[i] + "\n"
-                CTkMessagebox(title="Error", message=msg, icon="cancel")
+                CTkMessagebox(header = True,
+                              title="Error",
+                              message=msg,
+                              icon="cancel",
+                              sound=True,
+                              wraplength=400,
+                              option_1="Aceptar",
+                              )
             else:
                 print("Se validaron todos los Datos.")
                 if optt == "new":
@@ -423,7 +447,6 @@ class CompanyWidgets:
 
                 elif optt == "edit":
                     update_record(self, datos)
-
 
         def limpiar_form(widget):
             widgets = widget.winfo_children()
@@ -471,5 +494,5 @@ def company(opt=None, ventana_principal=None):
 if __name__ == '__main__':
     ctk.set_appearance_mode("dark")
     app = ctk.CTk()
-    company()
+    company('new')
     app.mainloop()

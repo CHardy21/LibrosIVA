@@ -37,3 +37,11 @@ def validar_cuit(cuit):
 
     return aux == int(cuit[10])
 
+
+def validate_codActividad(dato):
+    if len(dato) < 7:
+        return False
+
+
+def validate_condIVA(dato):
+    pass
