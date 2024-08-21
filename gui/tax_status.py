@@ -259,6 +259,37 @@ class TaxStatusWidgets:
                                   validate="focusout", ).place(x=110, y=10)
         description_label = ctk.CTkLabel(marco, text="Descripción", ).place(x=10, y=40)
         description_entry = ctk.CTkEntry(marco, textvariable=datos['description'], width=180).place(x=110, y=40)
+
+        discrimination_label = ctk.CTkLabel(marco, text="¿Discrimina IVA?", ).place(x=30, y=70)
+
+        marco_discr = ctk.CTkFrame(marco,
+                                   width=200,
+                                   height=80,
+                                   corner_radius=0,
+                                   border_width=1,
+
+                                   )
+        marco_discr.place(x=10, y=95)
+
+        detailBuy_checkbox = ctk.CTkCheckBox(marco_discr,
+                                             text=" Al comprar",
+                                             variable=datos['detail_buy'],
+                                             onvalue="1",
+                                             offvalue="0").place(x=10, y=10)
+        detailSell_checkbox = ctk.CTkCheckBox(marco_discr,
+                                             text=" Al vender",
+                                             variable=datos['detail_sell'],
+                                             onvalue="1",
+                                             offvalue="0").place(x=10, y=45)
+
+        monotributo_checkbox = ctk.CTkCheckBox(marco,
+                                              text=" monotributo",
+                                              variable=datos['monotributo'],
+                                              onvalue="1",
+                                              offvalue="0").place(x=240, y=110)
+
+        magneticBracket_label = ctk.CTkLabel(marco, text="Cód. Soporte Magnético", ).place(x=240, y=140)
+        magneticBracket_entry = ctk.CTkEntry(marco, textvariable=datos['magnetic_bracket'], width=30).place(x=380, y=140)
         # obs_label = ctk.CTkLabel(marco, text="Observaciones:", ).place(x=10, y=70)
         # invoiceObs_entry = ctk.CTkEntry(marco, textvariable=datos['Obs'], width=300).place(x=110, y=70)
         #
@@ -347,7 +378,6 @@ class TaxStatusWidgets:
                 count += 1
                 error[count] = "Descripción debe contener 1-24 caracteres."
 
-
             print("'Resultado de la Validación'")
             print(datos, "Cantidad de elementos:      ", len(datos))
             print(error, "Cant. Errores de Validacón: ", len(error))
@@ -421,5 +451,5 @@ def tax_status(opt=None, ventana_principal=None):
 if __name__ == '__main__':
     ctk.set_appearance_mode("dark")
     app = ctk.CTk()
-    tax_status()
+    tax_status('new')
     app.mainloop()
