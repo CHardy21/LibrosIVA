@@ -13,34 +13,32 @@ selected_row = None
 tax_status_code = None
 
 
-def save_record(datos):
-    print(datos)
-    query = """
-    NSERT INTO tax_status (code,description,detail_buy,detail_sell,monotributo,magnetic_bracket) 
-    VALUES (?, ?, ?, ?, ?, ?, ?)
-    """
-    values = (datos['Code'], datos['description'], datos['detail_buy'], datos['detail_sell'], datos['monotributo'],
-              datos['magnetic_bracket'])
+def select_tax_status(objeto, e):
+    # 'e' tiene los datos pasados por el widget tabla de donde se hizo el Click
+    global selected_row
+    global tax_status_code
+    try:
+        if selected_row is not None:
+            objeto.deselect_row(selected_row)
 
-    result = db.insertRecord(query, values)
-    if result:
-        return True
-
-
-def update_record(datos):
-    print(datos)
-    query = """
-        UPDATE tax_status
-        SET code = ?, description = ?,detail_buy = ?, detail_sell V,
-        monotributo = ?, magnetic_bracket= ?
-        WHERE id = ?
-    """
-    values = (datos['Code'], datos['description'], datos['detail_buy'], datos['detail_sell'], datos['monotributo'],
-              datos['magnetic_bracket'], datos['Id'])
-    result = db.updateRecord(query, values)
-
-    if result:
-        return True
+        objeto.select_row(e["row"])
+        selected_row = e["row"]
+        tax_status_code = objeto.get(selected_row, 0)
+        print(" CODE Selected: ", tax_status_code)
+        # print(e)
+    except:
+        msgbox = CTkMessagebox(title="Error",
+                               header=True,
+                               message="Ha ocurrido un error desconocido.",
+                               icon="warning",
+                               sound=True,
+                               wraplength=400,
+                               option_1="Aceptar",
+                               )
+        response = msgbox.get()
+        if response == "Aceptar":
+            selected_row = None
+            tax_status_code = ''
 
 
 def fetch_records():
@@ -55,6 +53,49 @@ def get_record(record):
     result = db.fetchRecord(query)
     print("fetchone: ", result)
     return result
+
+
+def save_record(datos):
+    print(datos)
+    query = """
+    NSERT INTO tax_status (code,description,detail_buy,detail_sell,monotributo,magnetic_bracket) 
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+    """
+    values = (datos['Code'], datos['description'], datos['detail_buy'], datos['detail_sell'], datos['monotributo'],
+              datos['magnetic_bracket'])
+
+    result = db.insertRecord(query, values)
+    if result:
+        return True
+
+
+def update_record(self, datos):
+    print(datos)
+    query = """
+        UPDATE tax_status
+        SET code = ?, description = ?,detail_buy = ?, detail_sell = ?,
+        monotributo = ?, magnetic_bracket= ?
+        WHERE id = ?
+    """
+    values = (datos['code'], datos['description'], datos['detail_buy'], datos['detail_sell'], datos['monotributo'],
+              datos['magnetic_bracket'], datos['id'])
+    result = db.updateRecord(query, values)
+
+    if result:
+        msgbox = CTkMessagebox(title="Actualizando Condiciones Fiscales",
+                               header=True,
+                               message="Condición Fiscal fue actualizada correctamente.",
+                               icon="check",
+                               sound=True,
+                               wraplength=400,
+                               option_1="Aceptar",
+                               )
+        response = msgbox.get()
+        if response == "Aceptar":
+            self.ventana_principal.cerrar_ventana()
+            tax_status()
+    else:
+        print("=> ERROR con DB...(Front MSG)")
 
 
 def delete_tax_status(self):
@@ -89,34 +130,6 @@ def delete_tax_status(self):
             tax_status()
     else:
         print("=> ERROR con DB...(Front MSG)")
-
-
-def select_tax_status(objeto, e):
-    # 'e' tiene los datos pasados por el widget tabla de donde se hizo el Click
-    global selected_row
-    global tax_status_code
-    try:
-        if selected_row is not None:
-            objeto.deselect_row(selected_row)
-
-        objeto.select_row(e["row"])
-        selected_row = e["row"]
-        tax_status_code = objeto.get(selected_row, 0)
-        print(" CODE Selected: ", tax_status_code)
-        # print(e)
-    except:
-        msgbox = CTkMessagebox(title="Error",
-                               header=True,
-                               message="Ha ocurrido un error desconocido.",
-                               icon="warning",
-                               sound=True,
-                               wraplength=400,
-                               option_1="Aceptar",
-                               )
-        response = msgbox.get()
-        if response == "Aceptar":
-            selected_row = None
-            tax_status_code = ''
 
 
 # =================
@@ -247,8 +260,8 @@ class TaxStatusWidgets:
 
         # Crea el frame con el formulario y lo añade a la ventana
         marco = ctk.CTkFrame(master=self.ventana_principal.root,
-                             width=420,
-                             height=420,
+                             width=425,
+                             height=260,
                              corner_radius=0,
                              border_width=1,
                              border_color="black",
@@ -267,7 +280,6 @@ class TaxStatusWidgets:
                                    height=80,
                                    corner_radius=0,
                                    border_width=1,
-
                                    )
         marco_discr.place(x=10, y=95)
 
@@ -277,64 +289,26 @@ class TaxStatusWidgets:
                                              onvalue="1",
                                              offvalue="0").place(x=10, y=10)
         detailSell_checkbox = ctk.CTkCheckBox(marco_discr,
-                                             text=" Al vender",
-                                             variable=datos['detail_sell'],
-                                             onvalue="1",
-                                             offvalue="0").place(x=10, y=45)
+                                              text=" Al vender",
+                                              variable=datos['detail_sell'],
+                                              onvalue="1",
+                                              offvalue="0").place(x=10, y=45)
 
         monotributo_checkbox = ctk.CTkCheckBox(marco,
-                                              text=" monotributo",
-                                              variable=datos['monotributo'],
-                                              onvalue="1",
-                                              offvalue="0").place(x=240, y=110)
+                                               text=" monotributo",
+                                               variable=datos['monotributo'],
+                                               onvalue="1",
+                                               offvalue="0").place(x=240, y=110)
 
         magneticBracket_label = ctk.CTkLabel(marco, text="Cód. Soporte Magnético", ).place(x=240, y=140)
-        magneticBracket_entry = ctk.CTkEntry(marco, textvariable=datos['magnetic_bracket'], width=30).place(x=380, y=140)
-        # obs_label = ctk.CTkLabel(marco, text="Observaciones:", ).place(x=10, y=70)
-        # invoiceObs_entry = ctk.CTkEntry(marco, textvariable=datos['Obs'], width=300).place(x=110, y=70)
-        #
-        # invoiceTypeRet_checkbox = ctk.CTkCheckBox(marco, text="Retencion", variable=datos['TypeRet'],
-        #                                           onvalue="on",
-        #                                           offvalue="off").place(x=10, y=115)
-        # invoiceTypeCert_checkbox = ctk.CTkCheckBox(marco, text="Certificado", variable=datos['TypeCert'],
-        #                                            onvalue="on",
-        #                                            offvalue="off").place(x=110, y=115)
-        #
-        # invoiceTypeDC_label = ctk.CTkLabel(marco, text="Débito o Crédito (D/C)", )
-        # invoiceTypeDC_label.place(x=(170 - len(invoiceTypeDC_label.cget("text")) * 6), y=145)
-        # invoiceTypeDC_entry = ctk.CTkEntry(marco, textvariable=datos['TypeDC'], width=25).place(x=180, y=145)
-        # invoiceOp1_label = ctk.CTkLabel(marco, text="  Tiene Numeración (S/N) ", )
-        # invoiceOp1_label.place(x=(170 - len(invoiceOp1_label.cget("text")) * 6), y=175)
-        # invoiceOp1_entry = ctk.CTkEntry(marco, textvariable=datos['Op1'], width=25).place(x=180, y=175)
-        # invoiceOp2_label = ctk.CTkLabel(marco, text=" Activo en Compras (S/N) ", )
-        # invoiceOp2_label.place(x=(170 - len(invoiceOp2_label.cget("text")) * 6), y=205)
-        # invoiceOp2_entry = ctk.CTkEntry(marco, textvariable=datos['Op2'], width=25).place(x=180, y=205)
-        # invoiceOp3_label = ctk.CTkLabel(marco, text=" Activo en Ventas (S/N)", )
-        # invoiceOp3_label.place(x=(170 - len(invoiceOp3_label.cget("text")) * 6), y=235)
-        # print(180 - len(invoiceOp3_label.cget("text")))
-        # invoiceOp3_entry = ctk.CTkEntry(marco, textvariable=datos['Op3'], width=25).place(x=180, y=235)
-        # invoiceOp4_checkbox = ctk.CTkCheckBox(marco, text="Emitido por Controlador Fiscal", variable=datos['Op4'],
-        #                                       onvalue="on",
-        #                                       offvalue="off").place(x=10, y=265)
-        #
-        # invoiceCodes_label = ctk.CTkLabel(marco, text="Cód. s/ RG 3685 (AFIP):", font=font_widgets, ).place(x=255,
-        #                                                                                                     y=115)
-        # invoiceCodeA_label = ctk.CTkLabel(marco, text="Comprobante Tipo A", ).place(x=240, y=145)
-        # invoiceCodeA_entry = ctk.CTkEntry(marco, textvariable=datos['CodeA'], width=40).place(x=370, y=145)
-        # invoiceCodeB_label = ctk.CTkLabel(marco, text="Comprobante Tipo B", ).place(x=240, y=175)
-        # invoiceCodeB_entry = ctk.CTkEntry(marco, textvariable=datos['CodeB'], width=40).place(x=370, y=175)
-        # invoiceCodeC_label = ctk.CTkLabel(marco, text="Comprobante Tipo C", ).place(x=240, y=205)
-        # invoiceCodeC_entry = ctk.CTkEntry(marco, textvariable=datos['CodeC'], width=40).place(x=370, y=205)
-        # invoiceCodeE_label = ctk.CTkLabel(marco, text="Comprobante Tipo E", ).place(x=240, y=235)
-        # invoiceCodeE_entry = ctk.CTkEntry(marco, textvariable=datos['CodeE'], width=40).place(x=370, y=235)
-        # invoiceCodeM_label = ctk.CTkLabel(marco, text="Comprobante Tipo M", ).place(x=240, y=265)
-        # invoiceCodeM_entry = ctk.CTkEntry(marco, textvariable=datos['CodeM'], width=40).place(x=370, y=265)
-        # invoiceCodeT_label = ctk.CTkLabel(marco, text="Comprobante Tipo T", ).place(x=240, y=295)
-        # invoiceCodeT_entry = ctk.CTkEntry(marco, textvariable=datos['CodeT'], width=40).place(x=370, y=295)
-        # invoiceCodeO_label = ctk.CTkLabel(marco, text="Otros", ).place(x=240, y=325)
-        # invoiceCodeO_entry = ctk.CTkEntry(marco, textvariable=datos['CodeO'], width=40).place(x=370, y=325)
+        magneticBracket_entry = ctk.CTkEntry(marco, textvariable=datos['magnetic_bracket'], width=30).place(x=380,
+                                                                                                            y=140)
+
+        separador_horizontal = ctk.CTkFrame(marco, height=2, width=400, )
+        separador_horizontal.place(x=10, y=200)
 
         clear_btn = ctk.CTkButton(marco, text="Vaciar", width=80,
+                                  fg_color='transparent',
                                   command=lambda: limpiar_form(marco))
         cancel_btn = ctk.CTkButton(marco, text="Cancelar", width=80,
                                    command=lambda: self.ventana_principal.cerrar_ventana())
@@ -342,16 +316,16 @@ class TaxStatusWidgets:
                                command=lambda: validation_form(self, datos, opt)
                                )
 
-        clear_btn.place(x=12, y=370)
-        cancel_btn.place(x=205, y=370)
-        ok_btn.place(x=290, y=370)
+        clear_btn.place(x=12, y=215)
+        cancel_btn.place(x=205, y=215)
+        ok_btn.place(x=290, y=215)
 
         self.ventana_principal.agregar_widget(marco)
 
         def validation_form(self, dataForm, opt):
 
             if dataForm['id'] is not None:
-                value = dataForm['Id'].get()  # Accede al método get() aquí
+                value = dataForm['id'].get()  # Accede al método get() aquí
             else:
                 value = ""  # Maneja el caso en que dataForm['Id'] es None, o sea cuando opt = "new"
 
@@ -385,25 +359,20 @@ class TaxStatusWidgets:
             if len(error) > 0:
                 for txt, i in enumerate(error):
                     msg += "* " + error[i] + "\n"
-                CTkMessagebox(title="Error", message=msg, icon="cancel")
+                CTkMessagebox(header=True,
+                              title="Error",
+                              message=msg,
+                              icon="cancel",
+                              sound=True,
+                              wraplength=400,
+                              option_1="Aceptar",
+                              )
             else:
                 print("Se validaron todos los Datos.")
                 if opt == "new":
-                    save = save_record(datos)
-                    if save:
-                        CTkMessagebox(title="Ok", message="El registro fue guardado correctamente.", icon="check", )
-                        self.ventana_principal.cerrar_ventana()
-                    else:
-                        CTkMessagebox(title="Error", message="Ha ocurrido un error.", icon="cancel")
+                    save_record(datos)
                 elif opt == "edit":
-                    print("La edicion fue exiosa (Ahora cree la funcion update_record()  :)")
-                    print(datos)
-                    update = update_record(datos)
-                    if update:
-                        CTkMessagebox(title="Ok", message="El registro fue Actualizado correctamente.", icon="check", )
-                        self.ventana_principal.cerrar_ventana()
-                    else:
-                        CTkMessagebox(title="Error", message="Ha ocurrido un error.", icon="cancel")
+                    update_record(self, datos)
 
         def limpiar_form(widget):
             widgets = widget.winfo_children()
@@ -451,5 +420,5 @@ def tax_status(opt=None, ventana_principal=None):
 if __name__ == '__main__':
     ctk.set_appearance_mode("dark")
     app = ctk.CTk()
-    tax_status('new')
+    tax_status()
     app.mainloop()
