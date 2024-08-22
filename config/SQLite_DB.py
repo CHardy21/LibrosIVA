@@ -53,7 +53,7 @@ class Database:
         try:
             self.cur.execute(query, values)
             self.conn.commit()
-            print("Registro insertado correctamente.")
+            # print("Registro insertado correctamente.")
             return True
 
         except sqlite3.Error as e:
