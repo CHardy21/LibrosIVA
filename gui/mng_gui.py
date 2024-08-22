@@ -8,8 +8,7 @@ import gui.menu_gui as menu
 from gui.invoices import invoice
 from gui.company import company
 from gui.tax_status import tax_status
-
-from gui.selectCompanyForm_gui import SelectCompany
+from gui.jobData import SelectCompany
 
 
 

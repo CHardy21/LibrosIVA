@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS tax_status (
 	);
 
 INSERT INTO tax_status (code,description,detail_buy,detail_sell,monotributo,magnetic_bracket) VALUES
-	 ('CE','Cliente de Exterior',0,0,0,),
+	 ('CE','Cliente de Exterior',0,0,0,NULL),
 	 ('CF','Consumidor Final',0,0,0,NULL),
 	 ('EXE','Exento',0,0,0,NULL),
 	 ('MT','Responsable Monotributo',0,0,0,NULL),
