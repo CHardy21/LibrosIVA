@@ -138,8 +138,8 @@ class CompanyWindow:
         self.root.config(padx=4, pady=4)
         # Evitar que la ventana se expanda
         self.root.resizable(False, False)
-        # Evitar que la ventana se minimice
-        self.root.protocol("WM_DELETE_WINDOW", lambda: None)
+        # Evitar que la ventana se cierre
+        # self.root.protocol("WM_DELETE_WINDOW", lambda: None)
 
     def agregar_widget(self, widget):
         widget.pack()
