@@ -136,12 +136,16 @@ class CompanyWindow:
         self.root.title('Empresas')
         self.root.grab_set()
         self.root.config(padx=4, pady=4)
+        # Evitar que la ventana se expanda
+        self.root.resizable(False, False)
+        # Evitar que la ventana se minimice
+        self.root.protocol("WM_DELETE_WINDOW", lambda: None)
 
     def agregar_widget(self, widget):
         widget.pack()
 
-    def agregar_widget2(self, widget):
-        widget.grid()
+    def agregar_widget2(self, widget, **kwargs):
+        widget.grid(**kwargs)
 
     def cerrar_ventana(self):
         self.root.winfo_parent()
@@ -338,10 +342,10 @@ class CompanyWidgets:
                                                                                                                y=280)
 
         marco_btns = ctk.CTkFrame(master=self.ventana_principal.root,
-                                  width=620,
+                                  width=520,
                                   height=420,
                                   corner_radius=0,
-                                  fg_color='transparent'
+                                  fg_color='transparent',
                                   )
         marco_btns.grid_rowconfigure(0, weight=1)
         marco_btns.grid_columnconfigure(0, weight=1)
@@ -359,14 +363,16 @@ class CompanyWidgets:
                                compound='right',
                                command=lambda: validation_form(self, datos, opt)
                                )
-
-        clear_btn.grid(row=0, column=0, columnspan=2, padx=15, pady=5, )
-        cancel_btn.grid(row=0, column=2, padx=10, pady=5, )
-        ok_btn.grid(row=0, column=3, padx=15, pady=5, )
+        marco_btns.grid_columnconfigure(index=0, minsize=240, )
+        marco_btns.grid_columnconfigure(index=1, minsize=140, )
+        marco_btns.grid_columnconfigure(index=2, minsize=140, )
+        clear_btn.grid(row=0, column=0, padx=10, pady=5, sticky='w')
+        cancel_btn.grid(row=0, column=1, padx=5, pady=5, sticky='e')
+        ok_btn.grid(row=0, column=2, padx=5, pady=5, sticky='e')
 
         print(marco.grid_slaves())
-        self.ventana_principal.agregar_widget2(marco)
-        self.ventana_principal.agregar_widget2(marco_btns)
+        self.ventana_principal.agregar_widget2(marco, row=0, column=0)
+        self.ventana_principal.agregar_widget2(marco_btns, row=1, column=0, pady=5)
 
         def validation_form(self, dataForm, optt):
 
@@ -432,7 +438,7 @@ class CompanyWidgets:
             if len(error) > 0:
                 for txt, i in enumerate(error):
                     msg += "* " + error[i] + "\n"
-                CTkMessagebox(header = True,
+                CTkMessagebox(header=True,
                               title="Error",
                               message=msg,
                               icon="cancel",
@@ -494,5 +500,5 @@ def company(opt=None, ventana_principal=None):
 if __name__ == '__main__':
     ctk.set_appearance_mode("dark")
     app = ctk.CTk()
-    company('new')
+    company()
     app.mainloop()
