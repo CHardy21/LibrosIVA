@@ -6,6 +6,7 @@ from CTkTable import *
 
 from config import db
 import config.functions_grals as fn
+from gui.activitiesF833 import activities
 
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
@@ -140,6 +141,7 @@ class CompanyWindow:
         self.root.resizable(False, False)
         # Evitar que la ventana se cierre
         # self.root.protocol("WM_DELETE_WINDOW", lambda: None)
+        self.valor_seleccionado = None
 
     def agregar_widget(self, widget):
         widget.pack()
@@ -153,6 +155,17 @@ class CompanyWindow:
 
     def cambiar_titulo(self, titulo=None):
         self.root.title(titulo)
+
+    def get_activities(self):
+        ventana_secundaria = activities()
+        ventana_secundaria.wait_window(ventana_secundaria.root)
+        # Ahora puedes acceder al valor seleccionado
+        print("Valor seleccionado:", self.valor_seleccionado)
+
+        pass
+
+    def asignar_valor(self, valor):
+        self.valor_seleccionado = valor
 
 
 # =================
@@ -231,6 +244,7 @@ class CompanyWidgets:
 
     def dataForm(self, opt=None):
         datos = {}
+        statusEntry = 'normal'
         # opt="new" - Muestra el formulario vacío.
         # opt="edit" - Muestra el formulario con los datos del registro seleccionado para ser editado
         if opt == "new":
@@ -278,6 +292,7 @@ class CompanyWidgets:
                 'undersigned': StringVar(value=result[12]),
                 'undersigned_character': StringVar(value=result[13])
             }
+            statusEntry = 'disabled'
 
 
         else:
@@ -296,7 +311,9 @@ class CompanyWidgets:
         marco.grid_columnconfigure(0, weight=1)
         # CUIT
         companyCUIT_label = ctk.CTkLabel(marco, text="CUIT", ).place(x=10, y=10)
-        companyCUIT_entry = ctk.CTkEntry(marco, textvariable=datos['cuit'], width=100).place(x=115, y=10)
+        companyCUIT_entry = ctk.CTkEntry(marco, textvariable=datos['cuit'], width=100, state=statusEntry)
+        companyCUIT_entry.place(x=115, y=10)
+        companyCUIT_entry.focus()
         # Razón Social
         companyRZ_label = ctk.CTkLabel(marco, text="Razón Social").place(x=10, y=40)
         companyRZ_entry = ctk.CTkEntry(marco, textvariable=datos['company_name'], width=300).place(x=115, y=40)
@@ -315,12 +332,13 @@ class CompanyWidgets:
         # Código de Actividad
         companyCODA_label = ctk.CTkLabel(marco, text="Cód. Actividad", ).place(x=10, y=160)
         companyCODA_entry = ctk.CTkEntry(marco, textvariable=datos['activity_code'], width=60).place(x=115, y=160)
-        companyCODAD_label = ctk.CTkLabel(marco, text="...", ).place(x=185, y=160)
+        companyCODAD_label = ctk.CTkLabel(marco, text="...", ).place(x=200, y=160)
 
-        # companyIVA = ctk.CTkOptionMenu(marco,
-        #                                dynamic_resizing=False,
-        #                                values=fn.obtener_condIVA(),
-        #                                )
+        btn_search = ctk.CTkButton(marco, width=8, height=8,
+                                   corner_radius=25, text='?',
+                                   command=lambda: self.ventana_principal.get_activities())
+        btn_search.place(x=180, y=164, )
+
         # Condición ante el IVA
         companyIVA_label = ctk.CTkLabel(marco, text="Cond. IVA", ).place(x=10, y=190)
         companyIVA_entry = ctk.CTkEntry(marco, textvariable=datos['iva_conditions'], width=40).place(x=115, y=190)

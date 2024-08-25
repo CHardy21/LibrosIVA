@@ -11,6 +11,11 @@ import config.functions_grals as fn
 font_widgets = ('Raleway', 12, font.BOLD)
 selected_row = None
 tax_status_code = None
+ctk_style = """
+input[type=checkbox] {
+    transform: scale(1.5); /* Ajusta el factor de escala según tus necesidades */
+}
+"""
 
 
 def select_tax_status(objeto, e):
@@ -261,6 +266,7 @@ class TaxStatusWidgets:
 
         else:
             print("ERROR: opcion no valida")
+
 
         # Crea el frame con el formulario y lo añade a la ventana
         marco = ctk.CTkFrame(master=self.ventana_principal.root,
