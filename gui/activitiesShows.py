@@ -1,3 +1,4 @@
+# ventana_secundaria.py
 import customtkinter as ctk
 from tkinter import StringVar, font
 
@@ -12,6 +13,8 @@ font_widgets = ('Raleway', 12, font.BOLD)
 selected_row = None
 activity_code = None
 
+import tkinter as tk
+from tkinter import ttk
 
 def fetch_records():
     query = ("SELECT code,description FROM activities_eco_f833 LIMIT 50")
@@ -41,19 +44,17 @@ def select_activity(objeto, e):
     print(" CODE Activity Selected: ", activity_code)
     print(e)
 
-
-def selection_return(self, widget):
-    widget.actualizar_entry(self.valor_seleccionado)
-    widget.cerrar_ventana()
+def selection_return(parent):
+    parent.asignar_valor2(activity_code)
+    # actualizar_entry(self.valor_seleccionado)
+    # widget.cerrar_ventana()
     print('activity_code ', activity_code)
-    return activity_code
+    pass
 
 
-# =================
-#  Clase Principal
-# =================
-class ActivitiesWindow:
-    def __init__(self, root):
+class ActivitiesShows:
+    def __init__(self, parent):
+        self.padre = parent
         self.root = ctk.CTkToplevel()
         self.root.title('Actividades Económicas')
         self.root.grab_set()
@@ -62,32 +63,9 @@ class ActivitiesWindow:
         self.root.resizable(False, False)
         # Evitar que la ventana se cierre
         # self.root.protocol("WM_DELETE_WINDOW", lambda: None)
+        print(parent)
 
-    def agregar_widget(self, widget):
-        widget.pack()
-
-    def agregar_widget2(self, widget, **kwargs):
-        widget.grid(**kwargs)
-
-    def cerrar_ventana(self):
-        self.root.winfo_parent()
-        self.root.destroy()
-
-    def cambiar_titulo(self, titulo=None):
-        self.root.title(titulo)
-
-
-# =================
-# Clase Secundaria.
-# =================
-# En esta clase, los métodos configuran los widget que se muestran en
-# las distintas ventanas relacionadas con los comprobantes.
-class ActivitiesWidgets:
-    def __init__(self, ventana_principal):
-        self.ventana_principal = ventana_principal
-
-    def listForm(self):
-        marco_search = ctk.CTkFrame(master=self.ventana_principal.root,
+        marco_search = ctk.CTkFrame(self.root,
                                     width=518,
                                     height=50,
                                     corner_radius=0,
@@ -103,9 +81,9 @@ class ActivitiesWidgets:
 
         search_entry.grid(row=0, column=0, pady=10, padx=10, sticky='e')
         search_btn.grid(row=0, column=1, padx=10, pady=10, sticky='w')
-        self.ventana_principal.agregar_widget2(marco_search)
+        marco_search.grid()
 
-        marco = ctk.CTkScrollableFrame(master=self.ventana_principal.root,
+        marco = ctk.CTkScrollableFrame(self.root,
                                        width=500,
                                        height=250,
                                        corner_radius=0,
@@ -114,8 +92,6 @@ class ActivitiesWidgets:
                                        scrollbar_fg_color="black",
                                        )
 
-        # marco.grid_rowconfigure(0, weight=1)
-        # marco.grid_columnconfigure(0, weight=1)
         # Leer comprobantes desde la base de datos (DB)
         value = fetch_records()
         # Crear tabla con los comprobantes existentes en la DB
@@ -133,17 +109,17 @@ class ActivitiesWidgets:
         table.grid(row=0, column=0, )
 
         # Agregar widget creado en la Clase Principal
-        self.ventana_principal.agregar_widget2(marco)
+        marco.grid()
 
         # Botones de Acciones
-        marco_btns = ctk.CTkFrame(master=self.ventana_principal.root,
+        marco_btns = ctk.CTkFrame(self.root,
                                   width=300,
                                   )
 
         cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
                                    command=lambda: self.ventana_principal.cerrar_ventana())
         select_btn = ctk.CTkButton(marco_btns, text="Seleccionar", width=100,
-                                   command=lambda: selection_return(self.ventana_principal)
+                                   command=lambda: selection_return(self.padre)
                                    if selected_row is not None
                                    else CTkMessagebox(title="Error",
                                                       message="Debe seleccionar un Comprobante para editar",
@@ -155,33 +131,3 @@ class ActivitiesWidgets:
         cancel_btn.grid(row=1, column=1, padx=5, pady=5, )
         select_btn.grid(row=1, column=2, padx=5, pady=5, )
 
-        # Agregar widget creados en la Clase Principal
-        self.ventana_principal.agregar_widget2(marco_btns)
-
-
-# ===================================================================
-#  Métodos que manejan la creación de widget de las distintas ventanas
-# ===================================================================
-
-def create_window():
-    # Crear la ventana principal
-    root = ctk.CTk()
-    ventana_principal = ActivitiesWindow(root)
-    # Crear y agregar widgets desde la clase secundaria
-    crear_widgets = ActivitiesWidgets(ventana_principal)
-    return crear_widgets
-
-
-def activities(opt=None, ventana_principal=None):
-    print('Ventana Principal: ', ventana_principal)
-    crear_widgets = create_window(ventana_principal)
-    crear_widgets.listForm()
-
-
-
-
-if __name__ == '__main__':
-    ctk.set_appearance_mode("dark")
-    app = ctk.CTk()
-    activities()
-    app.mainloop()

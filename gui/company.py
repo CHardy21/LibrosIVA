@@ -7,6 +7,7 @@ from CTkTable import *
 from config import db
 import config.functions_grals as fn
 from gui.activitiesF833 import activities
+from gui.activitiesShows import ActivitiesShows
 
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
@@ -142,7 +143,7 @@ class CompanyWindow:
         # Evitar que la ventana se cierre
         # self.root.protocol("WM_DELETE_WINDOW", lambda: None)
         self.valor_seleccionado = None
-
+        self.widgetUpdate = None
     def agregar_widget(self, widget):
         widget.pack()
 
@@ -156,16 +157,20 @@ class CompanyWindow:
     def cambiar_titulo(self, titulo=None):
         self.root.title(titulo)
 
-    def get_activities(self):
-        ventana_secundaria = activities()
-        ventana_secundaria.wait_window(ventana_secundaria.root)
-        # Ahora puedes acceder al valor seleccionado
-        print("Valor seleccionado:", self.valor_seleccionado)
-
-        pass
+    def abrir_ventana_sec(self, widgetUpdate):
+        self.root.winfo_parent()
+        self.widgetUpdate = widgetUpdate
+        print('abrir ventana secundaria')
+        print('Ventana principal: ', self.root)
+        # ventana_secundaria = activities('', self.root)
+        ventana_secundaria = ActivitiesShows(self)
 
     def asignar_valor(self, valor):
         self.valor_seleccionado = valor
+
+        print("Valor Recibido de ventana secundaria: ", valor)
+        self.companyCODA_entry.delete(0, ctk.END)
+        self.companyCODA_entry.insert(0, valor)
 
 
 # =================
@@ -336,7 +341,7 @@ class CompanyWidgets:
 
         btn_search = ctk.CTkButton(marco, width=8, height=8,
                                    corner_radius=25, text='?',
-                                   command=lambda: self.ventana_principal.get_activities())
+                                   command=lambda: abrir_ventana_sec2(self),)
         btn_search.place(x=180, y=164, )
 
         # Condición ante el IVA
@@ -481,10 +486,24 @@ class CompanyWidgets:
                     entry.insert(0, '')  # Insertar el nuevo valor
                     # print(entry.winfo_name())
 
+        def abrir_ventana_sec2(self):
+
+
+            print('abrir ventana secundaria')
+
+            # ventana_secundaria = activities('', self.root)
+            ventana_secundaria = ActivitiesShows(self)
+        def asignar_valor2(self, valor):
+            self.valor_seleccionado = valor
+
+            print("Valor Recibido de ventana secundaria: ", valor)
+            companyCODA_entry.delete(0, ctk.END)
+            companyCODA_entry.insert(0, valor)
+
 
 # ===================================================================
 #  Método que maneja la creación de widget de las distintas ventanas
-# ===================================================================
+# ================actualizar_entry===================================================
 
 def create_window():
     # Crear la ventana principal
@@ -503,6 +522,8 @@ def company(opt=None, ventana_principal=None):
                 ventana_principal.cerrar_ventana()
             crear_widgets = create_window()
             crear_widgets.dataForm("new")
+            print("*** ", ventana_principal)
+            crear_widgets.ventana_principal.root.mainloop()
 
         case "edit":
             # Cerrar la ventana actual
