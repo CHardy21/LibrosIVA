@@ -6,15 +6,12 @@ from CTkMessagebox import CTkMessagebox
 from CTkTable import *
 
 from config import db
-import config.functions_grals as fn
 
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
 selected_row = None
 activity_code = None
-
-import tkinter as tk
-from tkinter import ttk
+activity_description = None
 
 
 def fetch_records():
@@ -35,6 +32,7 @@ def select_activity(objeto, e):
     # 'e' tiene los datos pasados por el widget tabla de donde se hizo el  Click
     global selected_row
     global activity_code
+    global activity_description
 
     if selected_row is not None:
         objeto.deselect_row(selected_row)
@@ -42,16 +40,14 @@ def select_activity(objeto, e):
     objeto.select_row(e["row"])
     selected_row = e["row"]
     activity_code = objeto.get(selected_row, 0)
+    activity_description = objeto.get(selected_row, 1)
     print(" CODE Activity Selected: ", activity_code)
     print(e)
 
 
 def selection_return(parent, widget):
-    parent.asignar_valor2(activity_code)
-    # actualizar_entry(self.valor_seleccionado)
-
-    pass
-
+    parent.asignar_valor2(activity_code, activity_description)
+    widget.root.destroy()
 
 class ActivitiesShows:
     def __init__(self, parent):

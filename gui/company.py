@@ -339,9 +339,10 @@ class CompanyWidgets:
         companyNDA_entry = ctk.CTkEntry(marco, textvariable=datos['dependency_afip'], width=40).place(x=115, y=130)
         # Código de Actividad
         companyCODA_label = ctk.CTkLabel(marco, text="Cód. Actividad", ).place(x=10, y=160)
-        companyCODA_entry = ctk.CTkEntry(marco, textvariable=datos['activity_code'], width=60).place(x=115, y=160)
-        companyCODAD_label = ctk.CTkLabel(marco, text="...", ).place(x=200, y=160)
-
+        self.companyCODA_entry = ctk.CTkEntry(marco, textvariable=datos['activity_code'], width=60)
+        self.companyCODA_entry.place(x=115, y=160)
+        self.companyCODAD_label = ctk.CTkLabel(marco, text="...", )
+        self.companyCODAD_label.place(x=200, y=160)
         btn_search = ctk.CTkButton(marco, width=8, height=8,
                                    corner_radius=25, text='?',
                                    command=lambda: abrir_ventana_sec2(self), )
@@ -490,20 +491,20 @@ class CompanyWidgets:
                     # print(entry.winfo_name())
 
         def abrir_ventana_sec2(self):
-
             print('abrir ventana secundaria')
-
-            # ventana_secundaria = activities('', self.root)
             ventana_secundaria = ActivitiesShows(self)
 
-    def asignar_valor2(self, valor):
+    def asignar_valor2(self, valor, description):
 
         print("Valor Recibido de ventana secundaria: ", valor)
-        # self.companyCODA_entry.delete(0, ctk.END)
-        # self.companyCODA_entry.insert(0, valor)
-        widgets_secundarios = self.ventana_principal.root.winfo_children()
-        for widget in self.ventana_principal.root:
-            print(f"Nombre del widget: {widget.winfo_class()}")
+        self.companyCODA_entry.delete(0, ctk.END)
+        self.companyCODA_entry.insert(0, valor)
+        self.companyCODAD_label.configure(text=description)
+
+        # widgets_secundarios = self.ventana_principal.root.winfo_children()
+        # for widget in widgets_secundarios:
+        #     print(f"Nombre del widget: {widget.winfo_class()}")
+        #     print(f"Nombre del widget: {widget.winfo_children()}")
 
 # ===================================================================
 #  Método que maneja la creación de widget de las distintas ventanas
