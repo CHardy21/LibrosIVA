@@ -16,6 +16,7 @@ activity_code = None
 import tkinter as tk
 from tkinter import ttk
 
+
 def fetch_records():
     query = ("SELECT code,description FROM activities_eco_f833 LIMIT 50")
     result = db.fetchRecords(query)
@@ -44,11 +45,11 @@ def select_activity(objeto, e):
     print(" CODE Activity Selected: ", activity_code)
     print(e)
 
-def selection_return(parent):
+
+def selection_return(parent, widget):
     parent.asignar_valor2(activity_code)
     # actualizar_entry(self.valor_seleccionado)
-    # widget.cerrar_ventana()
-    print('activity_code ', activity_code)
+
     pass
 
 
@@ -63,7 +64,7 @@ class ActivitiesShows:
         self.root.resizable(False, False)
         # Evitar que la ventana se cierre
         # self.root.protocol("WM_DELETE_WINDOW", lambda: None)
-        print(parent)
+        print('Parent: ', parent)
 
         marco_search = ctk.CTkFrame(self.root,
                                     width=518,
@@ -117,9 +118,9 @@ class ActivitiesShows:
                                   )
 
         cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
-                                   command=lambda: self.ventana_principal.cerrar_ventana())
+                                   command=lambda: self.root.destroy())
         select_btn = ctk.CTkButton(marco_btns, text="Seleccionar", width=100,
-                                   command=lambda: selection_return(self.padre)
+                                   command=lambda: selection_return(self.padre, self)
                                    if selected_row is not None
                                    else CTkMessagebox(title="Error",
                                                       message="Debe seleccionar un Comprobante para editar",
@@ -130,4 +131,3 @@ class ActivitiesShows:
 
         cancel_btn.grid(row=1, column=1, padx=5, pady=5, )
         select_btn.grid(row=1, column=2, padx=5, pady=5, )
-

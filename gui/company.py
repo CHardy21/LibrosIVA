@@ -144,6 +144,7 @@ class CompanyWindow:
         # self.root.protocol("WM_DELETE_WINDOW", lambda: None)
         self.valor_seleccionado = None
         self.widgetUpdate = None
+
     def agregar_widget(self, widget):
         widget.pack()
 
@@ -180,7 +181,9 @@ class CompanyWindow:
 # las distintas ventanas relacionadas con los comprobantes.
 class CompanyWidgets:
     def __init__(self, ventana_principal):
+
         self.ventana_principal = ventana_principal
+
 
     def listForm(self):
         marco = ctk.CTkScrollableFrame(master=self.ventana_principal.root,
@@ -341,7 +344,7 @@ class CompanyWidgets:
 
         btn_search = ctk.CTkButton(marco, width=8, height=8,
                                    corner_radius=25, text='?',
-                                   command=lambda: abrir_ventana_sec2(self),)
+                                   command=lambda: abrir_ventana_sec2(self), )
         btn_search.place(x=180, y=164, )
 
         # Condición ante el IVA
@@ -488,18 +491,19 @@ class CompanyWidgets:
 
         def abrir_ventana_sec2(self):
 
-
             print('abrir ventana secundaria')
 
             # ventana_secundaria = activities('', self.root)
             ventana_secundaria = ActivitiesShows(self)
-        def asignar_valor2(self, valor):
-            self.valor_seleccionado = valor
 
-            print("Valor Recibido de ventana secundaria: ", valor)
-            companyCODA_entry.delete(0, ctk.END)
-            companyCODA_entry.insert(0, valor)
+    def asignar_valor2(self, valor):
 
+        print("Valor Recibido de ventana secundaria: ", valor)
+        # self.companyCODA_entry.delete(0, ctk.END)
+        # self.companyCODA_entry.insert(0, valor)
+        widgets_secundarios = self.ventana_principal.root.winfo_children()
+        for widget in self.ventana_principal.root:
+            print(f"Nombre del widget: {widget.winfo_class()}")
 
 # ===================================================================
 #  Método que maneja la creación de widget de las distintas ventanas
@@ -523,7 +527,7 @@ def company(opt=None, ventana_principal=None):
             crear_widgets = create_window()
             crear_widgets.dataForm("new")
             print("*** ", ventana_principal)
-            crear_widgets.ventana_principal.root.mainloop()
+            # crear_widgets.ventana_principal.root.mainloop()
 
         case "edit":
             # Cerrar la ventana actual
