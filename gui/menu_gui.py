@@ -22,6 +22,7 @@ class Menu:
         menu_utilidades = tk.Menu(self.menu_bar, tearoff=False)
         menu_ayuda = tk.Menu(self.menu_bar, tearoff=False)
 
+        menu_datos_generales = tk.Menu(menu_inicio, tearoff=False)
         # Creando los sub-menu de cada Elemento
         # Sub-menu Inicio
         menu_inicio.add_command(label="Nueva Empresa...", accelerator="Ctrl+N",
@@ -38,7 +39,12 @@ class Menu:
         menu_inicio.add_command(label="Imp. Déb. / Créd. Bancarios")
         menu_inicio.add_command(label="Parámetros Monotributo")
         menu_inicio.add_separator()
-        menu_inicio.add_command(label="Datos Generales")
+
+        # menu_inicio.add_command(label="Datos Generales")
+        menu_inicio.add_cascade(menu=menu_datos_generales, label="Datos Generales")
+        menu_datos_generales.add_command(label="Provincias", command=lambda: gui.mng_gui.on_click_menu("provinces"))
+        menu_datos_generales.add_command(label="Actividades F833", command=lambda: gui.mng_gui.on_click_menu("activities"))
+
         menu_inicio.add_separator()
         menu_inicio.add_command(label="Salir", accelerator="Alt+F4", command=lambda: quit())
 
