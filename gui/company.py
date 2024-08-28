@@ -7,12 +7,14 @@ from CTkTable import *
 from config import db
 import config.functions_grals as fn
 from gui.activitiesF833 import activities
-from gui.activitiesShows import ActivitiesShows
+from gui.activitiesShow import ActivitiesShows
+from gui.taxStatusShow import TaxStatusShow
 
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
 selected_row = None
 company_code = None
+secondaryWin = None
 
 
 def select_company(objeto, e):
@@ -26,6 +28,7 @@ def select_company(objeto, e):
     objeto.select_row(e["row"])
     selected_row = e["row"]
     company_code = objeto.get(selected_row, 0)
+
     print(" CODE Company Selected: ", company_code)
     print(e)
 
@@ -165,13 +168,6 @@ class CompanyWindow:
         print('Ventana principal: ', self.root)
         # ventana_secundaria = activities('', self.root)
         ventana_secundaria = ActivitiesShows(self)
-
-    def asignar_valor(self, valor):
-        self.valor_seleccionado = valor
-
-        print("Valor Recibido de ventana secundaria: ", valor)
-        self.companyCODA_entry.delete(0, ctk.END)
-        self.companyCODA_entry.insert(0, valor)
 
 
 # =================
@@ -343,15 +339,22 @@ class CompanyWidgets:
         self.companyCODA_entry.place(x=115, y=160)
         self.companyCODAD_label = ctk.CTkLabel(marco, text="...", )
         self.companyCODAD_label.place(x=200, y=160)
-        btn_search = ctk.CTkButton(marco, width=8, height=8,
+        btn_searchCA = ctk.CTkButton(marco, width=8, height=8,
                                    corner_radius=25, text='?',
-                                   command=lambda: abrir_ventana_sec2(self), )
-        btn_search.place(x=180, y=164, )
+                                   command=lambda: abrir_ventana_sec2(self,'activities'), )
+        btn_searchCA.place(x=180, y=164, )
 
         # Condición ante el IVA
         companyIVA_label = ctk.CTkLabel(marco, text="Cond. IVA", ).place(x=10, y=190)
-        companyIVA_entry = ctk.CTkEntry(marco, textvariable=datos['iva_conditions'], width=40).place(x=115, y=190)
-        companyIVAD_label = ctk.CTkLabel(marco, text="...", ).place(x=165, y=190)
+        self.companyIVA_entry = (ctk.CTkEntry(marco, textvariable=datos['iva_conditions'], width=40))
+        self.companyIVA_entry.place(x=115, y=190)
+        self.companyIVAD_label = ctk.CTkLabel(marco, text="...", ).place(x=180, y=190)
+        btn_searchIC = ctk.CTkButton(marco, width=8, height=8,
+                                   corner_radius=25, text='?',
+                                   command=lambda: abrir_ventana_sec2(self, 'taxstatus'), )
+        btn_searchIC.place(x=160, y=194, )
+
+
         month_default = datos['month_close'].get()
 
         print('=> ', month_default)
@@ -490,16 +493,24 @@ class CompanyWidgets:
                     entry.insert(0, '')  # Insertar el nuevo valor
                     # print(entry.winfo_name())
 
-        def abrir_ventana_sec2(self):
+        def abrir_ventana_sec2(self, secondaryWin):
             print('abrir ventana secundaria')
-            ventana_secundaria = ActivitiesShows(self)
+            if secondaryWin == 'activities':
+                ventana_secundaria = ActivitiesShows(self)
+            if secondaryWin == 'taxstatus':
+                ventana_secundaria = TaxStatusShow(self)
 
-    def asignar_valor2(self, valor, description):
+    def asignar_valor(self, ventana,  valor, description):
 
         print("Valor Recibido de ventana secundaria: ", valor)
-        self.companyCODA_entry.delete(0, ctk.END)
-        self.companyCODA_entry.insert(0, valor)
-        self.companyCODAD_label.configure(text=description)
+        match ventana:
+            case "activities":
+                self.companyCODA_entry.delete(0, ctk.END)
+                self.companyCODA_entry.insert(0, valor)
+                self.companyCODAD_label.configure(text=description)
+            case "taxstatus":
+                pass
+
 
         # widgets_secundarios = self.ventana_principal.root.winfo_children()
         # for widget in widgets_secundarios:
