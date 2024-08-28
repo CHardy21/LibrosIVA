@@ -348,7 +348,8 @@ class CompanyWidgets:
         companyIVA_label = ctk.CTkLabel(marco, text="Cond. IVA", ).place(x=10, y=190)
         self.companyIVA_entry = (ctk.CTkEntry(marco, textvariable=datos['iva_conditions'], width=40))
         self.companyIVA_entry.place(x=115, y=190)
-        self.companyIVAD_label = ctk.CTkLabel(marco, text="...", ).place(x=180, y=190)
+        self.companyIVAD_label = (ctk.CTkLabel(marco, text="...", ))
+        self.companyIVAD_label.place(x=180, y=190)
         btn_searchIC = ctk.CTkButton(marco, width=8, height=8,
                                    corner_radius=25, text='?',
                                    command=lambda: abrir_ventana_sec2(self, 'taxstatus'), )
@@ -501,7 +502,6 @@ class CompanyWidgets:
                 ventana_secundaria = TaxStatusShow(self)
 
     def asignar_valor(self, ventana,  valor, description):
-
         print("Valor Recibido de ventana secundaria: ", valor)
         match ventana:
             case "activities":
@@ -509,7 +509,10 @@ class CompanyWidgets:
                 self.companyCODA_entry.insert(0, valor)
                 self.companyCODAD_label.configure(text=description)
             case "taxstatus":
-                pass
+                self.companyIVA_entry.delete(0, ctk.END)
+                self.companyIVA_entry.insert(0, valor)
+                self.companyIVAD_label.configure(text=description)
+
 
 
         # widgets_secundarios = self.ventana_principal.root.winfo_children()

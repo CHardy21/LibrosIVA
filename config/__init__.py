@@ -1,2 +1,2 @@
 
-from config.general_config import db, font_widgets
+# from config.general_config import db, font_widgets

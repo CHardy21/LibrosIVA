@@ -1,0 +1,9 @@
+A;No Alcanzado;No Alcanzado
+0;No corresponde;No corresponde
+C;Operac. Canje;Operac. Canje
+D;Devol. IVA Turistas Extr.;Devol. IVA Turistas Extr.
+E;Operaciones Exentas;Operaciones Exentas
+N;No gravado;No gravado
+T;Reintegro Decreto 1043/2016;Reintegro Decreto 1043/2016
+X;Importación del Exterior;Exportación al Exterior
+Z;Importación de Zona Franca;Exportación a Zona Franca

@@ -1,9 +1,17 @@
-# from config.SQLite_DB import Database
-#
-# data = "../config/iva_data.db"
-# db = Database(data)
+from config.SQLite_DB import Database
 
-with open('ACTIVIDADES_ECONOMICAS_F883.txt', 'r',  encoding='utf-8') as archivo:
+data = "../iva_data.db"
+db = Database(data)
+
+query = """
+    CREATE TABLE IF NOT EXISTS sys_recipient_document_type (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    code TEXT(3) NOT NULL,
+    description TEXT NOT NULL)
+    """
+result = db.fetchRecord(query)
+
+with open('documento_identificatorio_receptor.txt', 'r', encoding='utf-8') as archivo:
     lineas = archivo.readlines()
 
     print(f'Archivo tiene {len(lineas)} lineas')
@@ -11,24 +19,24 @@ with open('ACTIVIDADES_ECONOMICAS_F883.txt', 'r',  encoding='utf-8') as archivo:
     count1 = 0
 
     for linea in lineas:
-        datos = linea.strip().split(';')
+        datos = linea.strip().split('\t')
         # print(datos, ' => ', len(datos))
-
 
         if len(datos) == 4:
             dato1, dato2, dato3, dato4 = datos
             count1 += 1
             # Inserta estos valores en tu base de datos
-            query = f"INSERT INTO activities_eco_f833 (code, description, description_large) VALUES  (?,?,?)"
+            query = f"INSERT INTO sys_recipient_document_type (code, description) VALUES  (?,?)"
             values = (dato1, dato2, dato3)
 
             result = db.insertRecord(query, values)
 
-        elif len(datos) == 3:
+        elif len(datos) == 2:
             dato1, dato2 = datos
+            count1 += 1
             # Asigna valores predeterminados o maneja la situación según tus necesidades
-            query = f"INSERT INTO activities_eco_f833(code, description, description_large) VALUES  (?,?,?)"
-            values = (dato1, dato2, '   ')
+            query = f"INSERT INTO sys_recipient_document_type(code, description) VALUES  (?,?)"
+            values = (dato1, dato2)
 
             db.insertRecord(query, values)
 

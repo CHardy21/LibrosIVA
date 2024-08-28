@@ -83,5 +83,5 @@ class Database:
             print(f"Error al Actualizar el registro: {e}")
             error_mng(e)
 
-    def __del__(self):
-        self.conn.close()
+    # def __del__(self):
+    #     self.conn.close()
