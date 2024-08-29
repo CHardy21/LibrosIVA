@@ -318,7 +318,7 @@ class InvoiceWidgets:
                                               onvalue="on",
                                               offvalue="off").place(x=10, y=265)
 
-        invoiceCodes_label = ctk.CTkLabel(marco, text="Cód. s/ RG 3685 (AFIP):", font=font_widgets, ).place(x=255,
+        invoiceCodes_label = ctk.CTkLabel(marco, text="F833 / RG.4597 (AFIP):", font=font_widgets, ).place(x=255,
                                                                                                             y=115)
         invoiceCodeA_label = ctk.CTkLabel(marco, text="Comprobante Tipo A", ).place(x=240, y=145)
         invoiceCodeA_entry = ctk.CTkEntry(marco, textvariable=datos['CodeA'], width=40).place(x=370, y=145)

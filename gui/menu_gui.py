@@ -43,7 +43,15 @@ class Menu:
         # menu_inicio.add_command(label="Datos Generales")
         menu_inicio.add_cascade(menu=menu_datos_generales, label="Datos Generales")
         menu_datos_generales.add_command(label="Provincias", command=lambda: gui.mng_gui.on_click_menu("provinces"))
-        menu_datos_generales.add_command(label="Actividades F833", command=lambda: gui.mng_gui.on_click_menu("activities"))
+        menu_datos_generales.add_command(label="Actividades F833 - RG 4597",
+                                         command=lambda: gui.mng_gui.on_click_menu("activities"))
+        menu_datos_generales.add_separator()
+        menu_datos_generales.add_command(label="Comprobantes AFIP",
+                                         command=lambda: gui.mng_gui.on_click_menu("invoicesAFIP"))
+        menu_datos_generales.add_command(label="Tipo Documento AFIP",
+                                         command=lambda: gui.mng_gui.on_click_menu("docTypeAFIP"))
+        menu_datos_generales.add_command(label="Tipo de Responsable AFIP",
+                                         command=lambda: gui.mng_gui.on_click_menu("taxpayerAFIP"))
 
         menu_inicio.add_separator()
         menu_inicio.add_command(label="Salir", accelerator="Alt+F4", command=lambda: quit())

@@ -41,6 +41,12 @@ class Database:
         rows = self.cur.fetchall()
         return rows
 
+    def fetchRecords2(self, query, value):
+        self.cur.execute(query, value)
+        self.conn.commit()
+        rows = self.cur.fetchall()
+        return rows
+
     def insertRecord(self, query, values):
         """
         Ejecuta una consulta SQL para insertar datos en la base de datos.

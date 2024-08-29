@@ -1,3 +1,49 @@
+# import customtkinter as ctk
+# from CTkTable import *
+# import sqlite3
+#
+# class App(ctk.CTk):
+#     def __init__(self):
+#         super().__init__()
+#
+#         self.title("Ejemplo de Carga Perezosa")
+#         self.geometry("600x400")
+#
+#         # Crear el CTkScrollableFrame
+#         self.scrollable_frame = ctk.CTkScrollableFrame(self, width=580, height=380)
+#         self.scrollable_frame.pack(pady=10)
+#
+#         # Crear la tabla dentro del CTkScrollableFrame
+#         self.table = CTkTable(self.scrollable_frame, columns=("ID", "Nombre", "Email"))
+#         self.table.pack()
+#
+#         # Conectar a la base de datos
+#         self.conexion = sqlite3.connect('ejemplo.db')
+#         self.cursor = self.conexion.cursor()
+#
+#         # Cargar los primeros datos
+#         self.load_data(0, 20)
+#
+#         # Vincular el evento de desplazamiento
+#         self.scrollable_frame.bind("<Configure>", self.on_scroll)
+#
+#     def load_data(self, start, limit):
+#         self.cursor.execute("SELECT * FROM usuarios LIMIT ? OFFSET ?", (limit, start))
+#         resultados = self.cursor.fetchall()
+#         for fila in resultados:
+#             self.table.insert("", "end", values=fila)
+#
+#     def on_scroll(self, event):
+#         # Detectar si se ha llegado al final del scroll
+#         if self.scrollable_frame.yview()[1] == 1.0:
+#             # Cargar más datos
+#             current_count = len(self.table.get_children())
+#             self.load_data(current_count, 20)
+#
+# if __name__ == "__main__":
+#     app = App()
+#     app.mainloop()
+
 import customtkinter as ctk
 from tkinter import StringVar, font
 
@@ -83,11 +129,9 @@ class ActivitiesShows:
         search_btn = ctk.CTkButton(master=marco_search,
                                    width=120,
                                    text='Buscar')
-        # Agregar widget
         search_entry.grid(row=0, column=0, pady=10, padx=10, sticky='e')
         search_btn.grid(row=0, column=1, padx=10, pady=10, sticky='w')
         marco_search.grid()
-
         self.marco = ctk.CTkScrollableFrame(self.root,
                                             width=500,
                                             height=250,
@@ -96,14 +140,11 @@ class ActivitiesShows:
                                             border_color="black",
                                             scrollbar_fg_color="black",
                                             )
-
-        # Leer comprobantes desde la base de datos (DB)
         value = fetch_records()
-        # Crear tabla con los comprobantes existentes en la DB
         self.table = CTkTable(master=self.marco,
-                              row=len(value),
+                              row=20,
                               column=2,
-                              # values=value,
+                              values=value,
                               border_width=0,
                               corner_radius=0,
                               command=lambda e: select_activity(self.table, e),
@@ -111,36 +152,19 @@ class ActivitiesShows:
         self.table.edit_column(0, width=100)
         self.table.edit_column(1, width=250, anchor="w")
         self.table.grid(row=0, column=0, )
-        # Agregar widget creado en la Clase Principal
         self.marco.grid()
-
         self.load_data(0, 20)
-
-        # Botones de Acciones
-        marco_btns = ctk.CTkFrame(self.root,
-                                  width=300,
-                                  )
-        cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
-                                   command=lambda: self.root.destroy())
-        select_btn = ctk.CTkButton(marco_btns, text="Seleccionar", width=100,
-                                   command=lambda: selection_return(self.padre, self)
-                                   if selected_row is not None
-                                   else CTkMessagebox(title="Error",
-                                                      message="Debe seleccionar un Comprobante para editar",
-                                                      icon="cancel"),
-                                   )
-        marco_btns.grid()
-        cancel_btn.grid(row=1, column=1, padx=5, pady=5, )
-        select_btn.grid(row=1, column=2, padx=5, pady=5, )
-
         self.marco.bind("<Configure>", self.on_scroll)
 
     def load_data(self, start, limit):
         query = "SELECT code,description FROM activities_eco_f833 LIMIT ? OFFSET ?"
         value = (limit, start)
         result = db.fetchRecords2(query, value)
+        print(result)
         for fila in result:
-            self.table.insert("", "end", values=fila)
+            print(fila)
+            print('Fila: ', fila[0], fila[1])
+            self.table.add_row(values=(fila[0], fila[1]))
 
     def on_scroll(self, event):
         # Detectar si se ha llegado al final del scroll
