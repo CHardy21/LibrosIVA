@@ -98,10 +98,10 @@ class ActivitiesShows:
                                             )
 
         # Leer comprobantes desde la base de datos (DB)
-        value = fetch_records()
+        # value = fetch_records()
         # Crear tabla con los comprobantes existentes en la DB
         self.table = CTkTable(master=self.marco,
-                              row=len(value),
+                              # row=len(value),
                               column=2,
                               # values=value,
                               border_width=0,
@@ -133,20 +133,21 @@ class ActivitiesShows:
         cancel_btn.grid(row=1, column=1, padx=5, pady=5, )
         select_btn.grid(row=1, column=2, padx=5, pady=5, )
 
-        self.marco.bind("<Configure>", self.on_scroll)
+        self.marco._parent_canvas.bind("<Configure>", self.on_scroll)
 
     def load_data(self, start, limit):
         query = "SELECT code,description FROM activities_eco_f833 LIMIT ? OFFSET ?"
         value = (limit, start)
         result = db.fetchRecords2(query, value)
         for fila in result:
-            self.table.insert("", "end", values=fila)
+            self.table.add_row(values=fila)
 
     def on_scroll(self, event):
+        print("Event on_scroll run ")
         # Detectar si se ha llegado al final del scroll
-        if self.marco.yview()[1] == 1.0:
+        if self.marco._parent_canvas.yview()[1] == 1.0:
             # Cargar más datos
-            current_count = len(self.table.get_children())
+            current_count = len(self.table.get())
             self.load_data(current_count, 20)
 
 

@@ -68,7 +68,7 @@ def load_data(self, start, limit):
 
 
 def fetch_records():
-    query = "SELECT code,description FROM activities_eco_f833 LIMIT 50"
+    query = "SELECT code,description FROM activities_eco_f833 LIMIT 15"
     result = db.fetchRecords(query)
     print(result)
     return result
@@ -132,7 +132,8 @@ class ActivitiesShows:
         search_entry.grid(row=0, column=0, pady=10, padx=10, sticky='e')
         search_btn.grid(row=0, column=1, padx=10, pady=10, sticky='w')
         marco_search.grid()
-        self.marco = ctk.CTkScrollableFrame(self.root,
+
+        self.marco_scroll = ctk.CTkScrollableFrame(self.root,
                                             width=500,
                                             height=250,
                                             corner_radius=0,
@@ -140,38 +141,61 @@ class ActivitiesShows:
                                             border_color="black",
                                             scrollbar_fg_color="black",
                                             )
+        self.marco_scroll.grid()
+
         value = fetch_records()
-        self.table = CTkTable(master=self.marco,
-                              row=20,
+
+        self.table = CTkTable(master=self.marco_scroll,
+                              # row=20,
                               column=2,
                               values=value,
                               border_width=0,
                               corner_radius=0,
                               command=lambda e: select_activity(self.table, e),
                               )
+
         self.table.edit_column(0, width=100)
         self.table.edit_column(1, width=250, anchor="w")
         self.table.grid(row=0, column=0, )
-        self.marco.grid()
-        self.load_data(0, 20)
-        self.marco.bind("<Configure>", self.on_scroll)
+
+        # self.load_data(0, 20)
+
+        # Crear un scrollbar y asociarlo al marco desplazable
+        self.scrollbar = ctk.CTkScrollbar(self.root, command=self.marco_scroll._parent_canvas.yview)
+        self.scrollbar.grid(row=0, column=1, sticky="ns")
+        self.marco_scroll._parent_canvas.configure(yscrollcommand=self.scrollbar.set)
+
+        # Comprobar la posición del scrollbar
+        # self.root.after(100, self.check_scroll_position)
+        self.marco_scroll.bind("<Configure>", self.on_scroll)
+    def check_scroll_position(self):
+        if self.marco_scroll._parent_canvas.yview()[1] == 1.0:
+            print("El scrollbar está en la parte inferior.")
+        else:
+            print("El scrollbar no está en la parte inferior.")
+        self.root.after(100, self.check_scroll_position)
+
 
     def load_data(self, start, limit):
         query = "SELECT code,description FROM activities_eco_f833 LIMIT ? OFFSET ?"
         value = (limit, start)
         result = db.fetchRecords2(query, value)
-        print(result)
+        print(len(result))
+        count = 0
         for fila in result:
-            print(fila)
-            print('Fila: ', fila[0], fila[1])
+            # print(fila)
+            print(f'Fila: {count}', fila[0], fila[1])
             self.table.add_row(values=(fila[0], fila[1]))
+            count += 1
 
     def on_scroll(self, event):
         # Detectar si se ha llegado al final del scroll
-        if self.marco.yview()[1] == 1.0:
+        if self.marco_scroll._parent_canvas.yview()[1] == 1.0:
+            self.marco_scroll._parent_canvas.yview_moveto(0.5)
             # Cargar más datos
-            current_count = len(self.table.get_children())
+            current_count = len(self.table.get())
             self.load_data(current_count, 20)
+
 
 
 if __name__ == '__main__':

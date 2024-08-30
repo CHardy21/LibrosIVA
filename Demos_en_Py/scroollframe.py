@@ -1,133 +1,67 @@
-import customtkinter
-import os
-from PIL import Image
+import customtkinter as ctk
+from CTkTable import CTkTable
 
-
-class ScrollableCheckBoxFrame(customtkinter.CTkScrollableFrame):
-    def __init__(self, master, item_list, command=None, **kwargs):
-        super().__init__(master, **kwargs)
-
-        self.command = command
-        self.checkbox_list = []
-        for i, item in enumerate(item_list):
-            self.add_item(item)
-
-    def add_item(self, item):
-        checkbox = customtkinter.CTkCheckBox(self, text=item)
-        if self.command is not None:
-            checkbox.configure(command=self.command)
-        checkbox.grid(row=len(self.checkbox_list), column=0, pady=(0, 10))
-        self.checkbox_list.append(checkbox)
-
-    def remove_item(self, item):
-        for checkbox in self.checkbox_list:
-            if item == checkbox.cget("text"):
-                checkbox.destroy()
-                self.checkbox_list.remove(checkbox)
-                return
-
-    def get_checked_items(self):
-        return [checkbox.cget("text") for checkbox in self.checkbox_list if checkbox.get() == 1]
-
-
-class ScrollableRadiobuttonFrame(customtkinter.CTkScrollableFrame):
-    def __init__(self, master, item_list, command=None, **kwargs):
-        super().__init__(master, **kwargs)
-
-        self.command = command
-        self.radiobutton_variable = customtkinter.StringVar()
-        self.radiobutton_list = []
-        for i, item in enumerate(item_list):
-            self.add_item(item)
-
-    def add_item(self, item):
-        radiobutton = customtkinter.CTkRadioButton(self, text=item, value=item, variable=self.radiobutton_variable)
-        if self.command is not None:
-            radiobutton.configure(command=self.command)
-        radiobutton.grid(row=len(self.radiobutton_list), column=0, pady=(0, 10))
-        self.radiobutton_list.append(radiobutton)
-
-    def remove_item(self, item):
-        for radiobutton in self.radiobutton_list:
-            if item == radiobutton.cget("text"):
-                radiobutton.destroy()
-                self.radiobutton_list.remove(radiobutton)
-                return
-
-    def get_checked_item(self):
-        return self.radiobutton_variable.get()
-
-
-class ScrollableLabelButtonFrame(customtkinter.CTkScrollableFrame):
-    def __init__(self, master, command=None, **kwargs):
-        super().__init__(master, **kwargs)
-        self.grid_columnconfigure(0, weight=1)
-
-        self.command = command
-        self.radiobutton_variable = customtkinter.StringVar()
-        self.label_list = []
-        self.button_list = []
-
-    def add_item(self, item, image=None):
-        label = customtkinter.CTkLabel(self, text=item, image=image, compound="left", padx=5, anchor="w")
-        button = customtkinter.CTkButton(self, text="Command", width=100, height=24)
-        if self.command is not None:
-            button.configure(command=lambda: self.command(item))
-        label.grid(row=len(self.label_list), column=0, pady=(0, 10), sticky="w")
-        button.grid(row=len(self.button_list), column=1, pady=(0, 10), padx=5)
-        self.label_list.append(label)
-        self.button_list.append(button)
-
-    def remove_item(self, item):
-        for label, button in zip(self.label_list, self.button_list):
-            if item == label.cget("text"):
-                label.destroy()
-                button.destroy()
-                self.label_list.remove(label)
-                self.button_list.remove(button)
-                return
-
-
-class App(customtkinter.CTk):
+class App(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("CTkScrollableFrame example")
-        self.grid_rowconfigure(0, weight=1)
-        self.columnconfigure(2, weight=1)
+        self.scrollable_frame = ctk.CTkScrollableFrame(self, width=400, height=300)
+        self.scrollable_frame.pack(expand=True, fill="both", padx=20, pady=20)
 
-        # create scrollable checkbox frame
-        self.scrollable_checkbox_frame = ScrollableCheckBoxFrame(master=self, width=200, command=self.checkbox_frame_event,
-                                                                 item_list=[f"item {i}" for i in range(50)])
-        self.scrollable_checkbox_frame.grid(row=0, column=0, padx=15, pady=15, sticky="ns")
-        self.scrollable_checkbox_frame.add_item("new item")
+        self.valores = [
+            [1, 2, 3],
+            [4, 5, 6],
+            [1, 2, 3],
+            [4, 5, 6],
+            [1, 2, 3],
+            [4, 5, 6],
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9]
+        ]
 
-        # create scrollable radiobutton frame
-        self.scrollable_radiobutton_frame = ScrollableRadiobuttonFrame(master=self, width=500, command=self.radiobutton_frame_event,
-                                                                       item_list=[f"item {i}" for i in range(100)],
-                                                                       label_text="ScrollableRadiobuttonFrame")
-        self.scrollable_radiobutton_frame.grid(row=0, column=1, padx=15, pady=15, sticky="ns")
-        self.scrollable_radiobutton_frame.configure(width=200)
-        self.scrollable_radiobutton_frame.remove_item("item 3")
+        self.tabla = CTkTable(master=self.scrollable_frame, values=self.valores)
+        self.tabla.pack(expand=True, fill="both", padx=20, pady=20)
 
-        # create scrollable label and button frame
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        self.scrollable_label_button_frame = ScrollableLabelButtonFrame(master=self, width=300, command=self.label_button_frame_event, corner_radius=0)
-        self.scrollable_label_button_frame.grid(row=0, column=2, padx=0, pady=0, sticky="nsew")
-        for i in range(20):  # add items with images
-            self.scrollable_label_button_frame.add_item(f"image and item {i}", image=customtkinter.CTkImage(Image.open(os.path.join(current_dir, "test_images", "chat_light.png"))))
+        self.scrollable_frame._parent_canvas.bind("<Configure>", self.check_scroll_position)
+        self.scrollable_frame._parent_canvas.bind("<MouseWheel>", self.on_mouse_wheel)
 
-    def checkbox_frame_event(self):
-        print(f"checkbox frame modified: {self.scrollable_checkbox_frame.get_checked_items()}")
+        self.loading = False
 
-    def radiobutton_frame_event(self):
-        print(f"radiobutton frame modified: {self.scrollable_radiobutton_frame.get_checked_item()}")
+    def check_scroll_position(self, event=None):
+        if not self.loading and self.scrollable_frame._parent_canvas.yview()[1] == 1.0:
+            self.loading = True
+            self.cargar_mas_datos()
 
-    def label_button_frame_event(self, item):
-        print(f"label button frame clicked: {item}")
+    def on_mouse_wheel(self, event):
+        if self.loading:
+            return "break"
 
+    def cargar_mas_datos(self):
+        # Simula la carga de más datos
+        nuevos_datos = [
+            [10, 11, 12],
+            [13, 14, 15],
+            [16, 17, 18],
+            [10, 11, 12],
+            [13, 14, 15],
+            [10, 11, 12],
+            [13, 14, 15],            [10, 11, 12],
+            [13, 14, 15],            [10, 11, 12],
+            [13, 14, 15],            [10, 11, 12],
+            [13, 14, 15],            [10, 11, 12],
+            [13, 14, 15],            [10, 11, 12],
+            [13, 14, 15],            [10, 11, 12],
+            [13, 14, 15],            [10, 11, 12],
+            [13, 14, 15],            [10, 11, 12],
+            [13, 14, 15],
+        ]
+        for fila in nuevos_datos:
+            self.tabla.add_row(values=fila)
 
-if __name__ == "__main__":
-    customtkinter.set_appearance_mode("dark")
-    app = App()
-    app.mainloop()
+        # Mueve el scrollbar hacia arriba para evitar más cargas inmediatas
+        self.scrollable_frame._parent_canvas.yview_moveto(0.8)
+        self.loading = False
+
+app = App()
+app.mainloop()
