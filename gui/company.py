@@ -8,6 +8,7 @@ from config import db
 import config.functions_grals as fn
 from gui.activitiesF833 import activities
 from gui.activitiesShow import ActivitiesShows
+from gui.activitiesToFind import ActivitiesToFind
 from gui.taxStatusShow import TaxStatusShow
 
 # Fuente para algunos widgets
@@ -497,7 +498,7 @@ class CompanyWidgets:
         def abrir_ventana_sec2(self, secondaryWin):
             print('abrir ventana secundaria')
             if secondaryWin == 'activities':
-                ventana_secundaria = ActivitiesShows(self)
+                ventana_secundaria = ActivitiesToFind(self)
             if secondaryWin == 'taxstatus':
                 ventana_secundaria = TaxStatusShow(self)
 

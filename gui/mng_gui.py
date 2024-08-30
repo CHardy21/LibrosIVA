@@ -5,6 +5,7 @@ from PIL import Image
 import config.general_config as conf
 import gui.menu_gui as menu
 from gui.activitiesShow import ActivitiesShows
+from gui.activitiesToFind import ActivitiesToFind
 
 from gui.invoices import invoice
 from gui.company import company

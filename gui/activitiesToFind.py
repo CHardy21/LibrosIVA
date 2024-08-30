@@ -59,6 +59,7 @@ def selection_return(parent, widget):
 
 class ActivitiesToFind:
     def __init__(self, parent):
+        self.table = None
         self.padre = parent
         self.root = ctk.CTkToplevel()
         self.root.title('Actividades Económicas')
@@ -82,36 +83,21 @@ class ActivitiesToFind:
                                    width=120,
                                    text='Buscar',
                                    command=lambda: self.search_value())
+        self.search_result_label = ctk.CTkLabel(marco_search, text="", )
         # Agregar widget
         search_entry.grid(row=0, column=0, pady=10, padx=10, sticky='e')
         search_btn.grid(row=0, column=1, padx=10, pady=10, sticky='w')
+        self.search_result_label.grid(row=1, column=0, padx=10, pady=10, sticky='we')
         marco_search.grid()
 
         self.marco_scroll = ctk.CTkScrollableFrame(self.root,
-                                            width=500,
-                                            height=250,
-                                            corner_radius=0,
-                                            border_width=1,
-                                            border_color="black",
-                                            scrollbar_fg_color="black",
-                                            )
-
-        # Leer comprobantes desde la base de datos (DB)
-        # value = fetch_records()
-        # Crear tabla con los comprobantes existentes en la DB
-        self.table = CTkTable(master=self.marco_scroll,
-                              row=10,
-                              column=2,
-                              # values=value,
-                              border_width=0,
-                              corner_radius=0,
-                              command=lambda e: select_activity(self.table, e),
-                              )
-        self.table.edit_column(0, width=100)
-        self.table.edit_column(1, width=250, anchor="w")
-        self.table.grid(row=0, column=0, )
-        # Agregar widget creado en la Clase Principal
-        # self.marco_scroll.grid()
+                                                   width=500,
+                                                   height=250,
+                                                   corner_radius=0,
+                                                   border_width=1,
+                                                   border_color="black",
+                                                   scrollbar_fg_color="black",
+                                                   )
 
     def search_value(self):
         search_term = self.searchValue.get()
@@ -119,20 +105,27 @@ class ActivitiesToFind:
         value = ('%' + search_term + '%',)
         result = db.fetchRecords2(query, value)
         print(result)
-        print('Registros devueltos: ', len(result))
-        # self.table.configure(row=len(result))
-        # self.table.update_values(result)
-        # self.marco_scroll.grid()
-        # self.update_table(result)
+        numRows = len(result)
+        print('Registros devueltos: ', numRows)
+        self.search_result_label.configure(text=f'Se encontraron {numRows} coincidencias.')
 
-    def update_table(self, data):
+        self.create_table(result)
+        self.marco_scroll.grid()
 
-        # Limpiar la tabla antes de agregar nuevos datos
-        for item in self.table.get():
-            self.table.delete_row(item)
-        # Agregar nuevos datos a la tabla
-        for fila in data:
-            self.table.add_row(values=(fila[0], fila[1]))
+    def create_table(self, data):
+        if self.table is not None:
+            self.table.destroy()
+            pass
+        self.table = CTkTable(master=self.marco_scroll,
+                              column=2,
+                              values=data,
+                              border_width=0,
+                              corner_radius=0,
+                              command=lambda e: select_activity(self.table, e),
+                              )
+        self.table.edit_column(0, width=100)
+        self.table.edit_column(1, width=350, anchor="w")
+        self.table.grid(row=0, column=0, )
 
 
 if __name__ == '__main__':
