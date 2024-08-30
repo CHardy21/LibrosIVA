@@ -1,7 +1,7 @@
 from config.SQLite_DB import Database
 
-data = "../iva_data.db"
-db = Database(data)
+datax = "../iva_data.db"
+dbx = Database(datax)
 
 query = """
     CREATE TABLE IF NOT EXISTS sys_activities_eco_f833 (
@@ -10,7 +10,7 @@ query = """
 	description TEXT NOT NULL,
 	description_large TEXT NOT NULL)
     """
-result = db.fetchRecord(query)
+result = dbx.fetchRecord(query)
 
 with open('ACTIVIDADES_ECONOMICAS_F883.txt', 'r', encoding='utf-8') as archivo:
     lineas = archivo.readlines()
@@ -30,7 +30,7 @@ with open('ACTIVIDADES_ECONOMICAS_F883.txt', 'r', encoding='utf-8') as archivo:
             query = f"INSERT INTO activities_eco_f833 (code, description, description_large) VALUES  (?,?,?)"
             values = (dato1, dato2, dato3)
 
-            result = db.insertRecord(query, values)
+            result = dbx.insertRecord(query, values)
 
         elif len(datos) == 3:
             dato1, dato2 = datos
@@ -38,7 +38,7 @@ with open('ACTIVIDADES_ECONOMICAS_F883.txt', 'r', encoding='utf-8') as archivo:
             query = f"INSERT INTO activities_eco_f833(code, description, description_large) VALUES  (?,?,?)"
             values = (dato1, dato2, '   ')
 
-            db.insertRecord(query, values)
+            dbx.insertRecord(query, values)
 
         else:
             # Maneja las líneas con un número incorrecto de datos

@@ -1,4 +1,4 @@
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('011111','Cultivo de arroz','Cultivo de arroz'),
 	 ('011112','Cultivo de trigo','Cultivo de trigo'),
 	 ('011119','Cultivo de cereales n.c.p., excepto los de uso forrajero','Cultivo de cereales n.c.p., excepto los de uso forrajero (Incluye alforfón, cebada cervecera, etc.)'),
@@ -9,7 +9,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('011291','Cultivo de girasol','Cultivo de girasol'),
 	 ('011299','Cultivo de oleaginosas n.c.p. excepto soja y girasol','Cultivo de oleaginosas n.c.p. excepto soja y girasol (Incluye los cultivos de oleaginosas para aceites comestibles y/o uso industrial: cártamo, colza, jojoba, lino oleaginoso, maní, ricino, sésamo, tung, etc.)'),
 	 ('011310','Cultivo de papa, batata y mandioca','Cultivo de papa, batata y mandioca');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('011321','Cultivo de tomate','Cultivo de tomate'),
 	 ('011329','Cultivo de bulbos, brotes, raíces y hortalizas de fruto n.c.p.','Cultivo de bulbos, brotes, raíces y hortalizas de fruto n.c.p. (Incluye ají, ajo, alcaparra, berenjena, cebolla, calabaza, espárrago, frutilla, melón, pepino, pimiento, sandía, zanahoria, zapallo, zapallito, etc.)'),
 	 ('011331','Cultivo de hortalizas de hoja y de otras hortalizas frescas','Cultivo de hortalizas de hoja y de otras hortalizas frescas (Incluye acelga, apio, coles, espinaca, lechuga, perejil, radicheta, repollo, etc.)'),
@@ -20,7 +20,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('011509','Cultivo de plantas para la obtención de fibras n.c.p.','Cultivo de plantas para la obtención de fibras n.c.p. (Incluye abacá, cáñamo, formio, lino textil, maíz de Guinea, ramio, yute, etc.)'),
 	 ('011911','Cultivo de flores','Cultivo de flores'),
 	 ('011912','Cultivo de plantas ornamentales','Cultivo de plantas ornamentales');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('011990','Cultivos temporales n.c.p.','Cultivos temporales n.c.p.'),
 	 ('012110','Cultivo de vid para vinificar','Cultivo de vid para vinificar '),
 	 ('012121','Cultivo de uva de mesa','Cultivo de uva de mesa'),
@@ -31,7 +31,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('012410','Cultivo de frutas tropicales y subtropicales','Cultivo de frutas tropicales y subtropicales (Incluye banana, ananá, mamón, palta, etc.)'),
 	 ('012420','Cultivo de frutas secas','Cultivo de frutas secas (Incluye almendra, avellana, castaña, nuez, pistacho, etc.)'),
 	 ('012490','Cultivo de frutas n.c.p.','Cultivo de frutas n.c.p. (Incluye kiwi, arándanos, mora, grosella, etc.)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('012510','Cultivo de caña de azúcar','Cultivo de caña de azúcar'),
 	 ('012590','Cultivo de plantas sacaríferas n.c.p.','Cultivo de plantas sacaríferas n.c.p. (Incluye remolacha azucarera, etc.)'),
 	 ('012600','Cultivo de frutos oleaginosos','Cultivo de frutos oleaginosos (Incluye el cultivo de olivo, coco, palma, etc.)'),
@@ -42,7 +42,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('013011','Producción de semillas híbridas de cereales y oleaginosas','Producción de semillas híbridas de cereales y oleaginosas '),
 	 ('013012','Producción de semillas varietales o autofecundadas de cereales, oleaginosas, y forrajeras','Producción de semillas varietales o autofecundadas de cereales, oleaginosas, y forrajeras '),
 	 ('013013','Producción de semillas de hortalizas y legumbres, flores y plantas ornamentales y árboles frutales','Producción de semillas de hortalizas y legumbres, flores y plantas ornamentales y árboles frutales ');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('013019','Producción de semillas de cultivos agrícolas n.c.p.','Producción de semillas de cultivos agrícolas n.c.p.'),
 	 ('013020','Producción de otras formas de propagación de cultivos agrícolas','Producción de otras formas de propagación de cultivos agrícolas (Incluye gajos, bulbos, estacas enraizadas o no, esquejes, plantines, etc.) '),
 	 ('014113','Cría de ganado bovino, excepto la realizada en cabañas y para la producción de leche','Cría de ganado bovino, excepto la realizada en cabañas y para la producción de leche (Incluye: ganado bubalino)'),
@@ -53,7 +53,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('014300','Cría de camélidos','Cría de camélidos (Incluye alpaca, guanaco, llama, vicuña)'),
 	 ('014410','Cría de ganado ovino -excepto en cabañas y para la  producción de lana y leche','Cría de ganado ovino -excepto en cabañas y para la  producción de lana y leche-'),
 	 ('014420','Cría de ganado ovino realizada en cabañas','Cría de ganado ovino realizada en cabañas');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('014430','Cría de ganado caprino -excepto la realizada en cabañas y para producción de pelos y de leche','Cría de ganado caprino -excepto la realizada en cabañas y para producción de pelos y de leche-'),
 	 ('014440','Cría de ganado caprino realizada en cabañas','Cría de ganado caprino realizada en cabañas '),
 	 ('014510','Cría de ganado porcino, excepto la realizada en cabañas','Cría de ganado porcino, excepto la realizada en cabañas'),
@@ -64,7 +64,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('014720','Producción de pelos de ganado n.c.p.','Producción de pelos de ganado n.c.p.'),
 	 ('014810','Cría de aves de corral, excepto para la producción de huevos','Cría de aves de corral, excepto para la producción de huevos'),
 	 ('014820','Producción de huevos','Producción de huevos');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('014910','Apicultura','Apicultura (Incluye la producción de miel, jalea real, polen, propóleo, etc.)'),
 	 ('014920','Cunicultura','Cunicultura'),
 	 ('014930','Cría de animales pelíferos, pilíferos y plumíferos, excepto de las especies ganaderas','Cría de animales pelíferos, pilíferos y plumíferos, excepto de las especies ganaderas (Incluye cría de visón, nutria, chinchilla, reptiles, etc.)'),
@@ -75,7 +75,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('016119','Servicios de maquinaria agrícola n.c.p., excepto los de cosecha mecánica','Servicios de maquinaria agrícola n.c.p., excepto los de cosecha mecánica (Incluye clasificado y/o tamañado, rastrillado, roturación de terreno, etc.)'),
 	 ('016120','Servicios de cosecha mecánica','Servicios de cosecha mecánica (Incluye la cosecha mecánica de granos, caña de azúcar, algodón, forrajes, el enfardado, enrollado, etc.) '),
 	 ('016130','Servicios de contratistas de mano de obra agrícola','Servicios de contratistas de mano de obra agrícola (Incluye la poda de árboles, transplante, cosecha manual de citrus, algodón, etc.)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('016140','Servicios de post cosecha','Servicios de post cosecha (Incluye servicios de lavado de papas,  acondicionamiento, limpieza, etc, de granos antes de ir a los mercados primarios), (Excluye los servicios de procesamiento de semillas para su siembra)'),
 	 ('016150','Servicios de procesamiento de semillas para su siembra','Servicios de procesamiento de semillas para su siembra (Incluye la selección de semillas)'),
 	 ('016190','Servicios de apoyo agrícolas n.c.p','Servicios de apoyo agrícolas n.c.p (Incluye  explotación de sistemas de riego, injertos de plantas, construcción y plantación de almácigos, alquiler de colmenas, etc.), (No incluye mantenimiento de jardines, parques y cementerios: actividad 813000, planificación y diseño paisajista: actividad 711009)'),
@@ -86,7 +86,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('016292','Albergue y cuidado de  animales de terceros','Albergue y cuidado de  animales de terceros'),
 	 ('016299','Servicios de apoyo pecuarios n.c.p.','Servicios de apoyo pecuarios n.c.p.'),
 	 ('017010','Caza y repoblación  de animales de caza','Caza y repoblación  de animales de caza (Incluye la caza de animales para obtener carne, pieles y cueros y la captura de animales vivos para zoológicos, animales de compañía, para investigación, etc.)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('017020','Servicios de apoyo para la caza','Servicios de apoyo para la caza'),
 	 ('021010','Plantación de bosques','Plantación de bosques'),
 	 ('021020','Repoblación y conservación de bosques nativos y zonas forestadas','Repoblación y conservación de bosques nativos y zonas forestadas'),
@@ -97,7 +97,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('024020','Servicios forestales excepto los servicios para la extracción de madera','Servicios forestales excepto los servicios para la extracción de madera (Incluye protección contra incendios, evaluación de masas forestales en pie, estimación del valor de la madera, etc.)'),
 	 ('031110','Pesca de organismos marinos, excepto cuando es realizada en buques procesadores','Pesca de organismos marinos, excepto cuando es realizada en buques procesadores'),
 	 ('031120','Pesca y elaboración de productos marinos realizada a bordo de buques procesadores','Pesca y elaboración de productos marinos realizada a bordo de buques procesadores');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('031130','Recolección de organismos marinos excepto peces, crustáceos y moluscos','Recolección de organismos marinos excepto peces, crustáceos y moluscos (Incluye la recolección de algas marinas)'),
 	 ('031200','Pesca continental: fluvial y lacustre','Pesca continental: fluvial y lacustre'),
 	 ('031300','Servicios de apoyo para la pesca','Servicios de apoyo para la pesca'),
@@ -108,7 +108,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('062000','Extracción de gas natural','Extracción de gas natural (Incluye gas natural licuado y gaseoso)'),
 	 ('071000','Extracción de minerales de hierro','Extracción de minerales de hierro (Incluye hematitas, limonitas, magnetitas, siderita, etc.)'),
 	 ('072100','Extracción de minerales y concentrados de uranio y torio','Extracción de minerales y concentrados de uranio y torio');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('072910','Extracción de metales preciosos','Extracción de metales preciosos'),
 	 ('072990','Extracción de minerales metalíferos no ferrosos n.c.p., excepto minerales de uranio y torio','Extracción de minerales metalíferos no ferrosos n.c.p., excepto minerales de uranio y torio (Incluye aluminio, cobre, estaño, manganeso, níquel, plomo, volframio, antimonio, bismuto, cinc, molibdeno, titanio, circonio, niobio, tántalo, vanadio, cromo, cobalto)'),
 	 ('081100','Extracción de rocas ornamentales','Extracción de rocas ornamentales (Incluye areniscas, cuarcita, dolomita, granito, mármol, piedra laja, pizarra, serpentina, etc.)'),
@@ -119,7 +119,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('089120','Extracción de minerales para la fabricación de productos químicos','Extracción de minerales para la fabricación de productos químicos (Incluye azufre, boracita e hidroboracita, calcita, celestina, colemanita, fluorita, litio y sales de litio naturales, sulfato de aluminio, sulfato de hierro, sulfato de magnesio, sulfato de sodio, ocres,  tinkal, ulexita, asfaltita, laterita, etc.)'),
 	 ('089200','Extracción y aglomeración de turba','Extracción y aglomeración de turba (Incluye la producción de turba utilizada como corrector de suelos) '),
 	 ('089300','Extracción de sal','Extracción de sal ');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('089900','Explotación de minas y canteras n.c.p.','Explotación de minas y canteras n.c.p. (Incluye amianto, cuarzo, diatomita, piedra pómez, ágata, agua marina, amatista, cristal de roca, rodocrosita, topacio, corindón, feldespato, mica, zeolita, perlita, granulado volcánico, puzolana, toba, talco, vermiculita, tosca, grafito, etc.)'),
 	 ('091000','Servicios de apoyo para la extracción de petróleo y gas natural','Servicios de apoyo para la extracción de petróleo y gas natural'),
 	 ('099000','Servicios de apoyo para la minería, excepto para la extracción de petróleo y gas natual','Servicios de apoyo para la minería, excepto para la extracción de petróleo y gas natual'),
@@ -130,7 +130,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('101030','Elaboración de fiambres y embutidos','Elaboración de fiambres y embutidos'),
 	 ('101040','Matanza de ganado excepto el bovino y procesamiento de su carne','Matanza de ganado excepto el bovino y procesamiento de su carne (Incluye ganado ovino, porcino, equino, etc.) '),
 	 ('101091','Fabricación de aceites y grasas de origen animal','Fabricación de aceites y grasas de origen animal');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('101099','Matanza de animales n.c.p. y procesamiento de su carne, elaboración de subproductos cárnicos n.c.p.','Matanza de animales n.c.p. y procesamiento de su carne, elaboración de subproductos cárnicos n.c.p. (Incluye producción de carne fresca, refrigerada o congelada de liebre, conejo, animales de caza, etc.)'),
 	 ('102001','Elaboración de pescados de mar, crustáceos y  productos marinos','Elaboración de pescados de mar, crustáceos y  productos marinos '),
 	 ('102002','Elaboración de pescados de ríos y lagunas y otros productos fluviales y lacustres','Elaboración de pescados de ríos y lagunas y otros productos fluviales y lacustres'),
@@ -141,7 +141,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('103030','Elaboración de frutas, hortalizas y legumbres congeladas','Elaboración de frutas, hortalizas y legumbres congeladas'),
 	 ('103091','Elaboración de hortalizas y legumbres deshidratadas o desecadas, preparación n.c.p. de hortalizas y legumbres','Elaboración de hortalizas y legumbres deshidratadas o desecadas, preparación n.c.p. de hortalizas y legumbres (Incluye la elaboración de harina y escamas de papa, sémola de hortalizas y legumbres,  hortalizas y legumbres deshidratadas, etc.)'),
 	 ('103099','Elaboración de frutas deshidratadas o desecadas, preparación n.c.p. de frutas','Elaboración de frutas deshidratadas o desecadas, preparación n.c.p. de frutas');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('104011','Elaboración de aceites y grasas vegetales  sin refinar','Elaboración de aceites y grasas vegetales  sin refinar'),
 	 ('104012','Elaboración de aceite de oliva','Elaboración de aceite de oliva     '),
 	 ('104013','Elaboración de aceites y grasas vegetales refinados','Elaboración de aceites y grasas vegetales refinados (No incluye aceite de oliva -actividad 104012-)'),
@@ -152,7 +152,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('105090','Elaboración de productos lácteos n.c.p.','Elaboración de productos lácteos n.c.p. (Incluye la producción de caseínas, manteca, postres, etc., cuando no son obtenidos e forma integrada con la producción de leche)'),
 	 ('106110','Molienda de trigo','Molienda de trigo'),
 	 ('106120','Preparación de arroz','Preparación de arroz');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('106131','Elaboración de alimentos a base de cereales','Elaboración de alimentos a base de cereales '),
 	 ('106139','Preparación y molienda de legumbres y cereales n.c.p., excepto trigo y arroz y molienda húmeda de maíz','Preparación y molienda de legumbres y cereales n.c.p., excepto trigo y arroz y molienda húmeda de maíz'),
 	 ('106200','Elaboración de almidones y productos derivados del almidón, molienda húmeda de maíz','Elaboración de almidones y productos derivados del almidón, molienda húmeda de maíz (Incluye la elaboración de glucosa y gluten)'),
@@ -163,7 +163,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('107301','Elaboración de cacao y chocolate','Elaboración de cacao y chocolate '),
 	 ('107309','Elaboración de productos de confitería n.c.p.','Elaboración de productos de confitería n.c.p. (Incluye alfajores, caramelos, frutas confitadas, pastillas, gomas de mascar, etc.)'),
 	 ('107410','Elaboración de pastas alimentarias frescas','Elaboración de pastas alimentarias frescas');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('107420','Elaboración de pastas alimentarias secas','Elaboración de pastas alimentarias secas'),
 	 ('107500','Elaboración de comidas preparadas para reventa','Elaboración de comidas preparadas para reventa (Incluye la elaboración de comidas preparadas para reventa en supermercados, kioscos, cafeterías, etc.)'),
 	 ('107911','Tostado, torrado y molienda de café','Tostado, torrado y molienda de café'),
@@ -174,7 +174,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('107992','Elaboración de vinagres','Elaboración de vinagres'),
 	 ('107999','Elaboración de productos alimenticios n.c.p.','Elaboración de productos alimenticios n.c.p. (Incluye la elaboración de polvos para preparar postres y gelatinas, levadura, productos para copetín, sopas, sal de mesa, mayonesa, mostaza, etc.)'),
 	 ('108000','Elaboración de alimentos preparados para animales','Elaboración de alimentos preparados para animales');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('109000','Servicios industriales para la elaboración de alimentos y bebidas','Servicios industriales para la elaboración de alimentos y bebidas (Incluye procesos y operaciones que permiten que el producto alimenticio y las bebidas estén en estado higiénico sanitario para consumo humano o para su utilización como materias primas de la industria). '),
 	 ('110100','Destilación, rectificación y mezcla de bebidas espiritosas','Destilación, rectificación y mezcla de bebidas espiritosas'),
 	 ('110211','Elaboración de mosto','Elaboración de mosto'),
@@ -185,7 +185,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('110412','Fabricación de sodas','Fabricación de sodas'),
 	 ('110420','Elaboración de bebidas gaseosas, excepto soda','Elaboración de bebidas gaseosas, excepto soda'),
 	 ('110491','Elaboración de hielo','Elaboración de hielo');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('110492','Elaboración de bebidas no alcohólicas n.c.p.','Elaboración de bebidas no alcohólicas n.c.p. (Incluye los jugos para diluir o en polvo llamados "sintéticos" o de un contenido en jugos naturales inferior al 50%), (No incluye a los jugos naturales y sus concentrados, de frutas, hortalizas y legumbres - actividad 103020)'),
 	 ('120010','Preparación de hojas de tabaco','Preparación de hojas de tabaco'),
 	 ('120091','Elaboración de cigarrillos','Elaboración de cigarrillos'),
@@ -196,7 +196,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('131132','Fabricación de hilados textiles de algodón y sus mezclas','Fabricación de hilados textiles de algodón y sus mezclas'),
 	 ('131139','Fabricación de hilados textiles n.c.p., excepto de lana  y de algodón','Fabricación de hilados textiles n.c.p., excepto de lana  y de algodón'),
 	 ('131201','Fabricación de tejidos (telas) planos de lana y sus mezclas, incluye hilanderías y tejedurías integradas','Fabricación de tejidos (telas) planos de lana y sus mezclas, incluye hilanderías y tejedurías integradas');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('131202','Fabricación de tejidos (telas) planos de algodón y sus mezclas, incluye hilanderías y tejedurías integradas','Fabricación de tejidos (telas) planos de algodón y sus mezclas, incluye hilanderías y tejedurías integradas'),
 	 ('131209','Fabricación de tejidos (telas) planos de fibras textiles n.c.p., incluye hilanderías y tejedurías integradas','Fabricación de tejidos (telas) planos de fibras textiles n.c.p., incluye hilanderías y tejedurías integradas'),
 	 ('131300','Acabado de productos textiles','Acabado de productos textiles'),
@@ -207,7 +207,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('139204','Fabricación de bolsas de materiales textiles para productos a granel','Fabricación de bolsas de materiales textiles para productos a granel'),
 	 ('139209','Fabricación de artículos confeccionados de materiales textiles n.c.p., excepto prendas de vestir','Fabricación de artículos confeccionados de materiales textiles n.c.p., excepto prendas de vestir '),
 	 ('139300','Fabricación de tapices y alfombras','Fabricación de tapices y alfombras');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('139400','Fabricación de cuerdas, cordeles, bramantes y redes','Fabricación de cuerdas, cordeles, bramantes y redes'),
 	 ('139900','Fabricación de productos textiles n.c.p.','Fabricación de productos textiles n.c.p.'),
 	 ('141110','Confección de ropa interior, prendas para dormir y para la playa','Confección de ropa interior, prendas para dormir y para la playa'),
@@ -218,7 +218,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('141199','Confección de prendas de vestir n.c.p., excepto prendas de piel, cuero y de punto','Confección de prendas de vestir n.c.p., excepto prendas de piel, cuero y de punto'),
 	 ('141201','Fabricación de accesorios de vestir de cuero','Fabricación de accesorios de vestir de cuero'),
 	 ('141202','Confección de prendas de vestir de cuero','Confección de prendas de vestir de cuero');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('142000','Terminación y teñido de pieles, fabricación de artículos de piel','Terminación y teñido de pieles, fabricación de artículos de piel '),
 	 ('143010','Fabricación de medias','Fabricación de medias'),
 	 ('143020','Fabricación de prendas de vestir y artículos similares de punto','Fabricación de prendas de vestir y artículos similares de punto'),
@@ -229,7 +229,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('152021','Fabricación de calzado de materiales n.c.p., excepto calzado deportivo y ortopédico','Fabricación de calzado de materiales n.c.p., excepto calzado deportivo y ortopédico '),
 	 ('152031','Fabricación de calzado deportivo','Fabricación de calzado deportivo'),
 	 ('152040','Fabricación de partes de calzado','Fabricación de partes de calzado');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('161001','Aserrado y cepillado de madera  nativa','Aserrado y cepillado de madera  nativa '),
 	 ('161002','Aserrado y cepillado de madera implantada','Aserrado y cepillado de madera implantada'),
 	 ('162100','Fabricación de hojas de madera para enchapado, fabricación de tableros contrachapados, tableros laminados, tableros de partículas y tableros y paneles n.c.p.','Fabricación de hojas de madera para enchapado, fabricación de tableros contrachapados, tableros laminados, tableros de partículas y tableros y paneles n.c.p. (Incluye la fabricación de madera terciada y  machimbre)'),
@@ -240,7 +240,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('162902','Fabricación de artículos de madera en tornerías','Fabricación de artículos de madera en tornerías'),
 	 ('162903','Fabricación de productos de corcho','Fabricación de productos de corcho'),
 	 ('162909','Fabricación de productos de madera n.c.p, fabricación de artículos de paja y materiales trenzables','Fabricación de productos de madera n.c.p, fabricación de artículos de paja y materiales trenzables (Incluye enmarcado de cuadros, carpintería cuando no explicita especialidad)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('170101','Fabricación de pasta de madera','Fabricación de pasta de madera'),
 	 ('170102','Fabricación de papel y cartón excepto envases','Fabricación de papel y cartón excepto envases'),
 	 ('170201','Fabricación de papel ondulado y envases de papel','Fabricación de papel ondulado y envases de papel'),
@@ -251,7 +251,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('181109','Impresión n.c.p., excepto de diarios y revistas','Impresión n.c.p., excepto de diarios y revistas'),
 	 ('181200','Servicios relacionados con la impresión','Servicios relacionados con la impresión'),
 	 ('182000','Reproducción de grabaciones','Reproducción de grabaciones');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('191000','Fabricación de productos de hornos de coque','Fabricación de productos de hornos de coque'),
 	 ('192000','Fabricación de productos de la refinación del petróleo','Fabricación de productos de la refinación del petróleo'),
 	 ('201110','Fabricación de gases industriales y medicinales comprimidos o licuados','Fabricación de gases industriales y medicinales comprimidos o licuados'),
@@ -262,7 +262,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('201190','Fabricación de materias químicas orgánicas básicas n.c.p.','Fabricación de materias químicas orgánicas básicas n.c.p. (Incluye la fabricación de alcoholes excepto el etílico,  sustancias químicas para la elaboración de sustancias plásticas, carbón vegetal, etc.)'),
 	 ('201210','Fabricación de alcohol','Fabricación de alcohol '),
 	 ('201220','Fabricación de biocombustibles excepto alcohol','Fabricación de biocombustibles excepto alcohol');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('201300','Fabricación de abonos y compuestos de nitrógeno','Fabricación de abonos y compuestos de nitrógeno'),
 	 ('201401','Fabricación de resinas y cauchos sintéticos','Fabricación de resinas y cauchos sintéticos'),
 	 ('201409','Fabricación de materias plásticas en formas primarias n.c.p.','Fabricación de materias plásticas en formas primarias n.c.p.'),
@@ -273,7 +273,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('202320','Fabricación de cosméticos, perfumes y  productos de higiene y tocador','Fabricación de cosméticos, perfumes y  productos de higiene y tocador'),
 	 ('202906','Fabricación de explosivos y productos de pirotecnia','Fabricación de explosivos y productos de pirotecnia'),
 	 ('202907','Fabricación de colas, adhesivos, aprestos y cementos excepto los odontológicos obtenidos de sustancias minerales y vegetales','Fabricación de colas, adhesivos, aprestos y cementos excepto los odontológicos obtenidos de sustancias minerales y vegetales');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('202908','Fabricación de productos químicos n.c.p.','Fabricación de productos químicos n.c.p. (Incluye la producción de aceites esenciales, tintas excepto para imprenta, etc.)'),
 	 ('203000','Fabricación de fibras manufacturadas','Fabricación de fibras manufacturadas'),
 	 ('204000','Servicios industriales para la fabricación de sustancias y productos químicos','Servicios industriales para la fabricación de sustancias y productos químicos'),
@@ -284,7 +284,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('221110','Fabricación de cubiertas y cámaras','Fabricación de cubiertas y cámaras'),
 	 ('221120','Recauchutado y renovación de cubiertas','Recauchutado y renovación de cubiertas'),
 	 ('221901','Fabricación de  autopartes de caucho excepto cámaras y cubiertas','Fabricación de  autopartes de caucho excepto cámaras y cubiertas');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('221909','Fabricación  de productos de caucho n.c.p.','Fabricación  de productos de caucho n.c.p.'),
 	 ('222010','Fabricación de envases plásticos','Fabricación de envases plásticos'),
 	 ('222090','Fabricación de productos plásticos en formas básicas y artículos de plástico n.c.p., excepto muebles','Fabricación de productos plásticos en formas básicas y artículos de plástico n.c.p., excepto muebles'),
@@ -295,7 +295,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('239201','Fabricación de ladrillos','Fabricación de ladrillos '),
 	 ('239202','Fabricación de revestimientos cerámicos','Fabricación de revestimientos cerámicos '),
 	 ('239209','Fabricación de productos de arcilla y cerámica no refractaria para uso estructural n.c.p.','Fabricación de productos de arcilla y cerámica no refractaria para uso estructural n.c.p. ');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('239310','Fabricación de artículos sanitarios de cerámica','Fabricación de artículos sanitarios de cerámica'),
 	 ('239391','Fabricación de objetos cerámicos para uso doméstico excepto artefactos sanitarios','Fabricación de objetos cerámicos para uso doméstico excepto artefactos sanitarios'),
 	 ('239399','Fabricación de artículos de cerámica no refractaria para uso no estructural n.c.p.','Fabricación de artículos de cerámica no refractaria para uso no estructural n.c.p. '),
@@ -306,7 +306,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('239591','Elaboración de hormigón','Elaboración de hormigón'),
 	 ('239592','Fabricación de premoldeadas para la construcción','Fabricación de premoldeadas para la construcción'),
 	 ('239593','Fabricación de artículos de cemento, fibrocemento y yeso excepto hormigón y mosaicos','Fabricación de artículos de cemento, fibrocemento y yeso excepto hormigón y mosaicos');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('239600','Corte, tallado y acabado de la piedra','Corte, tallado y acabado de la piedra (Incluye mármoles y granitos, etc.)'),
 	 ('239900','Fabricación de productos minerales no metálicos n.c.p.','Fabricación de productos minerales no metálicos n.c.p. (Incluye la fabricación de abrasivos, lijas, membranas asfálticas, etc.)'),
 	 ('241001','Laminación y estirado. Producción de lingotes, planchas o barras fabricadas por operadores independientes','Laminación y estirado. Producción de lingotes, planchas o barras fabricadas por operadores independientes'),
@@ -317,7 +317,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('243200','Fundición de metales no ferrosos','Fundición de metales no ferrosos'),
 	 ('251101','Fabricación de carpintería metálica','Fabricación de carpintería metálica'),
 	 ('251102','Fabricación de productos metálicos para uso estructural','Fabricación de productos metálicos para uso estructural');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('251200','Fabricación de tanques, depósitos y recipientes de metal','Fabricación de tanques, depósitos y recipientes de metal (Incluye la fabricación de silos)'),
 	 ('251300','Fabricación de generadores de vapor','Fabricación de generadores de vapor'),
 	 ('252000','Fabricación de armas y municiones','Fabricación de armas y municiones'),
@@ -328,7 +328,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('259309','Fabricación de cerraduras, herrajes y artículos de ferretería n.c.p.','Fabricación de cerraduras, herrajes y artículos de ferretería n.c.p.'),
 	 ('259910','Fabricación de envases metálicos','Fabricación de envases metálicos'),
 	 ('259991','Fabricación de tejidos de alambre','Fabricación de tejidos de alambre');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('259992','Fabricación de cajas de seguridad','Fabricación de cajas de seguridad'),
 	 ('259993','Fabricación de productos metálicos de tornería y/o matricería','Fabricación de productos metálicos de tornería y/o matricería'),
 	 ('259999','Fabricación de productos elaborados de metal n.c.p.','Fabricación de productos elaborados de metal n.c.p.'),
@@ -339,7 +339,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('265101','Fabricación de instrumentos y aparatos para medir, verificar, ensayar, navegar y otros fines, excepto el equipo de control de procesos industriales','Fabricación de instrumentos y aparatos para medir, verificar, ensayar, navegar y otros fines, excepto el equipo de control de procesos industriales '),
 	 ('265102','Fabricación de equipo de control de procesos industriales','Fabricación de equipo de control de procesos industriales '),
 	 ('265200','Fabricación de relojes','Fabricación de relojes');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('266010','Fabricación de equipo médico y quirúrgico y de aparatos ortopédicos principalmente electrónicos y/o eléctricos','Fabricación de equipo médico y quirúrgico y de aparatos ortopédicos principalmente electrónicos y/o eléctricos (Incluye equipos de laboratorio, esterilizadores, paneles para observación de radiografías, tornos, etc.)'),
 	 ('266090','Fabricación de equipo médico y quirúrgico y de aparatos ortopédicos n.c.p.','Fabricación de equipo médico y quirúrgico y de aparatos ortopédicos n.c.p. (Incluye prótesis, aparatos ortopédicos, materiales para fracturas, etc.)'),
 	 ('267001','Fabricación de equipamiento e instrumentos ópticos y sus accesorios','Fabricación de equipamiento e instrumentos ópticos y sus accesorios'),
@@ -350,7 +350,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('272000','Fabricación de acumuladores, pilas y baterías primarias','Fabricación de acumuladores, pilas y baterías primarias'),
 	 ('273110','Fabricación de cables de fibra óptica','Fabricación de cables de fibra óptica'),
 	 ('273190','Fabricación de hilos y cables aislados n.c.p.','Fabricación de hilos y cables aislados n.c.p.');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('274000','Fabricación de lámparas eléctricas y equipo de iluminación','Fabricación de lámparas eléctricas y equipo de iluminación'),
 	 ('275010','Fabricación de cocinas, calefones, estufas y calefactores no eléctricos','Fabricación de cocinas, calefones, estufas y calefactores no eléctricos'),
 	 ('275020','Fabricación de heladeras, "freezers", lavarropas y secarropas','Fabricación de heladeras, "freezers", lavarropas y secarropas'),
@@ -361,7 +361,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('281100','Fabricación  de  motores  y  turbinas,  excepto  motores  para aeronaves, vehículos automotores   y motocicletas','Fabricación  de  motores  y  turbinas,  excepto  motores  para aeronaves, vehículos automotores   y motocicletas'),
 	 ('281201','Fabricación de bombas','Fabricación de bombas'),
 	 ('281301','Fabricación de compresores, grifos y válvulas','Fabricación de compresores, grifos y válvulas');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('281400','Fabricación de cojinetes, engranajes, trenes de engranaje y piezas de transmisión','Fabricación de cojinetes, engranajes, trenes de engranaje y piezas de transmisión'),
 	 ('281500','Fabricación de hornos, hogares y quemadores','Fabricación de hornos, hogares y quemadores'),
 	 ('281600','Fabricación de maquinaria y equipo de elevación y manipulación','Fabricación de maquinaria y equipo de elevación y manipulación (Incluye la fabricación de ascensores, escaleras mecánicas, montacargas, etc.)'),
@@ -372,7 +372,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('282130','Fabricación de implementos de uso agropecuario','Fabricación de implementos de uso agropecuario'),
 	 ('282200','Fabricación de máquinas herramienta','Fabricación de máquinas herramienta'),
 	 ('282300','Fabricación de maquinaria metalúrgica','Fabricación de maquinaria metalúrgica');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('282400','Fabricación de maquinaria para la explotación de minas y canteras y para obras de construcción','Fabricación de maquinaria para la explotación de minas y canteras y para obras de construcción (Incluye la fabricación de máquinas y equipos viales, equipos para la extracción de petróleo y gas, etc.)'),
 	 ('282500','Fabricación de maquinaria para la elaboración de alimentos, bebidas y tabaco','Fabricación de maquinaria para la elaboración de alimentos, bebidas y tabaco'),
 	 ('282600','Fabricación de maquinaria para la elaboración de productos textiles, prendas de vestir y cueros','Fabricación de maquinaria para la elaboración de productos textiles, prendas de vestir y cueros'),
@@ -383,7 +383,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('293011','Rectificación de motores','Rectificación de motores'),
 	 ('293090','Fabricación de partes, piezas y accesorios para vehículos automotores y sus motores n.c.p.','Fabricación de partes, piezas y accesorios para vehículos automotores y sus motores n.c.p.'),
 	 ('301100','Construcción y reparación de buques','Construcción y reparación de buques (Incluye construcción de estructuras flotantes)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('301200','Construcción y reparación de embarcaciones de recreo y deporte','Construcción y reparación de embarcaciones de recreo y deporte'),
 	 ('302000','Fabricación y reparación de locomotoras y de material rodante para transporte ferroviario','Fabricación y reparación de locomotoras y de material rodante para transporte ferroviario'),
 	 ('303000','Fabricación y reparación de aeronaves','Fabricación y reparación de aeronaves '),
@@ -394,7 +394,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('310020','Fabricación de muebles y partes de muebles, excepto los que son principalmente de madera (metal, plástico, etc.)','Fabricación de muebles y partes de muebles, excepto los que son principalmente de madera (metal, plástico, etc.)'),
 	 ('310030','Fabricación de somieres y colchones','Fabricación de somieres y colchones'),
 	 ('321011','Fabricación de joyas finas y artículos conexos','Fabricación de joyas finas y artículos conexos');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('321012','Fabricación de objetos de platería','Fabricación de objetos de platería '),
 	 ('321020','Fabricación de bijouterie','Fabricación de bijouterie (Incluye la fabricación de joyas de fantasía y accesorios similares)'),
 	 ('322001','Fabricación de instrumentos de música','Fabricación de instrumentos de música'),
@@ -405,7 +405,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('329030','Fabricación de carteles, señales e indicadores  -eléctricos o no-','Fabricación de carteles, señales e indicadores  -eléctricos o no-'),
 	 ('329040','Fabricación de equipo de protección y seguridad, excepto calzado','Fabricación de equipo de protección y seguridad, excepto calzado'),
 	 ('329090','Industrias manufactureras n.c.p.','Industrias manufactureras n.c.p. (Incluye fabricación de paraguas, termos, pelucas, etc.)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('331101','Reparación y mantenimiento de productos de metal, excepto maquinaria y equipo','Reparación y mantenimiento de productos de metal, excepto maquinaria y equipo'),
 	 ('331210','Reparación y mantenimiento de maquinaria de uso general','Reparación y mantenimiento de maquinaria de uso general'),
 	 ('331220','Reparación y mantenimiento de maquinaria y equipo de uso agropecuario y forestal','Reparación y mantenimiento de maquinaria y equipo de uso agropecuario y forestal'),
@@ -416,7 +416,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('351110','Generación de energía térmica convencional','Generación de energía térmica convencional (Incluye la producción de energía eléctrica mediante máquinas turbo-gas, turbo vapor, ciclo combinado y turbo diesel)'),
 	 ('351120','Generación de energía térmica nuclear','Generación de energía térmica nuclear (Incluye la producción de energía eléctrica mediante combustible nuclear)'),
 	 ('351130','Generación de energía hidráulica','Generación de energía hidráulica (Incluye la producción de energía eléctrica mediante centrales de bombeo)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('351190','Generación de energía n.c.p.','Generación de energía n.c.p. (Incluye la producción de energía eléctrica mediante fuentes de energía solar, biomasa, eólica, geotérmica, mareomotriz, etc.)'),
 	 ('351201','Transporte de energía eléctrica','Transporte de energía eléctrica'),
 	 ('351310','Comercio mayorista de energía eléctrica','Comercio mayorista de energía eléctrica'),
@@ -427,7 +427,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('360010','Captación, depuración y distribución de agua de fuentes subterráneas','Captación, depuración y distribución de agua de fuentes subterráneas'),
 	 ('360020','Captación, depuración y distribución de agua de fuentes superficiales','Captación, depuración y distribución de agua de fuentes superficiales'),
 	 ('370000','Servicios de depuración de aguas residuales, alcantarillado y cloacas','Servicios de depuración de aguas residuales, alcantarillado y cloacas');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('381100','Recolección, transporte, tratamiento y disposición final de residuos no peligrosos','Recolección, transporte, tratamiento y disposición final de residuos no peligrosos'),
 	 ('381200','Recolección, transporte, tratamiento y disposición final de residuos peligrosos','Recolección, transporte, tratamiento y disposición final de residuos peligrosos'),
 	 ('382010','Recuperación de materiales y desechos metálicos','Recuperación de materiales y desechos metálicos'),
@@ -438,7 +438,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('421000','Construcción, reforma y reparación de obras de infraestructura para el transporte','Construcción, reforma y reparación de obras de infraestructura para el transporte (Incluye la construcción, reforma y reparación de calles, autopistas, carreteras, puentes, túneles, vías férreas y pistas de aterrizaje, la señalización mediante pintura, etc.)'),
 	 ('422100','Perforación de pozos de agua','Perforación de pozos de agua'),
 	 ('422200','Construcción, reforma y reparación de redes distribución de electricidad, gas, agua, telecomunicaciones y de otros servicios públicos','Construcción, reforma y reparación de redes distribución de electricidad, gas, agua, telecomunicaciones y de otros servicios públicos');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('429010','Construcción, reforma y reparación de obras hidráulicas','Construcción, reforma y reparación de obras hidráulicas (Incluye obras fluviales y canales, acueductos, diques, etc.)'),
 	 ('429090','Construcción de obras de ingeniería civil n.c.p.','Construcción de obras de ingeniería civil n.c.p. (Incluye los trabajos generales de construcción para la minería y la industria,  de centrales eléctricas y nucleares, excavaciones de sepulturas, etc.)'),
 	 ('431100','Demolición y voladura de edificios y de sus partes','Demolición y voladura de edificios y de sus partes (Incluye los trabajos de limpieza de escombros asociada a la demolición, los derribos y demolición de edificios y obras de ingeniería civil,.los trabajos de voladura y remoción de rocas) '),
@@ -449,7 +449,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('432910','Instalaciones de ascensores, montacargas y  escaleras mecánicas','Instalaciones de ascensores, montacargas y  escaleras mecánicas'),
 	 ('432920','Aislamiento térmico, acústico, hídrico y antivibratorio','Aislamiento térmico, acústico, hídrico y antivibratorio'),
 	 ('432990','Instalaciones para edificios y obras de ingeniería civil n.c.p.','Instalaciones para edificios y obras de ingeniería civil n.c.p. (Incluye instalación de puertas automáticas o giratorias)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('433010','Instalaciones de carpintería, herrería de obra y artística','Instalaciones de carpintería, herrería de obra y artística (Incluye instalación de puertas y ventanas, carpintería metálica y no metálica, etc.)'),
 	 ('433020','Terminación y revestimiento de paredes y pisos','Terminación y revestimiento de paredes y pisos (Incluye yesería, salpicré, el pulido de pisos y la colocación de revestimientos de cerámicas, de piedra tallada, de suelos flexibles, parqué, baldosas, empapelados, etc.)'),
 	 ('433030','Colocación de cristales en obra','Colocación de cristales en obra (Incluye la instalación y revestimiento de vidrio, espejos y otros artículos de vidrio, etc.)'),
@@ -460,7 +460,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('439990','Actividades especializadas de construcción n.c.p.','Actividades especializadas de construcción n.c.p. (Incluye el alquiler, montaje y desmantelamiento de andamios,  la construcción de chimeneas y hornos industriales, el acorazamiento de cajas fuertes y cámaras frigoríficas, el armado e instalación de compuertas para diques, etc.)'),
 	 ('451110','Venta de autos, camionetas y utilitarios nuevos','Venta de autos, camionetas y utilitarios nuevos (Incluye taxis, jeeps, 4x4 y vehículos similares)'),
 	 ('451190','Venta de vehículos automotores nuevos n.c.p.','Venta de vehículos automotores nuevos n.c.p. (Incluye casas rodantes, trailers, camiones, remolques, ambulancias, ómnibus, microbuses y similares, cabezas tractoras, etc.)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('451210','Venta de autos, camionetas y utilitarios, usados','Venta de autos, camionetas y utilitarios, usados (Incluye taxis, jeeps, 4x4 y vehículos similares)'),
 	 ('451290','Venta de vehículos automotores usados n.c.p.','Venta de vehículos automotores usados n.c.p. (Incluye, casas rodantes, trailers, camiones, remolques, ambulancias, ómnibus, microbuses y similares, cabezas tractoras, etc.)'),
 	 ('452101','Lavado automático y manual de vehículos automotores','Lavado automático y manual de vehículos automotores'),
@@ -471,7 +471,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('452500','Tapizado y retapizado de automotores','Tapizado y retapizado de automotores'),
 	 ('452600','Reparación y pintura de carrocerías, colocación y reparación de guardabarros y protecciones exteriores','Reparación y pintura de carrocerías, colocación y reparación de guardabarros y protecciones exteriores'),
 	 ('452700','Instalación y reparación de caños de escape y radiadores','Instalación y reparación de caños de escape y radiadores');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('452800','Mantenimiento y reparación de frenos y embragues','Mantenimiento y reparación de frenos y embragues'),
 	 ('452910','Instalación y reparación de equipos de GNC','Instalación y reparación de equipos de GNC'),
 	 ('452990','Mantenimiento y reparación del motor n.c.p., mecánica integral','Mantenimiento y reparación del motor n.c.p., mecánica integral (Incluye auxilio y servicios de grúa para automotores) '),
@@ -482,7 +482,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('453292','Venta al por menor de partes, piezas y accesorios usados n.c.p.','Venta al por menor de partes, piezas y accesorios usados n.c.p.'),
 	 ('454010','Venta de motocicletas y de sus partes, piezas y accesorios','Venta de motocicletas y de sus partes, piezas y accesorios'),
 	 ('454020','Mantenimiento y reparación de motocicletas','Mantenimiento y reparación de motocicletas');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('461011','Venta al por mayor en comisión o consignación de cereales (incluye arroz), oleaginosas y forrajeras excepto semillas','Venta al por mayor en comisión o consignación de cereales (incluye arroz), oleaginosas y forrajeras excepto semillas'),
 	 ('461012','Venta al por mayor en comisión o consignación de semillas','Venta al por mayor en comisión o consignación de semillas'),
 	 ('461013','Venta al por mayor en comisión o consignación de frutas','Venta al por mayor en comisión o consignación de frutas (Incluye acopiadores y receptoras)'),
@@ -493,7 +493,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('461029','Venta al por mayor en comisión o consignación de productos pecuarios n.c.p.','Venta al por mayor en comisión o consignación de productos pecuarios n.c.p.'),
 	 ('461031','Operaciones de intermediación de carne - consignatario directo -','Operaciones de intermediación de carne - consignatario directo -'),
 	 ('461032','Operaciones de intermediación de carne excepto consignatario directo','Operaciones de intermediación de carne excepto consignatario directo (Incluye matarifes abastecedores de carne, etc.)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('461039','Venta al por mayor en comisión o consignación de alimentos, bebidas y tabaco n.c.p.','Venta al por mayor en comisión o consignación de alimentos, bebidas y tabaco n.c.p.'),
 	 ('461040','Venta al por mayor en comisión o consignación de combustibles','Venta al por mayor en comisión o consignación de combustibles (No incluye electricidad) '),
 	 ('461092','Venta al por mayor en comisión o consignación de  madera y materiales para la construcción','Venta al por mayor en comisión o consignación de  madera y materiales para la construcción'),
@@ -504,7 +504,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('462110','Acopio de algodón','Acopio de algodón'),
 	 ('462120','Venta al por mayor de semillas y granos para forrajes','Venta al por mayor de semillas y granos para forrajes'),
 	 ('462131','Venta al por mayor de cereales (incluye arroz), oleaginosas y forrajeras excepto semillas','Venta al por mayor de cereales (incluye arroz), oleaginosas y forrajeras excepto semillas');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('462132','Acopio y acondicionamiento de cereales y semillas, excepto de algodón y semillas y granos para forrajes','Acopio y acondicionamiento de cereales y semillas, excepto de algodón y semillas y granos para forrajes'),
 	 ('462190','Venta al por mayor de materias primas agrícolas y de la silvicultura n.c.p.','Venta al por mayor de materias primas agrícolas y de la silvicultura n.c.p. (Incluye el acopio y venta al por mayor de materiles, desperdicios, subproductos agrícola usados como alimentos para animales)'),
 	 ('462201','Venta al por mayor de lanas, cueros en bruto y productos afines','Venta al por mayor de lanas, cueros en bruto y productos afines'),
@@ -515,7 +515,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('463129','Venta al por mayor de aves, huevos y productos de granja y de la caza n.c.p.','Venta al por mayor de aves, huevos y productos de granja y de la caza n.c.p. (Incluye la venta al por mayor  de carne de ave fresca, congelada o refrigerada)'),
 	 ('463130','Venta al por mayor de pescado','Venta al por mayor de pescado'),
 	 ('463140','Venta al por mayor y empaque de frutas, de legumbres y hortalizas frescas','Venta al por mayor y empaque de frutas, de legumbres y hortalizas frescas');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('463151','Venta al por mayor de pan, productos de confitería y pastas frescas','Venta al por mayor de pan, productos de confitería y pastas frescas'),
 	 ('463152','Venta al por mayor de azúcar','Venta al por mayor de azúcar'),
 	 ('463153','Venta al por mayor de aceites y grasas','Venta al por mayor de aceites y grasas'),
@@ -526,7 +526,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('463180','Venta al por mayor en supermercados mayoristas de alimentos','Venta al por mayor en supermercados mayoristas de alimentos'),
 	 ('463191','Venta al por mayor de frutas, legumbres y cereales secos y en conserva','Venta al por mayor de frutas, legumbres y cereales secos y en conserva'),
 	 ('463199','Venta al por mayor de productos alimenticios n.c.p.','Venta al por mayor de productos alimenticios n.c.p. (Incluye la venta de miel y derivados, productos congelados,  etc.)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('463211','Venta al por mayor de vino','Venta al por mayor de vino'),
 	 ('463212','Venta al por mayor de bebidas espiritosas','Venta al por mayor de bebidas espiritosas'),
 	 ('463219','Venta al por mayor de bebidas alcohólicas n.c.p.','Venta al por mayor de bebidas alcohólicas n.c.p. (Incluye la venta de aperitivos con alcohol, cerveza, sidra, etc.)'),
@@ -537,7 +537,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('464113','Venta al por mayor de mantelería, ropa de cama y artículos textiles para el hogar','Venta al por mayor de mantelería, ropa de cama y artículos textiles para el hogar'),
 	 ('464114','Venta al por mayor de tapices y alfombras de materiales textiles','Venta al por mayor de tapices y alfombras de materiales textiles'),
 	 ('464119','Venta al por mayor de productos textiles n.c.p.','Venta al por mayor de productos textiles n.c.p.');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('464121','Venta al por mayor de prendas de vestir de cuero','Venta al por mayor de prendas de vestir de cuero'),
 	 ('464122','Venta al por mayor de medias y prendas de punto','Venta al por mayor de medias y prendas de punto'),
 	 ('464129','Venta al por mayor de prendas y accesorios de vestir n.c.p., excepto uniformes y ropa de trabajo','Venta al por mayor de prendas y accesorios de vestir n.c.p., excepto uniformes y ropa de trabajo'),
@@ -548,7 +548,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('464150','Venta al por mayor de uniformes y ropa de trabajo','Venta al por mayor de uniformes y ropa de trabajo'),
 	 ('464211','Venta al por mayor de libros y publicaciones','Venta al por mayor de libros y publicaciones'),
 	 ('464212','Venta al por mayor de diarios y revistas','Venta al por mayor de diarios y revistas');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('464221','Venta al por mayor de papel y productos de papel y cartón excepto envases','Venta al por mayor de papel y productos de papel y cartón excepto envases'),
 	 ('464222','Venta al por mayor de envases de papel y cartón','Venta al por mayor de envases de papel y cartón'),
 	 ('464223','Venta al por mayor de artículos de librería y papelería','Venta al por mayor de artículos de librería y papelería'),
@@ -559,7 +559,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('464410','Venta al por mayor de artículos de óptica y de fotografía','Venta al por mayor de artículos de óptica y de fotografía (Incluye venta de lentes de contacto, líquidos oftalmológicos, armazones, cristales ópticos, películas fotográficas, cámaras y accesorios para fotografía, etc.)'),
 	 ('464420','Venta al por mayor de artículos de relojería, joyería y fantasías','Venta al por mayor de artículos de relojería, joyería y fantasías'),
 	 ('464501','Venta al por mayor de electrodomésticos y artefactos para el hogar excepto equipos de audio y video','Venta al por mayor de electrodomésticos y artefactos para el hogar excepto equipos de audio y video');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('464502','Venta al por mayor de equipos de audio, video y televisión','Venta al por mayor de equipos de audio, video y televisión'),
 	 ('464610','Venta al por mayor de muebles excepto de oficina, artículos de mimbre y corcho, colchones y somieres','Venta al por mayor de muebles excepto de oficina, artículos de mimbre y corcho, colchones y somieres'),
 	 ('464620','Venta al por mayor de artículos de iluminación','Venta al por mayor de artículos de iluminación '),
@@ -570,7 +570,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('464940','Venta al por mayor de bicicletas y rodados similares','Venta al por mayor de bicicletas y rodados similares (Incluye cochecitos y sillas de paseo para bebés, andadores, triciclos, etc.)'),
 	 ('464950','Venta al por mayor de artículos de esparcimiento y deportes','Venta al por mayor de artículos de esparcimiento y deportes (Incluye embarcaciones deportivas, armas y municiones, equipos de pesca, piletas de natación de lona o plástico, etc.)'),
 	 ('464991','Venta al por mayor de flores y plantas naturales y artificiales','Venta al por mayor de flores y plantas naturales y artificiales');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('464999','Venta al por mayor de artículos de uso doméstico o personal n.c.p','Venta al por mayor de artículos de uso doméstico o personal n.c.p (Incluye artículos de platería excepto los incluidos en talabartería, cuadros y marcos que no sean obra de arte o de colección, sahumerios y artículos de santería, parrillas y hogares, etc.)'),
 	 ('465100','Venta al por mayor de equipos, periféricos, accesorios y programas informáticos','Venta al por mayor de equipos, periféricos, accesorios y programas informáticos'),
 	 ('465210','Venta al por mayor de equipos de telefonía y comunicaciones','Venta al por mayor de equipos de telefonía y comunicaciones'),
@@ -581,7 +581,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('465340','Venta al por mayor de máquinas, equipos e implementos de uso en imprentas, artes gráficas y actividades conexas','Venta al por mayor de máquinas, equipos e implementos de uso en imprentas, artes gráficas y actividades conexas (Incluye venta de máquinas fotocopiadoras - excepto las de uso personal-, copiadoras de planos, máquinas para imprimir, guillotinar, troquelar, encuadernar, etc.)'),
 	 ('465350','Venta al por mayor de máquinas, equipos e implementos de uso médico y paramédico','Venta al por mayor de máquinas, equipos e implementos de uso médico y paramédico (Incluye venta de equipos de diagnóstico y tratamiento, camillas, cajas de cirugía, jeringas y otros implementos de material descartable, etc.)'),
 	 ('465360','Venta al por mayor de máquinas, equipos e implementos de uso en la industria del plástico y del caucho','Venta al por mayor de máquinas, equipos e implementos de uso en la industria del plástico y del caucho (Incluye sopladora de envases, laminadora de plásticos, máquinas extrusoras y moldeadoras, etc.)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('465390','Venta al por mayor de máquinas, equipos e implementos de uso especial n.c.p.','Venta al por mayor de máquinas, equipos e implementos de uso especial n.c.p.  (Incluye motoniveladoras, excavadoras, palas mecánicas, perforadoras-percutoras, etc.)'),
 	 ('465400','Venta al por mayor de máquinas - herramienta de uso general','Venta al por mayor de máquinas - herramienta de uso general'),
 	 ('465500','Venta  al  por  mayor  de  vehículos,  equipos  y  máquinas  para  el transporte ferroviario, aéreo y de navegación','Venta  al  por  mayor  de  vehículos,  equipos  y  máquinas  para  el transporte ferroviario, aéreo y de navegación'),
@@ -592,7 +592,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('465930','Venta al por mayor de equipo profesional y científico e instrumentos de medida y de control n.c.p.','Venta al por mayor de equipo profesional y científico e instrumentos de medida y de control n.c.p.'),
 	 ('465990','Venta al por mayor de máquinas, equipo y materiales conexos n.c.p.','Venta al por mayor de máquinas, equipo y materiales conexos n.c.p.'),
 	 ('466110','Venta al por mayor de combustibles y lubricantes para automotores','Venta al por mayor de combustibles y lubricantes para automotores');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('466121','Fraccionamiento y distribución de gas licuado','Fraccionamiento y distribución de gas licuado'),
 	 ('466129','Venta al por mayor de combustibles, lubricantes, leña y carbón, excepto gas licuado y combustibles y lubricantes para automotores','Venta al por mayor de combustibles, lubricantes, leña y carbón, excepto gas licuado y combustibles y lubricantes para automotores'),
 	 ('466200','Venta al por mayor de metales y minerales metalíferos','Venta al por mayor de metales y minerales metalíferos'),
@@ -603,7 +603,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('466350','Venta al por mayor de cristales y espejos','Venta al por mayor de cristales y espejos'),
 	 ('466360','Venta al por mayor de artículos para plomería, instalación de gas y calefacción','Venta al por mayor de artículos para plomería, instalación de gas y calefacción'),
 	 ('466370','Venta al por mayor de papeles para pared, revestimiento para pisos de goma, plástico y textiles,  y artículos similares para la decoración','Venta al por mayor de papeles para pared, revestimiento para pisos de goma, plástico y textiles,  y artículos similares para la decoración');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('466391','Venta al por mayor de artículos de loza, cerámica y porcelana de uso en construcción','Venta al por mayor de artículos de loza, cerámica y porcelana de uso en construcción'),
 	 ('466399','Venta al por mayor de artículos para la construcción n.c.p.','Venta al por mayor de artículos para la construcción n.c.p. (No incluye artículos y materiales de demolición: 466990 )'),
 	 ('466910','Venta al por mayor de productos intermedios n.c.p., desperdicios y desechos textiles','Venta al por mayor de productos intermedios n.c.p., desperdicios y desechos textiles'),
@@ -614,7 +614,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('466940','Venta al por mayor de productos intermedios n.c.p., desperdicios y desechos metálicos','Venta al por mayor de productos intermedios n.c.p., desperdicios y desechos metálicos (Incluye chatarra, viruta de metales diversos, etc.)'),
 	 ('466990','Venta al por mayor de productos intermedios, desperdicios y desechos n.c.p.','Venta al por mayor de productos intermedios, desperdicios y desechos n.c.p.'),
 	 ('469010','Venta al por mayor de insumos agropecuarios diversos','Venta al por mayor de insumos agropecuarios diversos');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('469090','Venta al por mayor de mercancías n.c.p.','	Venta al por mayor de mercancías n.c.p.'),
 	 ('471110','Venta al por menor en hipermercados','Venta al por menor en hipermercados '),
 	 ('471120','Venta al por menor en supermercados','Venta al por menor en supermercados'),
@@ -625,7 +625,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('472112','Venta al por menor de fiambres y embutidos','Venta al por menor de fiambres y embutidos'),
 	 ('472120','Venta al por menor de productos de almacén y dietética','Venta al por menor de productos de almacén y dietética'),
 	 ('472130','Venta al por menor de carnes rojas, menudencias y chacinados frescos','Venta al por menor de carnes rojas, menudencias y chacinados frescos');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('472140','Venta al por menor de huevos, carne de aves y  productos de granja y de la caza','Venta al por menor de huevos, carne de aves y  productos de granja y de la caza'),
 	 ('472150','Venta al por menor de pescados y  productos de la pesca','Venta al por menor de pescados y  productos de la pesca'),
 	 ('472160','Venta al por menor de frutas, legumbres y hortalizas frescas','Venta al por menor de frutas, legumbres y hortalizas frescas'),
@@ -636,7 +636,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('472300','Venta al por menor de tabaco en comercios especializados','Venta al por menor de tabaco en comercios especializados'),
 	 ('473000','Venta al por menor de combustible para vehículos automotores y motocicletas','Venta al por menor de combustible para vehículos automotores y motocicletas (Incluye la venta al por menor de productos lubricantes y refrigerantes)'),
 	 ('474010','Venta al por menor de equipos, periféricos,  accesorios y programas informáticos','Venta al por menor de equipos, periféricos,  accesorios y programas informáticos');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('474020','Venta al por menor de aparatos de telefonía y comunicación','Venta al por menor de aparatos de telefonía y comunicación (Incluye teléfonos, celulares, fax, etc)'),
 	 ('475110','Venta al por menor de hilados, tejidos y artículos de mercería','Venta al por menor de hilados, tejidos y artículos de mercería (Incluye mercerías, sederías, comercios de venta de lanas y otros hilados, etc.) '),
 	 ('475120','Venta al por menor de confecciones para el hogar','Venta al por menor de confecciones para el hogar (Incluye la venta al por menor de sábanas, toallas, mantelería, cortinas confeccionadas, colchas, cubrecamas, etc.)'),
@@ -647,7 +647,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('475240','Venta al por menor de pinturas y productos conexos','Venta al por menor de pinturas y productos conexos'),
 	 ('475250','Venta al por menor de artículos para plomería e instalación de gas','Venta al por menor de artículos para plomería e instalación de gas'),
 	 ('475260','Venta al por menor de cristales, espejos, mamparas y cerramientos','Venta al por menor de cristales, espejos, mamparas y cerramientos');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('475270','Venta al por menor de papeles para pared, revestimientos para pisos y artículos similares para la decoración','Venta al por menor de papeles para pared, revestimientos para pisos y artículos similares para la decoración'),
 	 ('475290','Venta al por menor de materiales de construcción n.c.p.','Venta al por menor de materiales de construcción n.c.p.'),
 	 ('475300','Venta al por menor  de electrodomésticos, artefactos para el hogar y equipos de audio y video','Venta al por menor  de electrodomésticos, artefactos para el hogar y equipos de audio y video'),
@@ -658,7 +658,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('475490','Venta al por menor de artículos para el hogar n.c.p.','Venta al por menor de artículos para el hogar n.c.p. (Incluye perchas, marcos, cuadros, etc.)'),
 	 ('476110','Venta al por menor de libros','Venta al por menor de libros'),
 	 ('476120','Venta al por menor de diarios y revistas','Venta al por menor de diarios y revistas');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('476130','Venta al por menor de papel, cartón, materiales de embalaje y artículos de librería','Venta al por menor de papel, cartón, materiales de embalaje y artículos de librería '),
 	 ('476310','Venta al por menor de equipos  y artículos deportivos','Venta al por menor de equipos  y artículos deportivos (Incluye la venta y reparación  de bicicletas, la venta  de aparatos de gimnasia y de equipos de camping, etc.)  '),
 	 ('476320','Venta al por menor de armas, artículos para la caza y pesca','Venta al por menor de armas, artículos para la caza y pesca'),
@@ -669,7 +669,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('477140','Venta al por menor de indumentaria deportiva','Venta al por menor de indumentaria deportiva'),
 	 ('477150','Venta al por menor de prendas de cuero','Venta al por menor de prendas de cuero '),
 	 ('477190','Venta al por menor de prendas y accesorios de vestir n.c.p.','Venta al por menor de prendas y accesorios de vestir n.c.p. ');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('477210','Venta al por menor de artículos de talabartería y artículos regionales','Venta al por menor de artículos de talabartería y artículos regionales (Incluye venta de artículos regionales de cuero, plata, alpaca y similares)'),
 	 ('477220','Venta al por menor de calzado, excepto el ortopédico y el deportivo','Venta al por menor de calzado, excepto el ortopédico y el deportivo (No incluye almacenes de suelas 464142)'),
 	 ('477230','Venta al por menor de calzado deportivo','Venta al por menor de calzado deportivo'),
@@ -680,7 +680,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('477410','Venta al por menor de artículos de óptica y fotografía','Venta al por menor de artículos de óptica y fotografía'),
 	 ('477420','Venta al por menor de artículos de relojería y joyería','Venta al por menor de artículos de relojería y joyería'),
 	 ('477430','Venta al por menor de bijouterie y fantasía','Venta al por menor de bijouterie y fantasía');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('477440','Venta al por menor de flores, plantas, semillas, abonos, fertilizantes y otros productos de vivero 	','	Venta al por menor de flores, plantas, semillas, abonos, fertilizantes y otros productos de vivero '),
 	 ('477450','Venta al por menor de materiales y productos de limpieza','Venta al por menor de materiales y productos de limpieza'),
 	 ('477460','Venta al por menor de fuel oil, gas en garrafas, carbón y leña','Venta al por menor de fuel oil, gas en garrafas, carbón y leña (No incluye las estaciones de servicios que se clasifican en 473000)'),
@@ -691,7 +691,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('477820','Venta al por menor de libros, revistas y similares usados','Venta al por menor de libros, revistas y similares usados'),
 	 ('477830','Venta al por menor de antigüedades','Venta al por menor de antigüedades (Incluye venta de antigüedades en remates)'),
 	 ('477840','Venta al por menor de oro, monedas, sellos y similares','Venta al por menor de oro, monedas, sellos y similares (Incluye la  venta de monedas de colección, estampillas, etc.) ');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('477890','Venta al por menor de artículos usados n.c.p. excepto+E1155 automotores y motocicletas','Venta al por menor de artículos usados n.c.p. excepto+E1155 automotores y motocicletas '),
 	 ('478010','Venta al por menor de alimentos, bebidas y tabaco en puestos móviles y mercados','Venta al por menor de alimentos, bebidas y tabaco en puestos móviles y mercados'),
 	 ('478090','Venta al por menor de productos n.c.p. en puestos móviles y mercados','Venta al por menor de productos n.c.p. en puestos móviles y mercados'),
@@ -702,7 +702,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('491120','Servicio de transporte ferroviario interurbano de pasajeros','Servicio de transporte ferroviario interurbano de pasajeros'),
 	 ('491200','Servicio de transporte ferroviario de cargas','Servicio de transporte ferroviario de cargas'),
 	 ('492110','Servicio de transporte automotor urbano y suburbano regular de pasajeros','Servicio de transporte automotor urbano y suburbano regular de pasajeros ');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('492120','Servicios de transporte automotor de pasajeros mediante taxis y remises, alquiler de autos con chofer','Servicios de transporte automotor de pasajeros mediante taxis y remises, alquiler de autos con chofer (Incluye los radiotaxis)'),
 	 ('492130','Servicio de transporte escolar','Servicio de transporte escolar (Incluye el servicio de transporte para colonias de vacaciones y clubes)'),
 	 ('492140','Servicio de transporte automotor urbano y suburbano no regular de pasajeros de oferta libre,  excepto mediante taxis y remises, alquiler de autos con chofer y transporte escolar','Servicio de transporte automotor urbano y suburbano no regular de pasajeros de oferta libre,  excepto mediante taxis y remises, alquiler de autos con chofer y transporte escolar (Incluye servicios urbanos especiales como charters, servicios contratados, servicios para ámbito portuario o aeroportuario, servicio de hipódromos y espectáculos deportivos y culturales)'),
@@ -713,7 +713,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('492190','Servicio de transporte automotor de pasajeros n.c.p.','Servicio de transporte automotor de pasajeros n.c.p.'),
 	 ('492210','Servicios de mudanza','Servicios de mudanza (Incluye servicios de guardamuebles)'),
 	 ('492221','Servicio de transporte automotor de cereales','Servicio de transporte automotor de cereales');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('492229','Servicio de transporte automotor de mercaderías a granel n.c.p.','Servicio de transporte automotor de mercaderías a granel n.c.p.'),
 	 ('492230','Servicio de transporte automotor de animales','Servicio de transporte automotor de animales'),
 	 ('492240','Servicio de transporte por camión cisterna','Servicio de transporte por camión cisterna'),
@@ -724,7 +724,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('493120','Servicio de transporte por poliductos y fueloductos','Servicio de transporte por poliductos y fueloductos'),
 	 ('493200','Servicio de transporte por gasoductos','Servicio de transporte por gasoductos (Incluye estaciones de bombeo y compresión)'),
 	 ('501100','Servicio de transporte marítimo de pasajeros','Servicio de transporte marítimo de pasajeros');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('501200','Servicio de transporte marítimo de carga','Servicio de transporte marítimo de carga'),
 	 ('502101','Servicio de transporte fluvial y lacustre de pasajeros','Servicio de transporte fluvial y lacustre de pasajeros'),
 	 ('502200','Servicio de transporte fluvial y lacustre de carga','Servicio de transporte fluvial y lacustre de carga'),
@@ -735,7 +735,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('521030','Servicios de manipulación de carga en el ámbito aéreo','Servicios de manipulación de carga en el ámbito aéreo'),
 	 ('522010','Servicios de almacenamiento y depósito en silos','Servicios de almacenamiento y depósito en silos'),
 	 ('522020','Servicios de almacenamiento y depósito en cámaras frigoríficas','Servicios de almacenamiento y depósito en cámaras frigoríficas');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('522091','Servicios de usuarios directos de zona franca','Servicios de usuarios directos de zona franca'),
 	 ('522092','Servicios de gestión de depósitos fiscales','Servicios de gestión de depósitos fiscales'),
 	 ('522099','Servicios de almacenamiento y depósito n.c.p.','Servicios de almacenamiento y depósito n.c.p.'),
@@ -746,7 +746,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('523032','Servicios de operadores logísticos seguros (OLS) en el ámbito aduanero','Servicios de operadores logísticos seguros (OLS) en el ámbito aduanero'),
 	 ('523039','Servicios de operadores logísticos n.c.p.','Servicios de operadores logísticos n.c.p.'),
 	 ('523090','Servicios de gestión y logística para el transporte de mercaderías n.c.p.','Servicios de gestión y logística para el transporte de mercaderías n.c.p. (Incluye las actividades de empresas empaquetadoras para comercio exterior, alquiler de contenedores, etc.)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('524110','Servicios de explotación de infraestructura para el transporte terrestre, peajes y otros derechos','Servicios de explotación de infraestructura para el transporte terrestre, peajes y otros derechos'),
 	 ('524120','Servicios  de playas de estacionamiento y garajes','Servicios  de playas de estacionamiento y garajes'),
 	 ('524130','Servicios de estaciones terminales de ómnibus y ferroviárias','Servicios de estaciones terminales de ómnibus y ferroviárias'),
@@ -757,7 +757,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('524290','Servicios complementarios para el transporte marítimo n.c.p.','Servicios complementarios para el transporte marítimo n.c.p. (Incluye explotación de servicios de terminales como puertos y muelles)'),
 	 ('524310','Servicios de explotación de infraestructura para el transporte aéreo, derechos de aeropuerto','Servicios de explotación de infraestructura para el transporte aéreo, derechos de aeropuerto'),
 	 ('524320','Servicios de hangares y estacionamiento de aeronaves','Servicios de hangares y estacionamiento de aeronaves');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('524330','Servicios para la aeronavegación','Servicios para la aeronavegación (Incluye remolque de aeronaves y actividades de control de tráfico aéreo, etc.)'),
 	 ('524390','Servicios complementarios para el transporte aéreo n.c.p.','Servicios complementarios para el transporte aéreo n.c.p. (Incluye servicios de prevención y extinción de incendios)'),
 	 ('530010','Servicio de correo postal','Servicio de correo postal (Incluye las actividades de correo postal sujetas a la obligación de servicio universal)'),
@@ -768,7 +768,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('551023','Servicios de alojamiento en hoteles, hosterías y residenciales similares, excepto por hora, que no incluyen servicio de restaurante al público','Servicios de alojamiento en hoteles, hosterías y residenciales similares, excepto por hora, que no incluyen servicio de restaurante al público'),
 	 ('551090','Servicios de hospedaje temporal n.c.p.','Servicios de hospedaje temporal n.c.p. (Incluye hospedaje en estancias, residencias para estudiantes y albergues juveniles, apartamentos turísticos, etc.)'),
 	 ('552000','Servicios de alojamiento en campings','Servicios de alojamiento en campings (Incluye refugios de montaña)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('561011','Servicios de restaurantes y cantinas sin espectáculo','Servicios de restaurantes y cantinas sin espectáculo '),
 	 ('561012','Servicios de restaurantes y cantinas con espectáculo','Servicios de restaurantes y cantinas con espectáculo '),
 	 ('561013','Servicios de "fast food" y locales de venta de comidas y bebidas al paso','Servicios de "fast food" y locales de venta de comidas y bebidas al paso (Incluye el expendio de hamburguesas, productos lácteos excepto helados, etc.) '),
@@ -779,7 +779,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('561040','Servicios de preparación de comidas realizadas por/para vendedores ambulantes.','Servicios de preparación de comidas realizadas por/para vendedores ambulantes.'),
 	 ('562010','Servicios de preparación de comidas para empresas y eventos','Servicios de preparación de comidas para empresas y eventos (Incluye el servicio de catering, el suministro de comidas para banquetes, bodas, fiestas y otras celebraciones, comidas para hospital, etc.) '),
 	 ('562091','Servicios de cantinas con atención exclusiva  a los empleados o estudiantes dentro de empresas o establecimientos educativos.','Servicios de cantinas con atención exclusiva  a los empleados o estudiantes dentro de empresas o establecimientos educativos (Incluye cantinas deportivas)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('562099','Servicios de comidas n.c.p.','Servicios de comidas n.c.p.'),
 	 ('581100','Edición de libros, folletos, y otras publicaciones','Edición de libros, folletos, y otras publicaciones'),
 	 ('581200','Edición de directorios y listas de correos','Edición de directorios y listas de correos'),
@@ -790,7 +790,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('591200','Distribución de filmes y videocintas','Distribución de filmes y videocintas'),
 	 ('591300','Exhibición de filmes y videocintas','Exhibición de filmes y videocintas'),
 	 ('592000','Servicios de grabación de sonido y edición de música','Servicios de grabación de sonido y edición de música');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('601000','Emisión y retransmisión de radio','Emisión y retransmisión de radio'),
 	 ('602100','Emisión y retransmisión  de televisión abierta','Emisión y retransmisión  de televisión abierta'),
 	 ('602200','Operadores de televisión por suscripción.','Operadores de televisión por suscripción.'),
@@ -801,7 +801,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('611090','Servicios de telefonía fija, excepto locutorios','Servicios de telefonía fija, excepto locutorios'),
 	 ('612000','Servicios de telefonía móvil','Servicios de telefonía móvil'),
 	 ('613000','Servicios de telecomunicaciones vía satélite, excepto servicios de transmisión de televisión','Servicios de telecomunicaciones vía satélite, excepto servicios de transmisión de televisión');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('614010','Servicios de proveedores de acceso a internet','Servicios de proveedores de acceso a internet'),
 	 ('614090','Servicios de telecomunicación vía internet n.c.p.','Servicios de telecomunicación vía internet n.c.p.'),
 	 ('619000','Servicios de telecomunicaciones n.c.p.','Servicios de telecomunicaciones n.c.p. (Incluye el servicio de pagers)'),
@@ -812,7 +812,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('631110','Procesamiento de datos','Procesamiento de datos'),
 	 ('631120','Hospedaje de datos','Hospedaje de datos'),
 	 ('631190','Actividades conexas al procesamiento y hospedaje de datos n.c.p.','Actividades conexas al procesamiento y hospedaje de datos n.c.p.');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('631200','Portales web','Portales web'),
 	 ('639100','Agencias de noticias','Agencias de noticias'),
 	 ('639900','Servicios de información n.c.p.','Servicios de información n.c.p.'),
@@ -823,7 +823,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('641941','Servicios de intermediación financiera realizada por las compañías financieras','Servicios de intermediación financiera realizada por las compañías financieras'),
 	 ('641942','Servicios de intermediación financiera realizada por sociedades de ahorro y préstamo para la vivienda y otros inmuebles','Servicios de intermediación financiera realizada por sociedades de ahorro y préstamo para la vivienda y otros inmuebles'),
 	 ('641943','Servicios de intermediación financiera realizada por cajas de crédito','Servicios de intermediación financiera realizada por cajas de crédito');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('642000','Servicios de sociedades de cartera','Servicios de sociedades de cartera'),
 	 ('643001','Servicios de fideicomisos','Servicios de fideicomisos'),
 	 ('643009','Fondos y sociedades de inversión y entidades financieras similares n.c.p.','Fondos y sociedades de inversión y entidades financieras similares n.c.p.'),
@@ -834,7 +834,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('649910','Servicios de agentes de mercado abierto "puros"','Servicios de agentes de mercado abierto "puros" (Incluye las transacciones extrabursátiles - por cuenta propia -)'),
 	 ('649991','Servicios de socios inversores en sociedades regulares según Ley 19.550 - S.R.L., S.C.A, etc, excepto socios inversores en sociedades anónimas incluidos en 649999 -','Servicios de socios inversores en sociedades regulares según Ley 19.550 - S.R.L., S.C.A, etc, excepto socios inversores en sociedades anónimas incluidos en 649999 (No incluye los servicios de socios miembros  que desarrollan actividades de asesoramiento, dirección y gestión empresarial de sociedades regulares según Ley 19.550: 702091 y 702092) '),
 	 ('649999','Servicios de financiación y actividades financieras n.c.p.','Servicios de financiación y actividades financieras n.c.p. (Incluye actividades de inversión en acciones, títulos, la actividad de corredores de bolsa, securitización, mutuales financieras, etc.), (No incluye actividades financieras relacionadas con el otorgamiento de créditos)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('651110','Servicios de seguros de salud','Servicios de seguros de salud (Incluye medicina prepaga y mutuales de salud)'),
 	 ('651120','Servicios de seguros de vida','Servicios de seguros de vida (Incluye los seguros de vida, retiro y sepelio)'),
 	 ('651130','Servicios de seguros personales excepto  los de salud y de vida','Servicios de seguros personales excepto  los de salud y de vida (Incluye los seguros para viajes)'),
@@ -845,7 +845,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('652000','Reaseguros','Reaseguros'),
 	 ('653000','Administración de fondos de pensiones, excepto la seguridad social obligatoria','Administración de fondos de pensiones, excepto la seguridad social obligatoria'),
 	 ('661111','Servicios de mercados y cajas de valores','Servicios de mercados y cajas de valores');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('661121','Servicios de mercados a término','Servicios de mercados a término'),
 	 ('661131','Servicios de bolsas de comercio','Servicios de bolsas de comercio'),
 	 ('661910','Servicios bursátiles de mediación o por cuenta de terceros','Servicios bursátiles de mediación o por cuenta de terceros (Incluye la actividad de agentes y sociedades de bolsa)'),
@@ -856,7 +856,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('661999','Servicios auxiliares a la intermediación financiera n.c.p.','Servicios auxiliares a la intermediación financiera n.c.p. (Incluye asesoría financiera)'),
 	 ('662010','Servicios de evaluación de riesgos y daños','Servicios de evaluación de riesgos y daños'),
 	 ('662020','Servicios de productores  y asesores de seguros','Servicios de productores  y asesores de seguros ');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('662090','Servicios auxiliares a los servicios de seguros n.c.p.','Servicios auxiliares a los servicios de seguros n.c.p.'),
 	 ('663000','Servicios de gestión de fondos a cambio de una retribución o por contrata','Servicios de gestión de fondos a cambio de una retribución o por contrata'),
 	 ('681010','Servicios de alquiler y explotación de inmuebles para fiestas, convenciones y otros eventos similares','Servicios de alquiler y explotación de inmuebles para fiestas, convenciones y otros eventos similares '),
@@ -867,7 +867,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('682091','Servicios prestados por inmobiliarias','Servicios prestados por inmobiliarias'),
 	 ('682099','Servicios inmobiliarios realizados a cambio de una retribución o por contrata n.c.p.','Servicios inmobiliarios realizados a cambio de una retribución o por contrata n.c.p. (Incluye compra, venta, alquiler, remate, tasación, administración de bienes, etc., realizados a cambio de una retribución o por contrata, y la actividad de administradores, martilleros, rematadores, comisionistas, etc.)'),
 	 ('691001','Servicios jurídicos','Servicios jurídicos ');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('691002','Servicios  notariales','Servicios  notariales '),
 	 ('692000','Servicios de contabilidad, auditoría y asesoría fiscal','Servicios de contabilidad, auditoría y asesoría fiscal'),
 	 ('702010','Servicios de gerenciamiento de empresas e instituciones de salud, servicios de auditoria y medicina legal, servicio de asesoramiento farmacéutico','Servicios de gerenciamiento de empresas e instituciones de salud, servicios de auditoria y medicina legal, servicio de asesoramiento farmacéutico '),
@@ -878,7 +878,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('711002','Servicios geológicos y de prospección','Servicios geológicos y de prospección '),
 	 ('711003','Servicios relacionados con la electrónica y las comunicaciones','Servicios relacionados con la electrónica y las comunicaciones'),
 	 ('711009','Servicios de arquitectura e ingeniería y servicios conexos de asesoramiento técnico n.c.p.','Servicios de arquitectura e ingeniería y servicios conexos de asesoramiento técnico n.c.p.');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('712000','Ensayos y análisis técnicos','Ensayos y análisis técnicos (Incluye inspección técnica de vehículos, laboratorios de control de calidad, servicios de peritos calígrafos, servicios de bromatología)'),
 	 ('721010','Investigación  y desarrollo experimental en el campo de la ingeniería y la tecnología','Investigación  y desarrollo experimental en el campo de la ingeniería y la tecnología'),
 	 ('721020','Investigación  y desarrollo experimental en el campo de las ciencias médicas','Investigación  y desarrollo experimental en el campo de las ciencias médicas'),
@@ -889,7 +889,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('731001','Servicios de comercialización de tiempo y espacio publicitario','Servicios de comercialización de tiempo y espacio publicitario'),
 	 ('731009','Servicios de publicidad n.c.p.','Servicios de publicidad n.c.p.'),
 	 ('732000','Estudio de mercado, realización de encuestas de opinión pública','Estudio de mercado, realización de encuestas de opinión pública');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('741000','Servicios de diseño especializado','Servicios de diseño especializado (Incluye diseño de indumentaria, diseño gráfico, actividades de decoradores, etc.)'),
 	 ('742000','Servicios de fotografía','Servicios de fotografía '),
 	 ('749001','Servicios de traducción e interpretación','Servicios de traducción e interpretación'),
@@ -900,7 +900,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('771110','Alquiler de automóviles sin conductor','Alquiler de automóviles sin conductor'),
 	 ('771190','Alquiler de vehículos automotores n.c.p., sin conductor ni operarios','Alquiler de vehículos automotores n.c.p., sin conductor ni operarios (Incluye: camiones, remolques, etc.)'),
 	 ('771210','Alquiler de equipo de transporte para vía acuática, sin operarios ni tripulación','Alquiler de equipo de transporte para vía acuática, sin operarios ni tripulación');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('771220','Alquiler de equipo de transporte para vía aérea, sin operarios ni tripulación','Alquiler de equipo de transporte para vía aérea, sin operarios ni tripulación'),
 	 ('771290','Alquiler de equipo de transporte n.c.p. sin conductor ni operarios','Alquiler de equipo de transporte n.c.p. sin conductor ni operarios (Incluye: equipo ferroviario, motocicletas)'),
 	 ('772010','Alquiler de videos y video juegos','Alquiler de videos y video juegos (Incluye la actividad de los videoclubes)'),
@@ -911,7 +911,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('773030','Alquiler de maquinaria y equipo de construcción e ingeniería civil, sin operarios','Alquiler de maquinaria y equipo de construcción e ingeniería civil, sin operarios (Incluye el alquiler de andamios sin montaje ni desmantelamiento)'),
 	 ('773040','Alquiler de maquinaria y equipo de oficina, incluso computadoras','Alquiler de maquinaria y equipo de oficina, incluso computadoras'),
 	 ('773090','Alquiler de maquinaria y equipo n.c.p., sin personal','	Alquiler de maquinaria y equipo n.c.p., sin personal');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('774000','Arrendamiento y gestión de bienes intangibles no financieros','Arrendamiento y gestión de bienes intangibles no financieros'),
 	 ('780000','Obtención y dotación de personal','Obtención y dotación de personal (Incluye las actividades vinculadas con la búsqueda, selección y colocación de personal, la actividad de casting de actores, etc.)'),
 	 ('791100','Servicios minoristas de agencias de viajes','Servicios minoristas de agencias de viajes'),
@@ -922,7 +922,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('801020','Servicios de sistemas de seguridad','Servicios de sistemas de seguridad '),
 	 ('801090','Servicios de seguridad e investigación n.c.p.','Servicios de seguridad e investigación n.c.p.'),
 	 ('811000','Servicio combinado de apoyo a edificios','Servicio combinado de apoyo a edificios');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('812010','Servicios de limpieza general de edificios','Servicios de limpieza general de edificios '),
 	 ('812020','Servicios de desinfección y exterminio de plagas en el ámbito urbano','Servicios de desinfección y exterminio de plagas en el ámbito urbano'),
 	 ('812090','Servicios de limpieza n.c.p.','Servicios de limpieza n.c.p.'),
@@ -933,7 +933,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('823000','Servicios de organización de convenciones y exposiciones comerciales, excepto culturales y deportivos','Servicios de organización de convenciones y exposiciones comerciales, excepto culturales y deportivos'),
 	 ('829100','Servicios de agencias de cobro y calificación crediticia','Servicios de agencias de cobro y calificación crediticia'),
 	 ('829200','Servicios de envase y empaque','Servicios de envase y empaque ');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('829900','Servicios empresariales n.c.p.','Servicios empresariales n.c.p.'),
 	 ('841100','Servicios generales de la Administración Pública','Servicios generales de la Administración Pública (Incluye el desempeño de funciones ejecutivas y legislativas de administración por parte de las entidades de la administración central, regional y local, la administración y supervisión de asuntos fiscales, la aplicación del presupuesto y la gestión de los fondos públicos y la deuda pública, la gestión administrativa de servicios estadísticos y sociológicos y de planificación social y económica a distintos niveles de la administración)'),
 	 ('841200','Servicios para la regulación de las actividades sanitarias, educativas, culturales, y restantes servicios sociales, excepto seguridad social obligatoria','Servicios para la regulación de las actividades sanitarias, educativas, culturales, y restantes servicios sociales, excepto seguridad social obligatoria (Incluye  la gestión administrativa de programas destinados a mejorar el bienestar de los ciudadanos) '),
@@ -944,7 +944,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('842300','Servicios para el orden público y la seguridad','Servicios para el orden público y la seguridad'),
 	 ('842400','Servicios de justicia','Servicios de justicia'),
 	 ('842500','Servicios de protección civil','Servicios de protección civil');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('843000','Servicios de la seguridad social obligatoria, excepto obras sociales','Servicios de la seguridad social obligatoria, excepto obras sociales (Incluye PAMI y ANSES)'),
 	 ('851010','Guarderías y jardines maternales','Guarderías y jardines maternales'),
 	 ('851020','Enseñanza inicial, jardín de infantes y primaria','Enseñanza inicial, jardín de infantes y primaria'),
@@ -955,7 +955,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('853300','Formación de posgrado','Formación de posgrado'),
 	 ('854910','Enseñanza de idiomas','Enseñanza de idiomas'),
 	 ('854920','Enseñanza de cursos relacionados con informática','Enseñanza de cursos relacionados con informática');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('854930','Enseñanza para adultos, excepto discapacitados','Enseñanza para adultos, excepto discapacitados'),
 	 ('854940','Enseñanza especial y para discapacitados','Enseñanza especial y para discapacitados'),
 	 ('854950','Enseñanza de gimnasia, deportes y actividades físicas','Enseñanza de gimnasia, deportes y actividades físicas'),
@@ -966,7 +966,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('861020','Servicios de internación en instituciones relacionadas con la salud mental','Servicios de internación en instituciones relacionadas con la salud mental'),
 	 ('862110','Servicios de  consulta médica','Servicios de  consulta médica (Incluye las actividades de establecimientos sin internación o cuyos servicios se desarrollen en unidades independientes a las de internación: consultorios médicos, servicios de medicina laboral)'),
 	 ('862120','Servicios de proveedores de atención médica domiciliaria','Servicios de proveedores de atención médica domiciliaria (Incluye las actividades llevadas a cabo en domicilios de pacientes con alta precoz, y que ofrecen atención por módulo) ');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('862130','Servicios de atención médica en dispensarios, salitas, vacunatorios y otros locales de atención primaria de la salud','Servicios de atención médica en dispensarios, salitas, vacunatorios y otros locales de atención primaria de la salud'),
 	 ('862200','Servicios odontológicos','Servicios odontológicos'),
 	 ('863110','Servicios de prácticas de diagnóstico en laboratorios','Servicios de prácticas de diagnóstico en laboratorios (Incluye análisis clínicos, bioquímica, anatomía patológica, laboratorio hematológico, etc.)'),
@@ -977,7 +977,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('864000','Servicios de emergencias y traslados','Servicios de emergencias y traslados'),
 	 ('869010','Servicios de rehabilitación física','Servicios de rehabilitación física (Incluye actividades de profesionales excepto médicos: kinesiólogos, fisiatras, etc.)'),
 	 ('869090','Servicios relacionados con la salud humana n.c.p.','Servicios relacionados con la salud humana n.c.p. (Incluye servicios de psicólogos, fonoaudiólogos, servicios de enfermería, terapia ocupacional, bancos de sangre, de semen,etc.)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('870100','Servicios de atención a personas con problemas de salud mental o de adicciones, con alojamiento','Servicios de atención a personas con problemas de salud mental o de adicciones, con alojamiento'),
 	 ('870210','Servicios de atención a ancianos con alojamiento','Servicios de atención a ancianos con alojamiento'),
 	 ('870220','Servicios de atención a personas minusválidas con alojamiento','Servicios de atención a personas minusválidas con alojamiento'),
@@ -988,7 +988,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('900011','Producción de espectáculos teatrales y musicales','Producción de espectáculos teatrales y musicales'),
 	 ('900021','Composición y representación de obras teatrales, musicales y artísticas','Composición y representación de obras teatrales, musicales y artísticas (Incluye a compositores, actores, músicos, conferencistas, pintores, artistas plásticos etc.) '),
 	 ('900030','Servicios conexos a la producción de espectáculos teatrales y musicales','Servicios conexos a la producción de espectáculos teatrales y musicales  (Incluye diseño y manejo de escenografía, montaje de iluminación y sonido, etc.)');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('900040','Servicios de agencias de ventas de entradas','Servicios de agencias de ventas de entradas'),
 	 ('900091','Servicios de espectáculos artísticos n.c.p.','Servicios de espectáculos artísticos n.c.p. (Incluye espectáculos circenses, de títeres, mimos, etc.)'),
 	 ('910100','Servicios de bibliotecas y archivos','Servicios de bibliotecas y archivos'),
@@ -999,7 +999,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('920009','Servicios relacionados con juegos de azar y apuestas n.c.p.','Servicios relacionados con juegos de azar y apuestas n.c.p.  '),
 	 ('931010','Servicios de organización, dirección y gestión de prácticas deportivas en clubes','Servicios de organización, dirección y gestión de prácticas deportivas en clubes (Incluye clubes de fútbol, golf, tiro, boxeo, etc.)'),
 	 ('931020','Explotación de instalaciones deportivas, excepto clubes','Explotación de instalaciones deportivas, excepto clubes');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('931030','Promoción y producción de espectáculos deportivos','Promoción y producción de espectáculos deportivos'),
 	 ('931041','Servicios prestados por deportistas y atletas para la realización de prácticas deportivas','Servicios prestados por deportistas y atletas para la realización de prácticas deportivas'),
 	 ('931042','Servicios prestados por profesionales y técnicos para la realización de prácticas deportivas','Servicios prestados por profesionales y técnicos para la realización de prácticas deportivas (Incluye la actividad realizada por entrenadores, instructores, jueces árbitros, cronometradores, etc.)'),
@@ -1010,7 +1010,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('939030','Servicios de salones de baile, discotecas y similares','Servicios de salones de baile, discotecas y similares'),
 	 ('939090','Servicios de entretenimiento n.c.p.','Servicios de entretenimiento n.c.p.'),
 	 ('941100','Servicios de organizaciones empresariales y de empleadores','Servicios de organizaciones empresariales y de empleadores ');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('941200','Servicios de organizaciones profesionales','Servicios de organizaciones profesionales'),
 	 ('942000','Servicios de sindicatos','Servicios de sindicatos'),
 	 ('949100','Servicios de organizaciones religiosas','Servicios de organizaciones religiosas'),
@@ -1021,7 +1021,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('949990','Servicios de asociaciones n.c.p.','Servicios de asociaciones n.c.p.'),
 	 ('951100','Reparación y mantenimiento de equipos informáticos','Reparación y mantenimiento de equipos informáticos'),
 	 ('951200','Reparación y mantenimiento de equipos de telefonía y de comunicación','Reparación y mantenimiento de equipos de telefonía y de comunicación');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('952200','Reparación de calzado y artículos de marroquinería','Reparación de calzado y artículos de marroquinería'),
 	 ('952300','Reparación de tapizados y muebles','Reparación de tapizados y muebles (Incluye la restauración de muebles)'),
 	 ('952910','Reforma y reparación de cerraduras, duplicación de llaves. Cerrajerías','Reforma y reparación de cerraduras, duplicación de llaves. Cerrajerías'),
@@ -1032,7 +1032,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('960201','Servicios de peluquería','Servicios de peluquería'),
 	 ('960202','Servicios de tratamiento de belleza, excepto los de peluquería','Servicios de tratamiento de belleza, excepto los de peluquería'),
 	 ('960300','Pompas fúnebres y servicios conexos','Pompas fúnebres y servicios conexos');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('960910','Servicios de centros de estética, spa y similares','Servicios de centros de estética, spa y similares (Incluye baños turcos, saunas, solarios, centros de masajes y adelgazamiento, etc.)'),
 	 ('960990','Servicios personales n.c.p.','Servicios personales n.c.p. (Incluye actividades de astrología y espiritismo, las realizadas con fines sociales como agencias matrimoniales, de investigaciones genealógicas, de contratación de acompañantes, la actividad de lustrabotas, acomodadores de autos, etc.)'),
 	 ('970000','Servicios de hogares privados que contratan servicio doméstico','Servicios de hogares privados que contratan servicio doméstico'),
@@ -1043,7 +1043,7 @@ INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
 	 ('461091','Venta al por mayor en comisión o consignación de prod. textiles, prendas de vestir, calzado excepto el ortopédico, art.de marroquinería, paraguas y similares y prod.de cuero n.c.p','Venta al por mayor en comisión o consignación de productos textiles, prendas de vestir, calzado excepto el ortopédico,  artículos de marroquinería, paraguas y similares y productos de cuero n.c.p.'),
 	 ('431220','Perforación y sondeo, excepto perforación de pozos de petróleo, de gas, de minas e hidráulicos  y prospección de yacimientos de petróleo','Perforación y sondeo, excepto perforación de pozos de petróleo, de gas, de minas e hidráulicos  y prospección de yacimientos de petróleo (Incluye los trabajos de perforación, sondeo y muestreo con fines de construcción o para estudios geofísicos, geológicos u otros similares, las perforaciones horizontales para el paso de cables o cañerías de drenaje, etc.), (No incluye los servicios de perforación relacionados con la extracción de petróleo y gas, activ.091000, ni la perforación de pozos hidráulicos, activ.422100)'),
 	 ('331301','Reparación y mantenimiento de instrumentos médicos,ópticos y de precisión,equipo fotográfico,aparatos para medir,ensayar o navegar,relojes,excepto para uso personal o doméstico','Reparación y mantenimiento de instrumentos médicos, ópticos y de precisión, equipo fotográfico, aparatos para medir, ensayar o navegar, relojes, excepto para uso personal o doméstico');
-INSERT INTO activities_eco_f833 (code,description,description_large) VALUES
+INSERT INTO sys_activities_eco_f833 (code,description,description_large) VALUES
 	 ('014221','Cría de ganado equino realizada en haras','Cría de ganado equino realizada en haras (Incluye la producción de semen)'),
 	 ('000007','Jubilado','Jubilado'),
 	 ('000008','Estudiante','Estudiante'),
