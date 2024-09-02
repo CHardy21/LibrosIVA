@@ -1,17 +1,13 @@
-import customtkinter as ctk
 from tkinter import StringVar, font
-
+import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from CTkTable import *
 
 from config import db
 import config.functions_grals as fn
-from gui.activitiesF833 import activities
-from gui.activitiesShow import ActivitiesShows
 from gui.activitiesToFind import ActivitiesToFind
 from gui.taxStatusShow import TaxStatusShow
 
-# Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
 selected_row = None
 company_code = None
@@ -162,13 +158,13 @@ class CompanyWindow:
     def cambiar_titulo(self, titulo=None):
         self.root.title(titulo)
 
-    def abrir_ventana_sec(self, widgetUpdate):
-        self.root.winfo_parent()
-        self.widgetUpdate = widgetUpdate
-        print('abrir ventana secundaria')
-        print('Ventana principal: ', self.root)
-        # ventana_secundaria = activities('', self.root)
-        ventana_secundaria = ActivitiesShows(self)
+    # def abrir_ventana_sec(self, widgetUpdate):
+    #     self.root.winfo_parent()
+    #     self.widgetUpdate = widgetUpdate
+    #     print('abrir ventana secundaria')
+    #     print('Ventana principal: ', self.root)
+    #     # ventana_secundaria = activities('', self.root)
+    #     ventana_secundaria = ActivitiesShows(self)
 
 
 # =================
@@ -451,13 +447,19 @@ class CompanyWidgets:
                 count += 1
                 error[count] = "Debe escribir un domicilio."
 
-            if not fn.validate_codActividad(datos['activity_code']):
+            if not fn.validate_codActividad(db, datos['activity_code']):
                 count += 1
                 error[count] = "Debe escribir un Código de Actividad Válido."
 
             if not fn.validate_condIVA(datos['iva_conditions']):
                 count += 1
                 error[count] = "Condición ante IVA No Válido."
+
+            if not fn.verificar_rango(datos['month_close'],(0,13)):
+                count += 1
+                error[count] = "Mes de cierre No Válido."
+
+
 
             # if not validar.validar_string(datos['Op3'], "SNsn"):
             #     count += 1

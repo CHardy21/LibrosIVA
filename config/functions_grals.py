@@ -38,10 +38,24 @@ def validar_cuit(cuit):
     return aux == int(cuit[10])
 
 
-def validate_codActividad(dato):
-    if len(dato) < 7:
-        return False
+def validate_codActividad(db, record):
+    print(record)
+    value = str(record)
+    query = "SELECT * FROM sys_activities_eco_f833 WHERE code = ?"
+    result = db.fetchRecord(query, value)
+    print("DB Valor devuelto: ", result)
+    return result
 
 
 def validate_condIVA(dato):
     pass
+
+def verificar_rango(dato, rango):
+    try:
+        numero = int(dato)
+        if rango[0] < numero < rango[1]:
+            return True
+        else:
+            return False
+    except ValueError:
+        return False

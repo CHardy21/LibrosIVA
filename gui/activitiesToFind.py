@@ -59,8 +59,8 @@ def selection_return(parent, widget):
 
 class ActivitiesToFind:
     def __init__(self, parent):
-        self.table = None
         self.padre = parent
+        self.table = None
         self.root = ctk.CTkToplevel()
         self.root.title('Actividades Económicas')
         self.root.grab_set()
@@ -84,11 +84,11 @@ class ActivitiesToFind:
                                    text='Buscar',
                                    command=lambda: self.search_value())
         self.search_result_label = ctk.CTkLabel(marco_search, text="", )
-        # Agregar widget
         search_entry.grid(row=0, column=0, pady=10, padx=10, sticky='e')
         search_btn.grid(row=0, column=1, padx=10, pady=10, sticky='w')
         self.search_result_label.grid(row=1, column=0, padx=10, pady=10, sticky='we')
-        marco_search.grid()
+
+        marco_search.grid(row=0)
 
         self.marco_scroll = ctk.CTkScrollableFrame(self.root,
                                                    width=500,
@@ -98,6 +98,8 @@ class ActivitiesToFind:
                                                    border_color="black",
                                                    scrollbar_fg_color="black",
                                                    )
+
+
 
     def search_value(self):
         search_term = self.searchValue.get()
@@ -110,12 +112,13 @@ class ActivitiesToFind:
         self.search_result_label.configure(text=f'Se encontraron {numRows} coincidencias.')
 
         self.create_table(result)
-        self.marco_scroll.grid()
+        self.marco_scroll.grid(row=1)
 
     def create_table(self, data):
         if self.table is not None:
             self.table.destroy()
-            pass
+        else:
+            create_btns(self)
         self.table = CTkTable(master=self.marco_scroll,
                               column=2,
                               values=data,
@@ -126,6 +129,29 @@ class ActivitiesToFind:
         self.table.edit_column(0, width=100)
         self.table.edit_column(1, width=350, anchor="w")
         self.table.grid(row=0, column=0, )
+
+
+
+def create_btns(self):
+    # Botones de Acciones
+    self.marco_btns = ctk.CTkFrame(self.root,
+                                   width=300,
+                                   height=150
+                                   )
+    self.marco_btns.grid(row=2)
+
+    cancel_btn = ctk.CTkButton(self.marco_btns, text="Cancelar", width=100,
+                               command=lambda: self.root.destroy())
+    select_btn = ctk.CTkButton(self.marco_btns, text="Seleccionar", width=100,
+                               command=lambda: selection_return(self.padre, self)
+                               if selected_row is not None
+                               else CTkMessagebox(title="Error",
+                                                  message="Debe seleccionar una Actividad",
+                                                  icon="cancel"),
+                               )
+
+    cancel_btn.grid(row=1, column=1, padx=5, pady=5, )
+    select_btn.grid(row=1, column=2, padx=5, pady=5, )
 
 
 if __name__ == '__main__':

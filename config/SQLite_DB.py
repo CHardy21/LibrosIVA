@@ -36,14 +36,14 @@ class Database:
         return rows
 
 
-    def fetchRecord(self, query):
-        self.cur.execute(query)
+    def fetchRecord(self, query, value):
+        self.cur.execute(query, value)
         self.conn.commit()
         row = self.cur.fetchone()
         return row
 
-    def fetchRecords(self, query):
-        self.cur.execute(query)
+    def fetchRecords(self, query, value):
+        self.cur.execute(query, value)
         self.conn.commit()
         rows = self.cur.fetchall()
         return rows
