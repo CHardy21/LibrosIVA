@@ -29,12 +29,11 @@ class Database:
 
         return result
 
-    def searchRecords(self, query, value):
+    def searchRecords(self, query, value=''):
         self.cur.execute(query, value)
         self.conn.commit()
         rows = self.cur.fetchall()
         return rows
-
 
     def fetchRecord(self, query, value):
         self.cur.execute(query, value)

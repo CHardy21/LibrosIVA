@@ -21,8 +21,9 @@ def fetch_records():
 
 
 def get_record(record):
-    query = f"SELECT * FROM activities_eco_f833 WHERE code = '{record}'"
-    result = db.fetchRecord(query)
+    query = f"SELECT * FROM activities_eco_f833 WHERE code = '?'"
+    value = (record,)
+    result = db.fetchRecord(query, value)
     print("valor devuelto: ", result)
     return result
 

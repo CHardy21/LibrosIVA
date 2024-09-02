@@ -32,15 +32,16 @@ def select_company(objeto, e):
 
 def fetch_records():
     query = "SELECT cuit, fantasy_name, company_name FROM company"
-    result = db.fetchRecords(query)
+    result = db.fetchRecords(query, value='')
     print(result)
     return result
 
 
 def get_record(record):
-    query = f"SELECT * FROM company WHERE cuit = '{record}'"
-    result = db.fetchRecord(query)
-    print("valor devuelto: ", result)
+    query = "SELECT * FROM company WHERE cuit = ?"
+    value = (record,)
+    result = db.fetchRecord(query, value)
+    print("valor devuelto por DB: ", result)
     return result
 
 
@@ -129,6 +130,14 @@ def delete_company(self):
         print("=> ERROR con DB...(Front MSG)")
 
 
+def get_secondary_data(table, dato, value):
+    query = f"SELECT * FROM {table} WHERE  {dato} = ?"
+    value = (value,)
+    result = db.fetchRecord(query, value)
+    print("valor devuelto por DB: ", result)
+    return result
+
+
 # =================
 #  Clase Principal
 # =================
@@ -174,9 +183,7 @@ class CompanyWindow:
 # las distintas ventanas relacionadas con los comprobantes.
 class CompanyWidgets:
     def __init__(self, ventana_principal):
-
         self.ventana_principal = ventana_principal
-
 
     def listForm(self):
         marco = ctk.CTkScrollableFrame(master=self.ventana_principal.root,
@@ -252,7 +259,6 @@ class CompanyWidgets:
             titulo_ventana = "Nueva Empresa"
             self.ventana_principal.cambiar_titulo(titulo_ventana)
             # Inicializa el dict datos[...] con las Variables del Formulario
-            # Variables del Formulario
             datos = {
                 'id': StringVar(),
                 'cuit': StringVar(),
@@ -276,7 +282,6 @@ class CompanyWidgets:
             print("Editar Code: ", selected_row, " - ", company_code)
             # Recupera Valores del Formulario desde la DB y se carga al dict datos[...]
             result = get_record(company_code)
-            # Variables del Formulario
             datos = {
                 'id': StringVar(value=result[0]),
                 'cuit': StringVar(value=result[1]),
@@ -294,7 +299,6 @@ class CompanyWidgets:
                 'undersigned_character': StringVar(value=result[13])
             }
             statusEntry = 'disabled'
-
 
         else:
             print("ERROR: opcion no valida")
@@ -337,8 +341,8 @@ class CompanyWidgets:
         self.companyCODAD_label = ctk.CTkLabel(marco, text="...", )
         self.companyCODAD_label.place(x=200, y=160)
         btn_searchCA = ctk.CTkButton(marco, width=8, height=8,
-                                   corner_radius=25, text='?',
-                                   command=lambda: abrir_ventana_sec2(self,'activities'), )
+                                     corner_radius=25, text='?',
+                                     command=lambda: abrir_ventana_sec2(self, 'activities'), )
         btn_searchCA.place(x=180, y=164, )
 
         # Condición ante el IVA
@@ -348,10 +352,9 @@ class CompanyWidgets:
         self.companyIVAD_label = (ctk.CTkLabel(marco, text="...", ))
         self.companyIVAD_label.place(x=180, y=190)
         btn_searchIC = ctk.CTkButton(marco, width=8, height=8,
-                                   corner_radius=25, text='?',
-                                   command=lambda: abrir_ventana_sec2(self, 'taxstatus'), )
+                                     corner_radius=1_000_000, text='?',
+                                     command=lambda: abrir_ventana_sec2(self, 'taxstatus'), )
         btn_searchIC.place(x=160, y=194, )
-
 
         month_default = datos['month_close'].get()
 
@@ -363,11 +366,32 @@ class CompanyWidgets:
 
         # El que Suscribe...
         companySUSCR_label = ctk.CTkLabel(marco, text="El que Suscribe", ).place(x=10, y=250)
-        companySUSCR_entry = ctk.CTkEntry(marco, textvariable=datos['undersigned'], width=300).place(x=115, y=250)
+        companySUSCR_entry = ctk.CTkEntry(marco, textvariable=datos['undersigned'], width=200).place(x=115, y=250)
         # En su Carácter de ...
         companySUSCC_label = ctk.CTkLabel(marco, text="Carácter", ).place(x=10, y=280)
         companySUSCC_entry = ctk.CTkEntry(marco, textvariable=datos['undersigned_character'], width=200).place(x=115,
                                                                                                                y=280)
+        self.marco_taxpayer = ctk.CTkFrame(master=self.ventana_principal.root,
+                                           width=180,
+                                           height=360,
+                                           corner_radius=0,
+                                           border_width=1,
+                                           )
+        self.marco_taxpayer.place(x=360, y=190,)
+        self.taxPayer_label = ctk.CTkLabel(self.marco_taxpayer, text="Tipo de Contribuyente", ).grid(pady=2)
+        # Crear una variable para los botones de radio
+        self.radio_var = ctk.IntVar()
+
+        # Crear los botones de radio
+        self.taxPayer_RadioB1 = ctk.CTkRadioButton(self.marco_taxpayer, text=" General ", variable=self.radio_var,
+                                                   value=1, )
+        self.taxPayer_RadioB2 = ctk.CTkRadioButton(self.marco_taxpayer, text=" Gran Contribuyente ", variable=self.radio_var,
+                                                   value=2, )
+        self.taxPayer_RadioB3 = ctk.CTkRadioButton(self.marco_taxpayer, text=" Monotributo ", variable=self.radio_var,
+                                                   value=3, )
+        self.taxPayer_RadioB1.grid(padx=4, pady=4, sticky='w')
+        self.taxPayer_RadioB2.grid(padx=4, pady=4, sticky='w')
+        self.taxPayer_RadioB3.grid(padx=4, pady=4, sticky='w')
 
         marco_btns = ctk.CTkFrame(master=self.ventana_principal.root,
                                   width=520,
@@ -398,9 +422,17 @@ class CompanyWidgets:
         cancel_btn.grid(row=0, column=1, padx=5, pady=5, sticky='e')
         ok_btn.grid(row=0, column=2, padx=5, pady=5, sticky='e')
 
-        print(marco.grid_slaves())
         self.ventana_principal.agregar_widget2(marco, row=0, column=0)
         self.ventana_principal.agregar_widget2(marco_btns, row=1, column=0, pady=5)
+
+        if opt == 'edit':
+            data = get_secondary_data('sys_activities_eco_f833', 'code', self.companyCODA_entry.get())
+            self.asignar_valor('activities', data[1], data[2])
+            print('companyIVA_entry: ', self.companyIVA_entry.get())
+            data2 = get_secondary_data('tax_status', 'code', self.companyIVA_entry.get())
+            self.asignar_valor('taxstatus', data2[1], data2[2])
+
+            pass
 
         def validation_form(self, dataForm, optt):
 
@@ -446,8 +478,15 @@ class CompanyWidgets:
             if not fn.validate_txt(datos['address'], 5, 50, str):
                 count += 1
                 error[count] = "Debe escribir un domicilio."
+            print('-- ', datos['activity_code'])
 
-            if not fn.validate_codActividad(db, datos['activity_code']):
+            if datos['activity_code'] != '':
+                if fn.validate_codActividad(db, datos['activity_code']):
+                    return
+                else:
+                    count += 1
+                    error[count] = "Debe escribir un Código de Actividad Válido."
+            else:
                 count += 1
                 error[count] = "Debe escribir un Código de Actividad Válido."
 
@@ -455,11 +494,9 @@ class CompanyWidgets:
                 count += 1
                 error[count] = "Condición ante IVA No Válido."
 
-            if not fn.verificar_rango(datos['month_close'],(0,13)):
+            if not fn.verificar_rango(datos['month_close'], (0, 13)):
                 count += 1
                 error[count] = "Mes de cierre No Válido."
-
-
 
             # if not validar.validar_string(datos['Op3'], "SNsn"):
             #     count += 1
@@ -498,13 +535,15 @@ class CompanyWidgets:
                     # print(entry.winfo_name())
 
         def abrir_ventana_sec2(self, secondaryWin):
-            print('abrir ventana secundaria')
+            print('Abriendo ventana secundaria de Consulta...')
             if secondaryWin == 'activities':
                 ventana_secundaria = ActivitiesToFind(self)
             if secondaryWin == 'taxstatus':
                 ventana_secundaria = TaxStatusShow(self)
 
-    def asignar_valor(self, ventana,  valor, description):
+    def asignar_valor(self, ventana, valor, description):
+        # Función recibe los valores de lo seleccionado en la ventana secundaria y actualiza
+        # el formulario actual
         print("Valor Recibido de ventana secundaria: ", valor)
         match ventana:
             case "activities":
@@ -516,12 +555,11 @@ class CompanyWidgets:
                 self.companyIVA_entry.insert(0, valor)
                 self.companyIVAD_label.configure(text=description)
 
-
-
         # widgets_secundarios = self.ventana_principal.root.winfo_children()
         # for widget in widgets_secundarios:
         #     print(f"Nombre del widget: {widget.winfo_class()}")
         #     print(f"Nombre del widget: {widget.winfo_children()}")
+
 
 # ===================================================================
 #  Método que maneja la creación de widget de las distintas ventanas
