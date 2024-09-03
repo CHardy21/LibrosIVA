@@ -387,6 +387,10 @@ class CompanyWidgets:
                                                    value=1, )
         self.taxPayer_RadioB2 = ctk.CTkRadioButton(self.marco_taxpayer, text=" Gran Contribuyente ",
                                                    variable=self.radio_var,
+                                                   border_width_checked=5,
+                                                   border_width_unchecked=1,
+                                                   radiobutton_width=10,
+                                                   radiobutton_height=10,
                                                    value=2, )
         self.taxPayer_RadioB3 = ctk.CTkRadioButton(self.marco_taxpayer, text=" Monotributo ", variable=self.radio_var,
                                                    value=3, )
