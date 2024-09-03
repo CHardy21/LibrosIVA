@@ -6,7 +6,6 @@ from CTkTable import *
 
 from config import db
 
-
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
 selected_row = None
@@ -16,7 +15,8 @@ tax_status_desc = None
 
 def fetch_records():
     query = "SELECT code, description FROM tax_status"
-    result = db.fetchRecords(query)
+    value = ''
+    result = db.fetchRecords(query, value)
     print("fetchall: ", result)
     return result
 
@@ -123,3 +123,15 @@ class TaxStatusShow:
         marco_btns.grid(pady=15)
         cancel_btn.grid(row=1, column=1, padx=5, pady=5, )
         select_btn.grid(row=1, column=2, padx=5, pady=5, )
+
+
+if __name__ == '__main__':
+    from config.SQLite_DB import Database
+
+    data = '../config/iva_data.db'
+    db = Database(data)
+
+    ctk.set_appearance_mode("dark")
+    app = ctk.CTk()
+    TaxStatusShow('')
+    app.mainloop()

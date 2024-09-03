@@ -47,7 +47,7 @@ class Database:
         rows = self.cur.fetchall()
         return rows
 
-    def fetchRecords2(self, query, value):
+    def fetchRecords2(self, query, value=None):
         self.cur.execute(query, value)
         self.conn.commit()
         rows = self.cur.fetchall()

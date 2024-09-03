@@ -1,9 +1,7 @@
 import customtkinter as ctk
 from tkinter import StringVar, font
-
 from CTkMessagebox import CTkMessagebox
 from CTkTable import *
-
 from config import db
 import config.functions_grals as fn
 
@@ -11,11 +9,6 @@ import config.functions_grals as fn
 font_widgets = ('Raleway', 12, font.BOLD)
 selected_row = None
 tax_status_code = None
-ctk_style = """
-input[type=checkbox] {
-    transform: scale(1.5); /* Ajusta el factor de escala según tus necesidades */
-}
-"""
 
 
 def select_tax_status(objeto, e):
@@ -48,14 +41,16 @@ def select_tax_status(objeto, e):
 
 def fetch_records():
     query = "SELECT code, description FROM tax_status"
-    result = db.fetchRecords(query)
+    value = ''
+    result = db.fetchRecords(query, value)
     print("fetchall: ", result)
     return result
 
 
 def get_record(record):
-    query = f"SELECT * FROM tax_status WHERE code = '{record}'"
-    result = db.fetchRecord(query)
+    query = "SELECT * FROM tax_status WHERE code = ?"
+    value = (record,)
+    result = db.fetchRecord(query, value)
     print("fetchone: ", result)
     return result
 
@@ -266,7 +261,6 @@ class TaxStatusWidgets:
 
         else:
             print("ERROR: opcion no valida")
-
 
         # Crea el frame con el formulario y lo añade a la ventana
         marco = ctk.CTkFrame(master=self.ventana_principal.root,

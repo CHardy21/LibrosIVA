@@ -66,14 +66,16 @@ def update_record(self, datos):
 
 def fetch_records():
     query = "SELECT CODE,DESCRIPTION FROM invoices"
-    result = db.fetchRecords(query)
+    value = ''
+    result = db.fetchRecords(query,value)
     print(result)
     return result
 
 
 def get_record(record):
-    query = f"SELECT * FROM invoices WHERE code = '{record}'"
-    result = db.fetchRecord(query)
+    query = "SELECT * FROM invoices WHERE code = ?"
+    value = (record,)
+    result = db.fetchRecord(query, value)
     print("valor devuelto: ", result)
     return result
 

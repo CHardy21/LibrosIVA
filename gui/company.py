@@ -12,6 +12,7 @@ font_widgets = ('Raleway', 12, font.BOLD)
 selected_row = None
 company_code = None
 secondaryWin = None
+# principalWin = None
 
 
 def select_company(objeto, e):
@@ -142,6 +143,7 @@ def get_secondary_data(table, dato, value):
 #  Clase Principal
 # =================
 class CompanyWindow:
+
     def __init__(self, root):
         self.root = ctk.CTkToplevel()
         self.root.title('Empresas')
@@ -152,7 +154,8 @@ class CompanyWindow:
         # Evitar que la ventana se cierre
         # self.root.protocol("WM_DELETE_WINDOW", lambda: None)
         self.valor_seleccionado = None
-        self.widgetUpdate = None
+        # self.widgetUpdate = None
+        # self.principalWin = self
 
     def agregar_widget(self, widget):
         widget.pack()
@@ -161,20 +164,17 @@ class CompanyWindow:
         widget.grid(**kwargs)
 
     def cerrar_ventana(self):
-        self.root.winfo_parent()
+        print(self.root.winfo_parent())
         self.root.destroy()
+
+    def min_max_ventana(self, action):
+        if action == 'min':
+            self.root.iconify()
+        elif action == 'restore':
+            self.root.deiconify()
 
     def cambiar_titulo(self, titulo=None):
         self.root.title(titulo)
-
-    # def abrir_ventana_sec(self, widgetUpdate):
-    #     self.root.winfo_parent()
-    #     self.widgetUpdate = widgetUpdate
-    #     print('abrir ventana secundaria')
-    #     print('Ventana principal: ', self.root)
-    #     # ventana_secundaria = activities('', self.root)
-    #     ventana_secundaria = ActivitiesShows(self)
-
 
 # =================
 # Clase Secundaria.
@@ -377,7 +377,7 @@ class CompanyWidgets:
                                            corner_radius=0,
                                            border_width=1,
                                            )
-        self.marco_taxpayer.place(x=360, y=190,)
+        self.marco_taxpayer.place(x=360, y=190, )
         self.taxPayer_label = ctk.CTkLabel(self.marco_taxpayer, text="Tipo de Contribuyente", ).grid(pady=2)
         # Crear una variable para los botones de radio
         self.radio_var = ctk.IntVar()
@@ -385,7 +385,8 @@ class CompanyWidgets:
         # Crear los botones de radio
         self.taxPayer_RadioB1 = ctk.CTkRadioButton(self.marco_taxpayer, text=" General ", variable=self.radio_var,
                                                    value=1, )
-        self.taxPayer_RadioB2 = ctk.CTkRadioButton(self.marco_taxpayer, text=" Gran Contribuyente ", variable=self.radio_var,
+        self.taxPayer_RadioB2 = ctk.CTkRadioButton(self.marco_taxpayer, text=" Gran Contribuyente ",
+                                                   variable=self.radio_var,
                                                    value=2, )
         self.taxPayer_RadioB3 = ctk.CTkRadioButton(self.marco_taxpayer, text=" Monotributo ", variable=self.radio_var,
                                                    value=3, )
@@ -482,7 +483,7 @@ class CompanyWidgets:
 
             if datos['activity_code'] != '':
                 if fn.validate_codActividad(db, datos['activity_code']):
-                    return
+                    pass
                 else:
                     count += 1
                     error[count] = "Debe escribir un Código de Actividad Válido."
@@ -490,7 +491,7 @@ class CompanyWidgets:
                 count += 1
                 error[count] = "Debe escribir un Código de Actividad Válido."
 
-            if not fn.validate_condIVA(datos['iva_conditions']):
+            if not fn.validate_condIVA(db, datos['iva_conditions']):
                 count += 1
                 error[count] = "Condición ante IVA No Válido."
 
@@ -535,13 +536,17 @@ class CompanyWidgets:
                     # print(entry.winfo_name())
 
         def abrir_ventana_sec2(self, secondaryWin):
-            print('Abriendo ventana secundaria de Consulta...')
+            print('Abriendo ventana secundaria de Consulta...{}')
+            self.ventana_principal.min_max_ventana('min')
             if secondaryWin == 'activities':
                 ventana_secundaria = ActivitiesToFind(self)
             if secondaryWin == 'taxstatus':
                 ventana_secundaria = TaxStatusShow(self)
+            # Maximizando la ventana
+            # self.after(1, self.wm_state, 'zoomed')
 
     def asignar_valor(self, ventana, valor, description):
+        self.ventana_principal.min_max_ventana('restore')
         # Función recibe los valores de lo seleccionado en la ventana secundaria y actualiza
         # el formulario actual
         print("Valor Recibido de ventana secundaria: ", valor)
@@ -566,11 +571,13 @@ class CompanyWidgets:
 # ================actualizar_entry===================================================
 
 def create_window():
+    global principalWin
     # Crear la ventana principal
     root = ctk.CTk()
     ventana_principal = CompanyWindow(root)
     # Crear widgets desde la clase secundaria
     crear_widgets = CompanyWidgets(ventana_principal)
+    principalWin = root
     return crear_widgets
 
 

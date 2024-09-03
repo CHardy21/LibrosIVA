@@ -40,15 +40,28 @@ def validar_cuit(cuit):
 
 def validate_codActividad(db, record):
     print(record)
-    value = str(record)
+    value = (record,)
     query = "SELECT * FROM sys_activities_eco_f833 WHERE code = ?"
     result = db.fetchRecord(query, value)
     print("DB Valor devuelto: ", result)
-    return result
+    if result:
+        print('True')
+        return True
+    else:
+        return False
 
 
-def validate_condIVA(dato):
-    pass
+def validate_condIVA(db, record):
+    print(record)
+    value = (record,)
+    query = "SELECT * FROM tax_status WHERE code = ?"
+    result = db.fetchRecord(query, value)
+    print("DB Valor devuelto: ", result)
+    if result:
+        print('True')
+        return True
+    else:
+        return False
 
 def verificar_rango(dato, rango):
     try:

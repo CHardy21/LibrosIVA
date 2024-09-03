@@ -13,11 +13,11 @@ activity_code = None
 activity_description = None
 
 
-def fetch_records():
-    query = "SELECT code,description FROM activities_eco_f833 LIMIT 50"
-    result = db.fetchRecords(query)
-    print(result)
-    return result
+# def fetch_records():
+#     query = "SELECT code,description FROM activities_eco_f833 LIMIT 50"
+#     result = db.fetchRecords(query, value)
+#     print(result)
+#     return result
 
 
 def get_record(record):
