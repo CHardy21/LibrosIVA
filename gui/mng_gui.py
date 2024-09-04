@@ -5,14 +5,12 @@ from PIL import Image
 import config.general_config as conf
 import gui.menu_gui as menu
 from gui.activitiesShow import ActivitiesShows
-from gui.activitiesToFind import ActivitiesToFind
 
 from gui.invoices import invoice
 from gui.company import company
 from gui.provincesShows import ProvincesShow
 from gui.tax_status import tax_status
 from gui.jobData import SelectCompany
-
 
 
 class Login:
@@ -83,7 +81,7 @@ class Login:
         # Se destruye la ventana de login
         self.root.destroy()
         # Se instancia la ventana de opciones del programa
-        #ventana_opciones = VentanaOpciones()
+        # ventana_opciones = VentanaOpciones()
         app = App()
 
 
@@ -94,8 +92,6 @@ class App(ctk.CTk):
 
     def __init__(self):
         super().__init__()
-        #self.app = tk.Tk()
-
         self.title('Sistema de Registración IVA 1.0')
         self.configure(fg_color=App.COLOR_VENTANA)
         self.iconbitmap(os.path.join(conf.dir_images, App.ICONO_VENTANA))
@@ -134,6 +130,3 @@ def on_click_menu(event):
         form = ProvincesShow(None)
     if event == "activities":
         form = ActivitiesShows(None)
-
-
-    pass

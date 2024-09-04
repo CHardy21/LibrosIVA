@@ -9,12 +9,12 @@ from config import db
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
 selected_row = None
-activity_code = None
-activity_description = None
+code = None
+description = None
 
 
 def load_data(self, start, limit):
-    query = "SELECT code,description FROM sys_activities_eco_f833 LIMIT ? OFFSET ?"
+    query = "SELECT code,description FROM sys_invoices_types LIMIT ? OFFSET ?"
     value = (limit, start)
     result = db.fetchRecords2(query, value)
     for fila in result:
@@ -22,8 +22,9 @@ def load_data(self, start, limit):
 
 
 def fetch_records():
-    query = "SELECT code,description FROM sys_activities_eco_f833 LIMIT 50"
-    result = db.fetchRecords(query)
+    query = "SELECT code,description FROM sys_invoices_types"
+    value = ''
+    result = db.fetchRecords(query, value)
     print(result)
     return result
 
@@ -35,58 +36,41 @@ def get_record(record):
     return result
 
 
-def search_records(searchedData):
-    pass
-
-
-def select_activity(objeto, e):
-    # 'e' tiene los datos pasados por el widget tabla de donde se hizo el  Click
+def select_invoice(objeto, e):
+    # 'e' tiene los datos pasados por el widget tabla de donde se hizo el Click
     global selected_row
-    global activity_code
-    global activity_description
+    global code
+    global description
 
     if selected_row is not None:
-        objeto.deselect_row(selected_row)
+        objeto.table.deselect_row(selected_row)
+        objeto.textBox_info.delete("0.0", "end")  # delete all text
 
-    objeto.select_row(e["row"])
+    objeto.table.select_row(e["row"])
     selected_row = e["row"]
-    activity_code = objeto.get(selected_row, 0)
-    activity_description = objeto.get(selected_row, 1)
-    print(" CODE Activity Selected: ", activity_code)
+    code = objeto.table.get(selected_row, 0)
+    description = objeto.table.get(selected_row, 1)
+    print(" CODE Activity Selected: ", code)
     print(e)
 
+    objeto.textBox_info.insert("0.0", f"Cód: {code} \n")  # insert at line 0 character 0
+    objeto.textBox_info.insert("2.0", f"Des: {description}")
 
 def selection_return(parent, widget):
-    parent.asignar_valor('activities', activity_code, activity_description)
+    parent.asignar_valor('invoicesAFIP', code, description)
     widget.root.destroy()
 
 
-class ActivitiesShows:
+class ActivitiesShowAFIP:
     def __init__(self, parent):
         self.padre = parent
         self.root = ctk.CTkToplevel()
-        self.root.title('Actividades Económicas')
+        self.root.title('Tipos de Comprobantes (AFIP)')
         self.root.grab_set()
         self.root.config(padx=10, pady=10)
         self.root.resizable(False, False)  # Evitar que la ventana se expanda
         # self.root.protocol("WM_DELETE_WINDOW", lambda: None)  # Evitar que la ventana se cierre
         print('Parent: ', parent)
-
-        marco_search = ctk.CTkFrame(self.root,
-                                    width=518,
-                                    height=50,
-                                    corner_radius=0,
-                                    )
-        search_entry = ctk.CTkEntry(master=marco_search,
-                                    width=360,
-                                    )
-        search_btn = ctk.CTkButton(master=marco_search,
-                                   width=120,
-                                   text='Buscar')
-        # Agregar widget
-        search_entry.grid(row=0, column=0, pady=10, padx=10, sticky='e')
-        search_btn.grid(row=0, column=1, padx=10, pady=10, sticky='w')
-        marco_search.grid()
 
         self.marco = ctk.CTkScrollableFrame(self.root,
                                             width=500,
@@ -98,30 +82,37 @@ class ActivitiesShows:
                                             )
 
         # Leer comprobantes desde la base de datos (DB)
-        # value = fetch_records()
+        value = fetch_records()
         # Crear tabla con los comprobantes existentes en la DB
         self.table = CTkTable(master=self.marco,
-                              # row=len(value),
+                              row=len(value),
                               column=2,
-                              # values=value,
+                              values=value,
                               border_width=0,
                               corner_radius=0,
-                              command=lambda e: select_activity(self.table, e),
+                              command=lambda e: select_invoice(self, e),
                               )
-        self.table.edit_column(0, width=100)
-        self.table.edit_column(1, width=250, anchor="w")
+        self.table.edit_column(0, width=80)
+        self.table.edit_column(1, width=270, anchor="w")
         self.table.grid(row=0, column=0, )
         # Agregar widget creado en la Clase Principal
         self.marco.grid()
 
-        self.load_data(0, 20)
+        # self.load_data(0, 20)
+        self.marco_info = ctk.CTkFrame(self.root, width=500, height=50, )
+        self.textBox_info = ctk.CTkTextbox(self.marco_info,
+                                           width=500, height=70,
+                                           text_color='grey')
 
+        self.textBox_info.grid(padx=10, pady=10)
+        self.marco_info.grid()
         # Botones de Acciones
+
         marco_btns = ctk.CTkFrame(self.root,
                                   width=300,
                                   )
-        cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
-                                   command=lambda: self.root.destroy())
+        close_btn = ctk.CTkButton(marco_btns, text="Cerrar", width=100,
+                                  command=lambda: self.root.destroy())
         select_btn = ctk.CTkButton(marco_btns, text="Seleccionar", width=100,
                                    command=lambda: selection_return(self.padre, self)
                                    if selected_row is not None
@@ -130,8 +121,8 @@ class ActivitiesShows:
                                                       icon="cancel"),
                                    )
         marco_btns.grid()
-        cancel_btn.grid(row=1, column=1, padx=5, pady=5, )
-        select_btn.grid(row=1, column=2, padx=5, pady=5, )
+        select_btn.grid(row=1, column=1, padx=5, pady=5, )
+        close_btn.grid(row=1, column=2, padx=5, pady=5, )
 
         self.marco._parent_canvas.bind("<Configure>", self.on_scroll)
 
@@ -159,5 +150,5 @@ if __name__ == '__main__':
 
     ctk.set_appearance_mode("dark")
     app = ctk.CTk()
-    ActivitiesShows('')
+    ActivitiesShowAFIP('')
     app.mainloop()
