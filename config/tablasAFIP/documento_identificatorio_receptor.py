@@ -9,7 +9,7 @@ query = """
     code TEXT(3) NOT NULL,
     description TEXT NOT NULL)
     """
-result = db.fetchRecord(query)
+result = db.fetchRecord(query,'')
 
 with open('documento_identificatorio_receptor.txt', 'r', encoding='utf-8') as archivo:
     lineas = archivo.readlines()

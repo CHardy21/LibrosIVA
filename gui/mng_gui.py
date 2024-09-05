@@ -5,6 +5,7 @@ from PIL import Image
 import config.general_config as conf
 import gui.menu_gui as menu
 from gui.activitiesShow import ActivitiesShows
+from gui.docTypeShowAFIP import DocTypeShowAFIP
 
 from gui.invoices import invoice
 from gui.company import company
@@ -133,3 +134,5 @@ def on_click_menu(event):
         form = ActivitiesShows(None)
     if event == "invoicesAFIP":
         form = InvoicesShowAFIP(None)
+    if event == "docTypeAFIP":
+        form = DocTypeShowAFIP(None)
