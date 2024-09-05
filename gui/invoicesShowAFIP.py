@@ -1,6 +1,5 @@
 import customtkinter as ctk
 from tkinter import StringVar, font
-
 from CTkMessagebox import CTkMessagebox
 from CTkTable import *
 
@@ -25,15 +24,15 @@ def fetch_records():
     query = "SELECT code,description FROM sys_invoices_types"
     value = ''
     result = db.fetchRecords(query, value)
-    print(result)
+    # print(result)
     return result
 
 
-def get_record(record):
-    query = f"SELECT * FROM activities_eco_f833 WHERE code = '{record}'"
-    result = db.fetchRecord(query)
-    print("valor devuelto: ", result)
-    return result
+# def get_record(record):
+#     query = f"SELECT * FROM activities_eco_f833 WHERE code = '{record}'"
+#     result = db.fetchRecord(query)
+#     print("valor devuelto: ", result)
+#     return result
 
 
 def select_invoice(objeto, e):
@@ -50,18 +49,19 @@ def select_invoice(objeto, e):
     selected_row = e["row"]
     code = objeto.table.get(selected_row, 0)
     description = objeto.table.get(selected_row, 1)
-    print(" CODE Activity Selected: ", code)
-    print(e)
+    # print(" CODE Selected: ", code)
+    # print(e)
 
     objeto.textBox_info.insert("0.0", f"Cód: {code} \n")  # insert at line 0 character 0
     objeto.textBox_info.insert("2.0", f"Des: {description}")
+
 
 def selection_return(parent, widget):
     parent.asignar_valor('invoicesAFIP', code, description)
     widget.root.destroy()
 
 
-class ActivitiesShowAFIP:
+class InvoicesShowAFIP:
     def __init__(self, parent):
         self.padre = parent
         self.root = ctk.CTkToplevel()
@@ -70,7 +70,6 @@ class ActivitiesShowAFIP:
         self.root.config(padx=10, pady=10)
         self.root.resizable(False, False)  # Evitar que la ventana se expanda
         # self.root.protocol("WM_DELETE_WINDOW", lambda: None)  # Evitar que la ventana se cierre
-        print('Parent: ', parent)
 
         self.marco = ctk.CTkScrollableFrame(self.root,
                                             width=500,
@@ -95,22 +94,21 @@ class ActivitiesShowAFIP:
         self.table.edit_column(0, width=80)
         self.table.edit_column(1, width=270, anchor="w")
         self.table.grid(row=0, column=0, )
-        # Agregar widget creado en la Clase Principal
+
         self.marco.grid()
 
-        # self.load_data(0, 20)
-        self.marco_info = ctk.CTkFrame(self.root, width=500, height=50, )
+        self.marco_info = ctk.CTkFrame(self.root, width=498,
+                                       height=50,
+                                       corner_radius=0, )
         self.textBox_info = ctk.CTkTextbox(self.marco_info,
-                                           width=500, height=70,
+                                           width=498, height=70,
                                            text_color='grey')
 
         self.textBox_info.grid(padx=10, pady=10)
         self.marco_info.grid()
-        # Botones de Acciones
 
-        marco_btns = ctk.CTkFrame(self.root,
-                                  width=300,
-                                  )
+        # Botones de Acciones
+        marco_btns = ctk.CTkFrame(self.root, width=300,)
         close_btn = ctk.CTkButton(marco_btns, text="Cerrar", width=100,
                                   command=lambda: self.root.destroy())
         select_btn = ctk.CTkButton(marco_btns, text="Seleccionar", width=100,
@@ -124,22 +122,22 @@ class ActivitiesShowAFIP:
         select_btn.grid(row=1, column=1, padx=5, pady=5, )
         close_btn.grid(row=1, column=2, padx=5, pady=5, )
 
-        self.marco._parent_canvas.bind("<Configure>", self.on_scroll)
+        # self.marco._parent_canvas.bind("<Configure>", self.on_scroll)
 
-    def load_data(self, start, limit):
-        query = "SELECT code,description FROM sys_activities_eco_f833 LIMIT ? OFFSET ?"
-        value = (limit, start)
-        result = db.fetchRecords2(query, value)
-        for fila in result:
-            self.table.add_row(values=fila)
+    # def load_data(self, start, limit):
+    #     query = "SELECT code,description FROM sys_activities_eco_f833 LIMIT ? OFFSET ?"
+    #     value = (limit, start)
+    #     result = db.fetchRecords2(query, value)
+    #     for fila in result:
+    #         self.table.add_row(values=fila)
 
-    def on_scroll(self, event):
-        print("Event on_scroll run ")
-        # Detectar si se ha llegado al final del scroll
-        if self.marco._parent_canvas.yview()[1] == 1.0:
-            # Cargar más datos
-            current_count = len(self.table.get())
-            self.load_data(current_count, 20)
+    # def on_scroll(self, event):
+    #     print("Event on_scroll run ")
+    #     # Detectar si se ha llegado al final del scroll
+    #     if self.marco._parent_canvas.yview()[1] == 1.0:
+    #         # Cargar más datos
+    #         current_count = len(self.table.get())
+    #         self.load_data(current_count, 20)
 
 
 if __name__ == '__main__':
@@ -150,5 +148,5 @@ if __name__ == '__main__':
 
     ctk.set_appearance_mode("dark")
     app = ctk.CTk()
-    ActivitiesShowAFIP('')
+    InvoicesShowAFIP('')
     app.mainloop()

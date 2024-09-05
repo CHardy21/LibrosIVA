@@ -16,14 +16,16 @@ provinces_desc = None
 
 def fetch_records():
     query = "SELECT code, description FROM sys_provinces"
-    result = db.fetchRecords(query)
+    value= ''
+    result = db.fetchRecords(query, value)
     print("fetchall: ", result)
     return result
 
 
 def get_record(record):
-    query = f"SELECT * FROM sys_provinces WHERE code = '{record}'"
-    result = db.fetchRecord(query)
+    query = f"SELECT * FROM sys_provinces WHERE code = ?"
+    value = (record,)
+    result = db.fetchRecord(query, value)
     print("fetchone: ", result)
     return result
 
@@ -86,8 +88,6 @@ class ProvincesShow:
                                        border_color="black",
                                        scrollbar_fg_color="black",
                                        )
-        # marco.grid_rowconfigure(0, weight=1)
-        # marco.grid_columnconfigure(0, weight=1)
         # Leer comprobantes desde la base de datos (DB)
         value = fetch_records()
         # Crear tabla con los comprobantes existentes en la DB
@@ -110,7 +110,7 @@ class ProvincesShow:
         marco_btns = ctk.CTkFrame(master=self.root,
                                   width=300,
                                   )
-        cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
+        close_btn = ctk.CTkButton(marco_btns, text="Cerrar", width=100,
                                    command=lambda: self.root.destroy())
         select_btn = ctk.CTkButton(marco_btns, text="Seleccionar", width=100,
                                    command=lambda: selection_return(self.padre, self)
@@ -119,10 +119,9 @@ class ProvincesShow:
                                                       message="Debe seleccionar una Provincia",
                                                       icon="cancel"),
                                    )
-
         marco_btns.grid(pady=15)
-        cancel_btn.grid(row=1, column=1, padx=5, pady=5, )
-        select_btn.grid(row=1, column=2, padx=5, pady=5, )
+        select_btn.grid(row=1, column=1, padx=5, pady=5, )
+        close_btn.grid(row=1, column=2, padx=5, pady=5, )
 
 
 if __name__ == '__main__':

@@ -8,6 +8,7 @@ from gui.activitiesShow import ActivitiesShows
 
 from gui.invoices import invoice
 from gui.company import company
+from gui.invoicesShowAFIP import InvoicesShowAFIP
 from gui.provincesShows import ProvincesShow
 from gui.tax_status import tax_status
 from gui.jobData import SelectCompany
@@ -130,3 +131,5 @@ def on_click_menu(event):
         form = ProvincesShow(None)
     if event == "activities":
         form = ActivitiesShows(None)
+    if event == "invoicesAFIP":
+        form = InvoicesShowAFIP(None)
