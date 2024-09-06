@@ -5,20 +5,21 @@ from tkinter.font import BOLD
 from config.SQLite_DB import Database
 
 # ---> Rutas
-dir_config = os.path.dirname(__file__)
+DIR_CONFIG = os.path.dirname(__file__)
 # Carpeta principal
-dir_ppal = dir_config[0:len(dir_config) - 6]
-dir_gui = os.path.join(dir_ppal, "gui")
-dir_images = os.path.join(dir_gui, "images")
+DIR_ROOT = DIR_CONFIG[0:len(DIR_CONFIG) - 6]
+DIR_GUI = os.path.join(DIR_ROOT, "gui")
+DIR_IMAGES = os.path.join(DIR_GUI, "images")
+DIR_THEMES = os.path.join(DIR_GUI, "themes")
 
-# print(dir_ppal)
-# print(dir_gui)
-# print(dir_images)
+my_theme = 'myPYTheme.json'
+theme_path = os.path.join(DIR_THEMES, my_theme)
 
 # Configurando Apariencia General de la App
+
 # Modo de color y tema
 ctk.set_appearance_mode("dark")
-ctk.set_default_color_theme("blue")
+ctk.set_default_color_theme(theme_path)
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 16, BOLD)
 

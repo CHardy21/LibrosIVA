@@ -19,15 +19,15 @@ class Login:
         # Creación de la ventana principal
         self.root = ctk.CTk()
         self.root.title("CHardy© Estudios Contables - Login")
-        self.root.iconbitmap(os.path.join(conf.dir_images, "CH.ico"))
+        self.root.iconbitmap(os.path.join(conf.DIR_IMAGES, "CH.ico"))
         self.root.geometry("400x500")  # Tamaño de la ventana
         self.root.resizable(False, False)  # Bloqueo de redimensión de ventana en alto y ancho
 
         # Contenido de la ventana principal
         # Carga de la imagen
         logo = ctk.CTkImage(
-            light_image=Image.open((os.path.join(conf.dir_images, "logo_claro.png"))),  # Imagen modo claro
-            dark_image=Image.open((os.path.join(conf.dir_images, "logo_oscuro.png"))),  # Imagen modo oscuro
+            light_image=Image.open((os.path.join(conf.DIR_IMAGES, "logo_claro.png"))),  # Imagen modo claro
+            dark_image=Image.open((os.path.join(conf.DIR_IMAGES, "logo_oscuro.png"))),  # Imagen modo oscuro
             size=(250, 250))  # Tamaño de las imágenes
 
         # Etiqueta para mostrar la imagen
@@ -95,7 +95,7 @@ class App(ctk.CTk):
         super().__init__()
         self.title('Sistema de Registración IVA 1.0')
         self.configure(fg_color=App.COLOR_VENTANA)
-        self.iconbitmap(os.path.join(conf.dir_images, App.ICONO_VENTANA))
+        self.iconbitmap(os.path.join(conf.DIR_IMAGES, App.ICONO_VENTANA))
 
         # Configurar donde se muestra la ventana de la App
         ancho_app = 900
