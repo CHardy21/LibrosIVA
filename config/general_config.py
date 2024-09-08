@@ -13,7 +13,7 @@ DIR_IMAGES = os.path.join(DIR_GUI, "images")
 DIR_THEMES = os.path.join(DIR_GUI, "themes")
 
 DB_SYS = os.path.join(DIR_CONFIG, "iva_data.db")
-my_theme = 'myPYTheme.json'
+# my_theme = 'myPYTheme.json'
 # theme_path = os.path.join(DIR_THEMES, my_theme)
 theme_path = 'blue'
 appearance = 'dark'
@@ -26,8 +26,7 @@ ctk.set_default_color_theme(theme_path)
 font_widgets = ('Raleway', 16, BOLD)
 
 # Objeto para manejar bases de datos MySQL
-#base_datos = sqlbd.BaseDatos(**sqlbd.acceso_bd)
 data = "../config/iva_data.db"
 db = Database(data)
 
-print(DB_SYS)
+# print(DB_SYS)

@@ -4,6 +4,7 @@ from tkinter import font
 from CTkMessagebox import CTkMessagebox
 from CTkTable import *
 
+import config
 from config import db
 
 # Fuente para algunos widgets
@@ -128,8 +129,8 @@ class TaxStatusShow:
 if __name__ == '__main__':
     from config.SQLite_DB import Database
 
-    data = '../config/iva_data.db'
-    db = Database(data)
+    # data = '../config/iva_data.db'
+    db = Database(config.DB_SYS)
 
     ctk.set_appearance_mode("dark")
     app = ctk.CTk()

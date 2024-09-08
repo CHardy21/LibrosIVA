@@ -68,7 +68,7 @@ def selection_return(parent, widget):
 # =================
 #  Clase Principal
 # =================
-class ProvincesShow:
+class ProvincesShowAFIP:
     def __init__(self, parent):
         self.padre = parent
         self.root = ctk.CTkToplevel()
@@ -131,5 +131,5 @@ if __name__ == '__main__':
 
     ctk.set_appearance_mode("dark")
     app = ctk.CTk()
-    ProvincesShow('')
+    ProvincesShowAFIP('')
     app.mainloop()

@@ -4,13 +4,13 @@ from PIL import Image
 
 import config.general_config as conf
 import gui.menu_gui as menu
-from gui.activitiesShow import ActivitiesShows
-from gui.docTypeShowAFIP import DocTypeShowAFIP
-
 from gui.invoices import invoice
 from gui.company import company
+
+from gui.activitiesShow import ActivitiesShows
+from gui.docTypeShowAFIP import DocTypeShowAFIP
 from gui.invoicesShowAFIP import InvoicesShowAFIP
-from gui.provincesShows import ProvincesShow
+from gui.provincesShowAFIP import ProvincesShowAFIP
 from gui.tax_status import tax_status
 from gui.jobData import SelectCompany
 
@@ -129,7 +129,7 @@ def on_click_menu(event):
     if event == "tax_status":
         form = tax_status()
     if event == "provinces":
-        form = ProvincesShow(None)
+        form = ProvincesShowAFIP(None)
     if event == "activities":
         form = ActivitiesShows(None)
     if event == "invoicesAFIP":
