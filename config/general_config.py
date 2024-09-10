@@ -15,9 +15,10 @@ DIR_THEMES = os.path.join(DIR_GUI, "themes")
 DB_SYS = os.path.join(DIR_CONFIG, "iva_data.db")
 
 # Configurando Apariencia General de la App
-# my_theme = 'myPYTheme.json'
-# theme_path = os.path.join(DIR_THEMES, my_theme)
-theme_path = 'blue'
+my_theme = 'myBlue.json'
+theme_path = os.path.join(DIR_THEMES, my_theme)
+
+# theme_path = 'blue'
 appearance = 'dark'
 # Modo de color y tema
 ctk.set_appearance_mode(appearance)

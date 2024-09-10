@@ -3,8 +3,10 @@ import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from CTkTable import *
 
+import config
 from config import db
 import config.functions_grals as fn
+from gui.themes.myStyles import *
 from gui.activitiesToFind import ActivitiesToFind
 from gui.taxStatusShow import TaxStatusShow
 
@@ -383,16 +385,22 @@ class CompanyWidgets:
         self.radio_var = ctk.IntVar()
 
         # Crear los botones de radio
-        self.taxPayer_RadioB1 = ctk.CTkRadioButton(self.marco_taxpayer, text=" General ", variable=self.radio_var,
+        self.taxPayer_RadioB1 = ctk.CTkRadioButton(self.marco_taxpayer, text=" General ",
+                                                   variable=self.radio_var,
+                                                   radiobutton_width=10,
+                                                   radiobutton_height=10,
                                                    value=1, )
         self.taxPayer_RadioB2 = ctk.CTkRadioButton(self.marco_taxpayer, text=" Gran Contribuyente ",
                                                    variable=self.radio_var,
-                                                   border_width_checked=5,
-                                                   border_width_unchecked=1,
+                                                   # border_width_checked=5,
+                                                   # border_width_unchecked=1,
                                                    radiobutton_width=10,
                                                    radiobutton_height=10,
                                                    value=2, )
-        self.taxPayer_RadioB3 = ctk.CTkRadioButton(self.marco_taxpayer, text=" Monotributo ", variable=self.radio_var,
+        self.taxPayer_RadioB3 = ctk.CTkRadioButton(self.marco_taxpayer, text=" Monotributo ",
+                                                   variable=self.radio_var,
+                                                   radiobutton_width=10,
+                                                   radiobutton_height=10,
                                                    value=3, )
         self.taxPayer_RadioB1.grid(padx=4, pady=4, sticky='w')
         self.taxPayer_RadioB2.grid(padx=4, pady=4, sticky='w')
@@ -411,14 +419,14 @@ class CompanyWidgets:
                                   fg_color='transparent',
                                   command=lambda: limpiar_form(marco))
         cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=120,
-                                   fg_color='orange',
-                                   hover_color='dark orange',
-                                   command=lambda: self.ventana_principal.cerrar_ventana())
+                                   # fg_color='orange',
+                                   # hover_color='dark orange',
+                                   command=lambda: self.ventana_principal.cerrar_ventana(),
+                                   **style_cancel)
         ok_btn = ctk.CTkButton(marco_btns, text="Guardar", width=120,
-                               fg_color='green',
-                               hover_color='dark green',
                                compound='right',
-                               command=lambda: validation_form(self, datos, opt)
+                               command=lambda: validation_form(self, datos, opt),
+                               **style_ok
                                )
         marco_btns.grid_columnconfigure(index=0, minsize=240, )
         marco_btns.grid_columnconfigure(index=1, minsize=140, )

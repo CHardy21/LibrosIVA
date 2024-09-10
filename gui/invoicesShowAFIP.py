@@ -54,6 +54,12 @@ def select_invoice(objeto, e):
 
     objeto.textBox_info.insert("0.0", f"Cód: {code} \n")  # insert at line 0 character 0
     objeto.textBox_info.insert("2.0", f"Des: {description}")
+    # Configurar la etiqueta para cambiar el color del texto
+    objeto.textBox_info.tag_config("white", foreground="white")
+    # Aplicar la etiqueta a una parte específica del texto
+    objeto.textBox_info.tag_add("white", "1.0", "1.4")
+    objeto.textBox_info.tag_add("white", "2.0", "2.4")
+
 
 
 def selection_return(parent, widget):
