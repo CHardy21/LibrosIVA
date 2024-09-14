@@ -1,6 +1,9 @@
 from tkinter import StringVar
 import customtkinter as ctk
+from gui.themes.myStyles import *
 
+from config import db
+import config.functions_grals as fn
 
 class SelectCompany(ctk.CTk):
     def __init__(self):
@@ -22,7 +25,14 @@ class SelectCompany(ctk.CTk):
 
 
         companyRS_label = ctk.CTkLabel(marco, text="Razón Social",).place(x=10, y=10)
-        companyRS_entry = ctk.CTkEntry(marco, textvariable=companyRS, width=200).place(x=100, y=10)
+        self.companyRS_entry = (ctk.CTkEntry(marco, textvariable=companyRS, width=200))
+        self.companyRS_entry.place(x=100, y=10)
+
+        btn_searchRS = ctk.CTkButton(marco, width=8, height=8,
+                                     corner_radius=25, text='?',
+                                     command=lambda: abrir_ventana_sec2(self, 'activities'), )
+        btn_searchRS.place(x=305, y=14, )
+
         companyCUIT_label = ctk.CTkLabel(marco, text="CUIT", ).place(x=10, y=45)
         companyCUIT_entry = ctk.CTkEntry(marco, textvariable=companyCUIT, width=90).place(x=100, y=45)
         companyPer_label = ctk.CTkLabel(marco, text="Período:", ).place(x=10, y=80)
@@ -32,16 +42,18 @@ class SelectCompany(ctk.CTk):
         companyPerYear_entry = ctk.CTkEntry(marco, textvariable=companyPerYear, width=45).place(x=180, y=80)
 
         #  command=lambda: selectInvoice()
-        ok_btn = ctk.CTkButton(marco, text="Confirmar", width=60,)
-        clear_btn = ctk.CTkButton(marco, text="Borrar", width=60,)
-        cancel_btn = ctk.CTkButton(marco, text="Cancelar", width=60,)
+        clear_btn = ctk.CTkButton(marco, text="Vaciar", width=80, **style_clear)
+        cancel_btn = ctk.CTkButton(marco, text="Cancelar", width=100, **style_cancel)
+        ok_btn = ctk.CTkButton(marco, text="Confirmar", width=100, **style_ok)
 
-        ok_btn.place(x=60, y=140)
-        clear_btn.place(x=145, y=140)
-        cancel_btn.place(x=220, y=140)
+        clear_btn.place(x=10, y=140)
+        cancel_btn.place(x=120, y=140)
+        ok_btn.place(x=230, y=140)
 
 
 
 if __name__ == '__main__':
+    ctk.set_appearance_mode("dark")
+    app = ctk.CTk()
     ventana = SelectCompany()
     ventana.mainloop()

@@ -3,10 +3,11 @@ import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from CTkTable import *
 
-import config
+# import config
 from config import db
 import config.functions_grals as fn
 from gui.themes.myStyles import *
+
 from gui.activitiesToFind import ActivitiesToFind
 from gui.taxStatusShow import TaxStatusShow
 
@@ -416,8 +417,8 @@ class CompanyWidgets:
         marco_btns.grid_columnconfigure(0, weight=1)
 
         clear_btn = ctk.CTkButton(marco_btns, text="Vaciar", width=120,
-                                  fg_color='transparent',
-                                  command=lambda: limpiar_form(marco))
+                                  command=lambda: limpiar_form(marco),
+                                  **style_clear)
         cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=120,
                                    # fg_color='orange',
                                    # hover_color='dark orange',
