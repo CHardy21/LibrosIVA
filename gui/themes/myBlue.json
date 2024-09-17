@@ -67,7 +67,7 @@
     "corner_radius": 1,
     "border_width": 1,
     "fg_color": [
-      "#F9F9FA",
+      "#000000",
       "#343638"
     ],
     "border_color": [
