@@ -2,8 +2,10 @@ import customtkinter as ctk
 from tkinter import StringVar, font
 from CTkMessagebox import CTkMessagebox
 from CTkTable import *
+
 from config import db
 import config.functions_grals as fn
+from gui.themes.myStyles import *
 
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
@@ -201,18 +203,22 @@ class TaxStatusWidgets:
                                   width=300,
                                   )
         cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
-                                   command=lambda: self.ventana_principal.cerrar_ventana())
+                                   command=lambda: self.ventana_principal.cerrar_ventana(),
+                                   **style_cancel)
         delete_btn = ctk.CTkButton(marco_btns, text="Borrar", width=100,
-                                   command=lambda: delete_tax_status(self)
+                                   command=lambda: delete_tax_status(self),
+                                   **style_clear
                                    )
         new_btn = ctk.CTkButton(marco_btns, text="Nuevo", width=100,
-                                command=lambda: tax_status("new", self.ventana_principal), )
+                                command=lambda: tax_status("new", self.ventana_principal),
+                                **style_ok)
         edit_btn = ctk.CTkButton(marco_btns, text="Editar", width=100,
                                  command=lambda: tax_status("edit", self.ventana_principal)
                                  if selected_row is not None
                                  else CTkMessagebox(title="Error",
                                                     message="Debe seleccionar un Comprobante para editar",
                                                     icon="cancel"),
+                                 **style_edit
                                  )
 
         marco_btns.pack(pady=15)
@@ -313,11 +319,14 @@ class TaxStatusWidgets:
 
         clear_btn = ctk.CTkButton(marco, text="Vaciar", width=80,
                                   fg_color='transparent',
-                                  command=lambda: limpiar_form(marco))
+                                  command=lambda: limpiar_form(marco),
+                                  **style_clear)
         cancel_btn = ctk.CTkButton(marco, text="Cancelar", width=80,
-                                   command=lambda: self.ventana_principal.cerrar_ventana())
+                                   command=lambda: self.ventana_principal.cerrar_ventana(),
+                                   **style_cancel)
         ok_btn = ctk.CTkButton(marco, text="Guardar", width=120,
-                               command=lambda: validation_form(self, datos, opt)
+                               command=lambda: validation_form(self, datos, opt),
+                               **style_ok
                                )
 
         clear_btn.place(x=12, y=215)

@@ -225,22 +225,26 @@ class CompanyWidgets:
                                   )
 
         cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
-                                   command=lambda: self.ventana_principal.cerrar_ventana())
+                                   command=lambda: self.ventana_principal.cerrar_ventana(),
+                                   **style_cancel)
         delete_btn = ctk.CTkButton(marco_btns, text="Borrar", width=100,
                                    command=lambda: delete_company(self)
                                    if selected_row is not None
                                    else CTkMessagebox(title="Error",
                                                       message="Debe seleccionar una Empresa para Borrar",
                                                       icon="cancel"),
+                                   **style_clear
                                    )
         new_btn = ctk.CTkButton(marco_btns, text="Nuevo", width=100,
-                                command=lambda: company("new", self.ventana_principal), )
+                                command=lambda: company("new", self.ventana_principal),
+                                **style_ok)
         edit_btn = ctk.CTkButton(marco_btns, text="Editar", width=100,
                                  command=lambda: company("edit", self.ventana_principal)
                                  if selected_row is not None
                                  else CTkMessagebox(title="Error",
                                                     message="Debe seleccionar una Empresa para editar",
                                                     icon="cancel"),
+                                 **style_edit
                                  )
 
         marco_btns.pack(pady=15)

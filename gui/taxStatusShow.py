@@ -6,6 +6,7 @@ from CTkTable import *
 
 import config
 from config import db
+from gui.themes.myStyles import *
 
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
@@ -112,7 +113,8 @@ class TaxStatusShow:
                                   width=300,
                                   )
         cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
-                                   command=lambda: self.root.destroy())
+                                   command=lambda: self.root.destroy(),
+                                   **style_cancel)
         select_btn = ctk.CTkButton(marco_btns, text="Seleccionar", width=100,
                                    command=lambda: selection_return(self.padre, self)
                                    if selected_row is not None
