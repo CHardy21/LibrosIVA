@@ -11,6 +11,7 @@ DIR_ROOT = DIR_CONFIG[0:len(DIR_CONFIG) - 6]
 DIR_GUI = os.path.join(DIR_ROOT, "gui")
 DIR_IMAGES = os.path.join(DIR_GUI, "images")
 DIR_THEMES = os.path.join(DIR_GUI, "themes")
+DIR_JOBDATA = os.path.join(DIR_ROOT, "data")
 
 DB_SYS = os.path.join(DIR_CONFIG, "iva_data.db")
 

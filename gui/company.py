@@ -1,10 +1,11 @@
+import os
 from tkinter import StringVar, font
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from CTkTable import *
 
 # import config
-from config import db
+from config import *
 import config.functions_grals as fn
 from gui.themes.myStyles import *
 
@@ -15,6 +16,8 @@ font_widgets = ('Raleway', 12, font.BOLD)
 selected_row = None
 company_code = None
 secondaryWin = None
+
+
 # principalWin = None
 
 
@@ -142,6 +145,19 @@ def get_secondary_data(table, dato, value):
     return result
 
 
+def make_job_dat(datos):
+    partes = datos['company_name'].split()
+    iniciales = ''.join([parte[0].upper() for parte in partes])
+    job_data = iniciales+datos['cuit']
+    dir_data = os.path.join(DIR_JOBDATA, job_data)
+    if not os.path.exists(dir_data):
+        os.makedirs(dir_data)
+        print(f"Directorio '{job_data}' creado.")
+    else:
+        print(f"El directorio '{job_data}' ya existe.")
+
+    return job_data
+
 # =================
 #  Clase Principal
 # =================
@@ -178,6 +194,7 @@ class CompanyWindow:
 
     def cambiar_titulo(self, titulo=None):
         self.root.title(titulo)
+
 
 # =================
 # Clase Secundaria.
@@ -538,7 +555,11 @@ class CompanyWidgets:
             else:
                 print("Se validaron todos los Datos.")
                 if optt == "new":
-                    save_record(self, datos)
+                    datos['working_path'] = make_job_dat(datos)
+                    print('Directorio de Trabajo: ', datos['working_path'])
+                    print(datos)
+
+                    # save_record(self, datos)
 
                 elif optt == "edit":
                     update_record(self, datos)
