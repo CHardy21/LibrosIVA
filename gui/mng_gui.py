@@ -120,6 +120,8 @@ class App(ctk.CTk):
 
 def on_click_menu(event):
     print("Click en MENU: ", event)
+    if event == "Companys":
+        form = company('')
     if event == "NewCompany":
         form = company('new')
     if event == "workData":

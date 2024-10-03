@@ -4,7 +4,7 @@ from tkinter.font import BOLD
 
 from config.SQLite_DB import Database
 
-# ---> Rutas
+# ---> Definición de Rutas del sistema
 DIR_CONFIG = os.path.dirname(__file__)
 # Carpeta principal
 DIR_ROOT = DIR_CONFIG[0:len(DIR_CONFIG) - 6]
@@ -28,7 +28,7 @@ ctk.set_default_color_theme(theme_path)
 font_widgets = ('Raleway', 16, BOLD)
 
 # Objeto para manejar bases de datos MySQL
-data = "../config/iva_data.db"
-db = Database(data)
+# data = "../config/iva_data.db"
+db = Database(DB_SYS)
 
 # print(DB_SYS)

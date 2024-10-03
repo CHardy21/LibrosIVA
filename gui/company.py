@@ -539,7 +539,7 @@ class CompanyWidgets:
 
             print("'Resultado de la Validación'")
             print(datos, "Cantidad de elementos:      ", len(datos))
-            print(error, "Cant. Errores de Validacón: ", len(error))
+            print(error, "Cant. Errores de Validación: ", len(error))
 
             if len(error) > 0:
                 for txt, i in enumerate(error):
@@ -606,7 +606,7 @@ class CompanyWidgets:
 
 # ===================================================================
 #  Método que maneja la creación de widget de las distintas ventanas
-# ================actualizar_entry===================================================
+# ===================================================================
 
 def create_window():
     global principalWin

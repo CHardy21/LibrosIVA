@@ -56,13 +56,14 @@ def select_invoice(objeto, e):
 
 
 def selection_return(parent, widget):
-    parent.asignar_valor('invoicesAFIP', code, description)
+    parent.asignar_valor('docType', code, description)
     widget.root.destroy()
 
 
 class DocTypeShowAFIP:
-    def __init__(self, parent):
+    def __init__(self, parent, opt=None):
         self.padre = parent
+        self.opt = opt
         self.root = ctk.CTkToplevel()
         self.root.title('Tipos de Documento (AFIP)')
         self.root.grab_set()
@@ -118,7 +119,8 @@ class DocTypeShowAFIP:
                                                       icon="cancel"),
                                    )
         marco_btns.grid()
-        select_btn.grid(row=1, column=1, padx=5, pady=5, )
+        if self.opt == 'select':
+            select_btn.grid(row=1, column=1, padx=5, pady=5, )
         close_btn.grid(row=1, column=2, padx=5, pady=5, )
 
         # self.marco._parent_canvas.bind("<Configure>", self.on_scroll)

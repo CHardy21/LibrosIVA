@@ -4,8 +4,9 @@ from tkinter import font
 from CTkMessagebox import CTkMessagebox
 from CTkTable import *
 
-import config
-from config import db
+# import config
+from config import db, DB_SYS
+
 
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
@@ -16,7 +17,7 @@ provinces_desc = None
 
 def fetch_records():
     query = "SELECT code, description FROM sys_provinces"
-    value= ''
+    value = ''
     result = db.fetchRecords(query, value)
     print("fetchall: ", result)
     return result
@@ -69,8 +70,9 @@ def selection_return(parent, widget):
 #  Clase Principal
 # =================
 class ProvincesShowAFIP:
-    def __init__(self, parent):
+    def __init__(self, parent, opt=None):
         self.padre = parent
+        self.opt = opt
         self.root = ctk.CTkToplevel()
         self.root.title('Provincias')
         self.root.grab_set()
@@ -105,13 +107,13 @@ class ProvincesShowAFIP:
         table.grid(row=0, column=0, )
 
         marco.grid()
-
+        print(self.opt)
         # Botones de Acciones
         marco_btns = ctk.CTkFrame(master=self.root,
                                   width=300,
                                   )
         close_btn = ctk.CTkButton(marco_btns, text="Cerrar", width=100,
-                                   command=lambda: self.root.destroy())
+                                  command=lambda: self.root.destroy())
         select_btn = ctk.CTkButton(marco_btns, text="Seleccionar", width=100,
                                    command=lambda: selection_return(self.padre, self)
                                    if selected_row is not None
@@ -120,16 +122,20 @@ class ProvincesShowAFIP:
                                                       icon="cancel"),
                                    )
         marco_btns.grid(pady=15)
-        select_btn.grid(row=1, column=1, padx=5, pady=5, )
+        if self.opt == 'select':
+            select_btn.grid(row=1, column=1, padx=5, pady=5, )
         close_btn.grid(row=1, column=2, padx=5, pady=5, )
 
 
 if __name__ == '__main__':
     from config.SQLite_DB import Database
-    data = '../config/iva_data.db'
+    from config import DB_SYS
+
+    # data = '../config/iva_data.db'
+    data = DB_SYS
     db = Database(data)
 
     ctk.set_appearance_mode("dark")
     app = ctk.CTk()
-    ProvincesShowAFIP('')
+    ProvincesShowAFIP('', 'select')
     app.mainloop()

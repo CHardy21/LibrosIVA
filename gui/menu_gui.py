@@ -25,16 +25,15 @@ class Menu:
         menu_datos_generales = tk.Menu(menu_inicio, tearoff=False)
         # Creando los sub-menu de cada Elemento
         # Sub-menu Inicio
-        menu_inicio.add_command(label="Nueva Empresa...", accelerator="Ctrl+N",
-                                command=lambda: gui.mng_gui.on_click_menu("NewCompany"))
-        menu_inicio.add_command(label="Seleccionar Datos de Trabajo",
-                                command=lambda: gui.mng_gui.on_click_menu("workData"))
+        menu_inicio.add_command(label="Empresas", accelerator="Ctrl+N",
+                                command=lambda: gui.mng_gui.on_click_menu("Companys"))
         menu_inicio.add_separator()
         menu_inicio.add_command(label="Comprobantes",
                                 command=lambda: gui.mng_gui.on_click_menu("invoices"))
         menu_inicio.add_command(label="Condiciones Fiscales",
                                 command=lambda: gui.mng_gui.on_click_menu("tax_status"))
-        menu_inicio.add_command(label="Alícuota")
+        menu_inicio.add_command(label="Alícuota",
+                                command=lambda: gui.mng_gui.on_click_menu("aliquots"))
         menu_inicio.add_command(label="Retencionres / Percepciones / Pagos a Cuenta")
         menu_inicio.add_command(label="Imp. Déb. / Créd. Bancarios")
         menu_inicio.add_command(label="Parámetros Monotributo")
@@ -60,7 +59,8 @@ class Menu:
         menu_empresa.add_command(label="Nueva Empresa...", accelerator="Ctrl+N",
                                  command=lambda: gui.mng_gui.on_click_menu("NewCompany"))
         menu_empresa.add_command(label="Editar Empresa")
-        menu_empresa.add_command(label="Seleccionar Empresa")
+        menu_empresa.add_command(label="Seleccionar Datos de Trabajo",
+                                command=lambda: gui.mng_gui.on_click_menu("workData"))
         menu_empresa.add_separator()
         menu_empresa.add_command(label="Puntos de Ventas")
         menu_empresa.add_command(label="Tipos de Movimientos")
