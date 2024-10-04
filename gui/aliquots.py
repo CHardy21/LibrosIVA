@@ -142,13 +142,12 @@ class Aliquots:
                                               corner_radius=0,
                                               border_width=1,
                                               border_color="black",
-                                              scrollbar_fg_color="black",
-                                              )
+                                              scrollbar_fg_color="black", )
         marco_scroll.grid_rowconfigure(0, weight=1)
         marco_scroll.grid_columnconfigure(0, weight=1)
         marco_scroll.grid()
-        # Leer info desde la base de datos (DB)
-        value = fetch_records()
+
+        value = fetch_records()  # Leer info desde la base de datos (DB)
         # Crear tabla con la info existente en la DB
         table = CTkTable(master=marco_scroll,
                          row=len(value),
@@ -156,12 +155,18 @@ class Aliquots:
                          values=value,
                          border_width=0,
                          corner_radius=0,
-                         command=lambda e: select_data(table, e),
-                         )
-
+                         command=lambda e: select_data(table, e),)
         table.edit_column(0, width=50)
         table.edit_column(1, width=250, anchor="w")
         table.grid(row=0, column=0, )
+
+        self.marco_info = ctk.CTkFrame(self.root, width=498,
+                                       height=50,
+                                       corner_radius=0, )
+        self.textBox_info = ctk.CTkTextbox(self.marco_info,
+                                           width=498, height=70,
+                                           text_color='grey')
+        self.textBox_info.grid(padx=10, pady=10)
 
         self.make_buttons()
 
