@@ -134,10 +134,8 @@ class Aliquots:
         self.root.title('Alícuotas de IVA')
         self.root.grab_set()
         self.root.config(padx=10, pady=10)
-        # Evitar que la ventana se expanda
-        self.root.resizable(False, False)
-        # Evitar que la ventana se cierre
-        # self.root.protocol("WM_DELETE_WINDOW", lambda: None)
+        self.root.resizable(False, False)  # Evitar que la ventana se expanda
+        # self.root.protocol("WM_DELETE_WINDOW", lambda: None)  # Evitar que la ventana se cierre
 
         marco_scroll = ctk.CTkScrollableFrame(master=self.root,
                                               width=300,
@@ -193,11 +191,11 @@ class Aliquots:
         # marco_btns.grid_columnconfigure(index=0, minsize=240, )
         # marco_btns.grid_columnconfigure(index=1, minsize=140, )
         # marco_btns.grid_columnconfigure(index=2, minsize=140, )
-        clear_btn.grid(row=0, column=0, padx=10, pady=5, sticky='w')
+        # clear_btn.grid(row=0, column=0, padx=10, pady=5, sticky='w')
         cancel_btn.grid(row=0, column=1, padx=5, pady=5, sticky='e')
         ok_btn.grid(row=0, column=2, padx=5, pady=5, sticky='e')
-
         marco_btns.grid()
+
 
 if __name__ == '__main__':
     from config.SQLite_DB import Database
