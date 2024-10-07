@@ -83,7 +83,7 @@ def get_record(record):
     return result
 
 
-def select_data(objeto, e):
+def select_data(objeto, self, e):
     # 'e' tiene los datos pasados por el widget tabla de donde se hizo el  Click
     global selected_row
     global selected_code
@@ -92,10 +92,42 @@ def select_data(objeto, e):
         objeto.deselect_row(selected_row)
 
     objeto.select_row(e["row"])
+    self.aliquotGeneral_checkbox.grid(row=0, column=0, padx=10, pady=10)
+    self.shows_AliquotsForDate_btn.grid(row=0, column=1, padx=10, )
+
     selected_row = e["row"]
     selected_code = objeto.get(selected_row, 0)
     print(" CODE Selected: ", selected_code)
     print(e)
+
+
+def select_activity(objeto, self, e):
+    # 'e' tiene los datos pasados por el widget tabla de donde se hizo el  Click
+    global selected_row
+    global activity_code
+    global activity_description
+
+    if selected_row is not None:
+        objeto.deselect_row(selected_row)
+        self.textBox_info.delete("0.0", "end")  # delete all text
+
+    objeto.select_row(e["row"])
+    self.marco_info.grid(row=2)
+
+    selected_row = e["row"]
+    activity_code = objeto.get(selected_row, 0)
+    activity_description = objeto.get(selected_row, 2)
+
+    print(" CODE Activity Selected: ", activity_code)
+    print(e)
+
+    self.textBox_info.insert("0.0", f"Cód: {activity_code} \n")  # insert at line 0 character 0
+    self.textBox_info.insert("2.0", f"Des: {activity_description}")
+    # Configurar la etiqueta para cambiar el color del texto
+    self.textBox_info.tag_config("white", foreground="white")
+    # Aplicar la etiqueta a una parte específica del texto
+    self.textBox_info.tag_add("white", "1.0", "1.4")
+    self.textBox_info.tag_add("white", "2.0", "2.4")
 
 
 def delete_invoice(self):
@@ -155,18 +187,35 @@ class Aliquots:
                          values=value,
                          border_width=0,
                          corner_radius=0,
-                         command=lambda e: select_data(table, e),)
+                         command=lambda e: select_data(table, self, e), )
         table.edit_column(0, width=50)
         table.edit_column(1, width=250, anchor="w")
         table.grid(row=0, column=0, )
 
-        self.marco_info = ctk.CTkFrame(self.root, width=498,
+        self.marco_info = ctk.CTkFrame(self.root, width=316,
                                        height=50,
+                                       border_width=1,
+                                       border_color="black",
                                        corner_radius=0, )
-        self.textBox_info = ctk.CTkTextbox(self.marco_info,
-                                           width=498, height=70,
-                                           text_color='grey')
-        self.textBox_info.grid(padx=10, pady=10)
+        self.marco_info.grid_propagate(False)
+        # self.marco_info.grid_configure(ipady=10)
+
+        self.aliquotGeneral_checkbox = ctk.CTkCheckBox(self.marco_info,
+                                                       text="Tasa General",
+                                                       # variable=datos['TypeRet'],
+                                                       onvalue=1,
+                                                       offvalue=0)
+        self.shows_AliquotsForDate_btn = ctk.CTkButton(self.marco_info, text="Ver Alic. por Fecha",
+                                                       width=120,
+                                                       command=lambda: limpiar_form(), )
+
+        # self.textBox_info = ctk.CTkTextbox(self.marco_info,
+        #                                    width=296, height=70,
+        #                                    text_color='grey')
+        # self.textBox_info.grid(padx=10, pady=10)
+        self.marco_info.grid()
+        # aliquotGeneral_checkbox.grid(row=0, column=0, padx=10, pady=10)
+        # shows_AliquotsForDate_btn.grid(row=0, column=1, padx=10, )
 
         self.make_buttons()
 
