@@ -31,11 +31,11 @@ def save_record(datos):
 
 def update_record(self, datos):
     global selected_row
-    global invoice_code
+    global selected_code
 
     print(datos)
     query = """
-        UPDATE invoices
+        UPDATE _invoices
         SET code = ?, description = ?, observations = ?, type_ret = ?, type_cert = ?, type_dc = ?,
             active_buy = ?, active_sell = ?, numeration = ?, c_fiscal = ?, code_a = ?, code_b = ?,
             code_c = ?, code_e = ?, code_m = ?, code_t = ?, code_o = ?
@@ -82,7 +82,9 @@ def get_record(record):
     print("valor devuelto: ", result)
     return result
 
-
+def get_alicuots_by_date(alicuot):
+    print("Leyendo alicuotas por fecha...")
+    pass
 def select_data(objeto, self, e):
     # 'e' tiene los datos pasados por el widget tabla de donde se hizo el  Click
     global selected_row
@@ -99,7 +101,7 @@ def select_data(objeto, self, e):
     selected_code = objeto.get(selected_row, 0)
     print(" CODE Selected: ", selected_code)
     print(e)
-
+    get_alicuots_by_date(selected_code)
 
 def select_activity(objeto, self, e):
     # 'e' tiene los datos pasados por el widget tabla de donde se hizo el  Click
@@ -207,7 +209,7 @@ class Aliquots:
                                                        offvalue=0)
         self.shows_AliquotsForDate_btn = ctk.CTkButton(self.marco_info, text="Ver Alic. por Fecha",
                                                        width=120,
-                                                       command=lambda: limpiar_form(), )
+                                                       command=lambda: get_alicuots_by_date(), )
 
         # self.textBox_info = ctk.CTkTextbox(self.marco_info,
         #                                    width=296, height=70,
@@ -246,9 +248,9 @@ class Aliquots:
         # marco_btns.grid_columnconfigure(index=1, minsize=140, )
         # marco_btns.grid_columnconfigure(index=2, minsize=140, )
         # clear_btn.grid(row=0, column=0, padx=10, pady=5, sticky='w')
-        cancel_btn.grid(row=0, column=1, padx=5, pady=5, sticky='e')
-        ok_btn.grid(row=0, column=2, padx=5, pady=5, sticky='e')
-        marco_btns.grid()
+        cancel_btn.grid(row=1, column=1, padx=5, pady=5, sticky='e')
+        ok_btn.grid(row=0, column=1, padx=5, pady=5, sticky='e')
+        marco_btns.grid(row=0, column=1,)
 
 
 if __name__ == '__main__':

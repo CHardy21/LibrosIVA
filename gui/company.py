@@ -18,9 +18,6 @@ company_code = None
 secondaryWin = None
 
 
-# principalWin = None
-
-
 def select_company(objeto, e):
     # 'e' tiene los datos pasados por el widget tabla de donde se hizo el  Click
     global selected_row
@@ -34,7 +31,7 @@ def select_company(objeto, e):
     company_code = objeto.get(selected_row, 0)
 
     print(" CODE Company Selected: ", company_code)
-    print(e)
+    # print(e)
 
 
 def fetch_records():
@@ -48,7 +45,7 @@ def get_record(record):
     query = "SELECT * FROM company WHERE cuit = ?"
     value = (record,)
     result = db.fetchRecord(query, value)
-    print("valor devuelto por DB: ", result)
+    print("get_record -> DB: ", result)
     return result
 
 
@@ -148,7 +145,7 @@ def get_secondary_data(table, dato, value):
 def make_job_dat(datos):
     partes = datos['company_name'].split()
     iniciales = ''.join([parte[0].upper() for parte in partes])
-    job_data = iniciales+datos['cuit']
+    job_data = iniciales + datos['cuit']
     dir_data = os.path.join(DIR_JOBDATA, job_data)
     if not os.path.exists(dir_data):
         os.makedirs(dir_data)
@@ -157,6 +154,7 @@ def make_job_dat(datos):
         print(f"El directorio '{job_data}' ya existe.")
 
     return job_data
+
 
 # =================
 #  Clase Principal
@@ -403,8 +401,17 @@ class CompanyWidgets:
                                            )
         self.marco_taxpayer.place(x=360, y=190, )
         self.taxPayer_label = ctk.CTkLabel(self.marco_taxpayer, text="Tipo de Contribuyente", ).grid(pady=2)
+
         # Crear una variable para los botones de radio
         self.radio_var = ctk.IntVar()
+        print("DB: ", datos['taxpayer_type'].get())
+        print("")
+        # Convertir el valor recuperado a entero
+        try:
+            self.radio_var.set(int(datos['taxpayer_type'].get()))
+        except ValueError:
+            self.radio_var.set(1)  # Valor por defecto en caso de error
+
 
         # Crear los botones de radio
         self.taxPayer_RadioB1 = ctk.CTkRadioButton(self.marco_taxpayer, text=" General ",
@@ -424,9 +431,12 @@ class CompanyWidgets:
                                                    radiobutton_width=10,
                                                    radiobutton_height=10,
                                                    value=3, )
+
         self.taxPayer_RadioB1.grid(padx=4, pady=4, sticky='w')
         self.taxPayer_RadioB2.grid(padx=4, pady=4, sticky='w')
         self.taxPayer_RadioB3.grid(padx=4, pady=4, sticky='w')
+
+
 
         marco_btns = ctk.CTkFrame(master=self.ventana_principal.root,
                                   width=520,
@@ -489,7 +499,7 @@ class CompanyWidgets:
                 'activity_code': dataForm['activity_code'].get(),
                 'iva_conditions': dataForm['iva_conditions'].get(),
                 'month_close': dataForm['month_close'].get(),
-                'taxpayer_type': dataForm['taxpayer_type'].get(),
+                'taxpayer_type': self.radio_var.get(),
                 'undersigned': dataForm['undersigned'].get(),
                 'undersigned_character': dataForm['undersigned_character'].get()
             }
