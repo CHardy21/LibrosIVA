@@ -68,7 +68,7 @@ def update_record(self, datos):
 
 
 def fetch_records():
-    query = "SELECT CODE,DESCRIPTION FROM aliquots_iva"
+    query = "SELECT CODE,DESCRIPTION, IS_GRAL FROM aliquots_iva"
     value = ''
     result = db.fetchRecords(query, value)
     print(result)
@@ -79,12 +79,15 @@ def get_record(record):
     query = "SELECT * FROM aliquots_iva WHERE code = ?"
     value = (record,)
     result = db.fetchRecord(query, value)
-    print("valor devuelto: ", result)
+    print("Retorna desde alicuots_iva: ", result)
     return result
+
 
 def get_alicuots_by_date(alicuot):
     print("Leyendo alicuotas por fecha...")
     pass
+
+
 def select_data(objeto, self, e):
     # 'e' tiene los datos pasados por el widget tabla de donde se hizo el  Click
     global selected_row
@@ -94,14 +97,23 @@ def select_data(objeto, self, e):
         objeto.deselect_row(selected_row)
 
     objeto.select_row(e["row"])
-    self.aliquotGeneral_checkbox.grid(row=0, column=0, padx=10, pady=10)
-    self.shows_AliquotsForDate_btn.grid(row=0, column=1, padx=10, )
+
 
     selected_row = e["row"]
     selected_code = objeto.get(selected_row, 0)
+
+    self.aliquotGeneral_checkbox.grid(row=0, column=0, padx=10, pady=10)
+    self.shows_AliquotsForDate_btn.grid(row=0, column=1, padx=10, )
+    valor = int(objeto.get(selected_row, 2))
+    self.aliquotGeneral_checkbox.set(1 if valor else 0)
+
+    #make_table_alicuots_by_date(objeto, self, selected_code)
+
     print(" CODE Selected: ", selected_code)
-    print(e)
+    print(objeto.get(selected_row, 2))
+    print(self.__class__.__name__)
     get_alicuots_by_date(selected_code)
+
 
 def select_activity(objeto, self, e):
     # 'e' tiene los datos pasados por el widget tabla de donde se hizo el  Click
@@ -157,6 +169,35 @@ def delete_invoice(self):
         else:
             print("Click 'Yes' to exit!")
 
+def make_table_alicuots_by_date(objeto, self, data):
+
+
+    value = fetch_records()
+
+    marco_alicuotsByDate = ctk.CTkScrollableFrame(master=self.marco_info,
+                                                  width=300,
+                                                  corner_radius=0,
+                                                  border_width=1,
+                                                  border_color="black",
+                                                  scrollbar_fg_color="black", )
+    marco_alicuotsByDate.grid_rowconfigure(0, weight=1)
+    marco_alicuotsByDate.grid_columnconfigure(0, weight=1)
+
+    table_alicuotsByDate = CTkTable(master=marco_alicuotsByDate,
+                                    row=len(value),
+                                    column=5,
+                                    values=value,
+                                    border_width=0,
+                                    corner_radius=0,
+                                    # command=lambda e: select_data(table, self, e),
+                                    )
+    table_alicuotsByDate.edit_column(0, width=50)
+    table_alicuotsByDate.edit_column(1, width=250, anchor="w")
+    table_alicuotsByDate.edit_column(2, width=0)
+    table_alicuotsByDate.grid(row=0, column=0, )
+
+    marco_alicuotsByDate.grid()
+
 
 # =================
 #  Clase Principal
@@ -185,13 +226,14 @@ class Aliquots:
         # Crear tabla con la info existente en la DB
         table = CTkTable(master=marco_scroll,
                          row=len(value),
-                         column=2,
+                         column=3,
                          values=value,
                          border_width=0,
                          corner_radius=0,
                          command=lambda e: select_data(table, self, e), )
         table.edit_column(0, width=50)
         table.edit_column(1, width=250, anchor="w")
+        table.edit_column(2, width=0)
         table.grid(row=0, column=0, )
 
         self.marco_info = ctk.CTkFrame(self.root, width=316,
@@ -202,6 +244,8 @@ class Aliquots:
         self.marco_info.grid_propagate(False)
         # self.marco_info.grid_configure(ipady=10)
 
+
+
         self.aliquotGeneral_checkbox = ctk.CTkCheckBox(self.marco_info,
                                                        text="Tasa General",
                                                        # variable=datos['TypeRet'],
@@ -211,13 +255,9 @@ class Aliquots:
                                                        width=120,
                                                        command=lambda: get_alicuots_by_date(), )
 
-        # self.textBox_info = ctk.CTkTextbox(self.marco_info,
-        #                                    width=296, height=70,
-        #                                    text_color='grey')
-        # self.textBox_info.grid(padx=10, pady=10)
+
         self.marco_info.grid()
-        # aliquotGeneral_checkbox.grid(row=0, column=0, padx=10, pady=10)
-        # shows_AliquotsForDate_btn.grid(row=0, column=1, padx=10, )
+
 
         self.make_buttons()
 
@@ -248,9 +288,9 @@ class Aliquots:
         # marco_btns.grid_columnconfigure(index=1, minsize=140, )
         # marco_btns.grid_columnconfigure(index=2, minsize=140, )
         # clear_btn.grid(row=0, column=0, padx=10, pady=5, sticky='w')
-        cancel_btn.grid(row=1, column=1, padx=5, pady=5, sticky='e')
-        ok_btn.grid(row=0, column=1, padx=5, pady=5, sticky='e')
-        marco_btns.grid(row=0, column=1,)
+        cancel_btn.grid(row=0, column=1, padx=5, pady=5, sticky='n')
+        ok_btn.grid(row=1, column=1, padx=5, pady=5, sticky='n')
+        marco_btns.grid(row=0, column=1, sticky='n')
 
 
 if __name__ == '__main__':
