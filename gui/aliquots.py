@@ -102,9 +102,11 @@ def select_data(objeto, self, e):
     selected_row = e["row"]
     selected_code = objeto.get(selected_row, 0)
 
-    self.aliquotGeneral_checkbox.grid(row=0, column=0, padx=10, pady=10)
-    self.shows_AliquotsForDate_btn.grid(row=0, column=1, padx=10, )
-    valor = int(objeto.get(selected_row, 2))
+    self.aliquotGeneral_entry.grid(row=0, column=0, padx=10, pady=10)
+    self.aliquotGeneral_checkbox.grid(row=0, column=1, padx=10, pady=10)
+    self.shows_AliquotsForDate_btn.grid(row=1, column=0, padx=10, )
+    valor = int(objeto.get(selected_row, 2) or 0)
+    print("Valor recuperado de la tabla: ", valor)
     self.aliquotGeneral_checkbox.set(1 if valor else 0)
 
     #make_table_alicuots_by_date(objeto, self, selected_code)
@@ -114,60 +116,6 @@ def select_data(objeto, self, e):
     print(self.__class__.__name__)
     get_alicuots_by_date(selected_code)
 
-
-def select_activity(objeto, self, e):
-    # 'e' tiene los datos pasados por el widget tabla de donde se hizo el  Click
-    global selected_row
-    global activity_code
-    global activity_description
-
-    if selected_row is not None:
-        objeto.deselect_row(selected_row)
-        self.textBox_info.delete("0.0", "end")  # delete all text
-
-    objeto.select_row(e["row"])
-    self.marco_info.grid(row=2)
-
-    selected_row = e["row"]
-    activity_code = objeto.get(selected_row, 0)
-    activity_description = objeto.get(selected_row, 2)
-
-    print(" CODE Activity Selected: ", activity_code)
-    print(e)
-
-    self.textBox_info.insert("0.0", f"Cód: {activity_code} \n")  # insert at line 0 character 0
-    self.textBox_info.insert("2.0", f"Des: {activity_description}")
-    # Configurar la etiqueta para cambiar el color del texto
-    self.textBox_info.tag_config("white", foreground="white")
-    # Aplicar la etiqueta a una parte específica del texto
-    self.textBox_info.tag_add("white", "1.0", "1.4")
-    self.textBox_info.tag_add("white", "2.0", "2.4")
-
-
-def delete_invoice(self):
-    global selected_row
-    global selected_code
-    print("Eliminar Registro: ", invoice_code)
-    query = f"DELETE FROM invoices WHERE code='{invoice_code}'"
-    result = db.removeRecord(query)
-    if result:
-        msgbox = CTkMessagebox(title="Ok",
-                               message="El registro fue borrado correctamente.",
-                               icon="check",
-                               sound=True,
-                               wraplength=400,
-                               corner_radius=2,
-                               option_1="Aceptar",
-                               )
-        response = msgbox.get()
-
-        if response == "Aceptar":
-            selected_row = None
-            invoice_code = ''
-            self.ventana_principal.cerrar_ventana()
-            invoice()
-        else:
-            print("Click 'Yes' to exit!")
 
 def make_table_alicuots_by_date(objeto, self, data):
 
@@ -223,7 +171,7 @@ class Aliquots:
         marco_scroll.grid()
 
         value = fetch_records()  # Leer info desde la base de datos (DB)
-        # Crear tabla con la info existente en la DB
+        # Crear tabla con la info existente en la DB (listado de Aliquots)
         table = CTkTable(master=marco_scroll,
                          row=len(value),
                          column=3,
@@ -237,20 +185,20 @@ class Aliquots:
         table.grid(row=0, column=0, )
 
         self.marco_info = ctk.CTkFrame(self.root, width=316,
-                                       height=50,
+                                       height=100,
                                        border_width=1,
                                        border_color="black",
                                        corner_radius=0, )
         self.marco_info.grid_propagate(False)
         # self.marco_info.grid_configure(ipady=10)
 
-
-
+        self.aliquotGeneral_entry = ctk.CTkEntry(self.marco_info, )
         self.aliquotGeneral_checkbox = ctk.CTkCheckBox(self.marco_info,
                                                        text="Tasa General",
-                                                       # variable=datos['TypeRet'],
-                                                       onvalue=1,
-                                                       offvalue=0)
+                                                       # variable= value[3],
+                                                       # onvalue=1,
+                                                       # offvalue=0
+                                                       )
         self.shows_AliquotsForDate_btn = ctk.CTkButton(self.marco_info, text="Ver Alic. por Fecha",
                                                        width=120,
                                                        command=lambda: get_alicuots_by_date(), )

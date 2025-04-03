@@ -1,8 +1,0 @@
-
-services:
-  app:
-    build: .
-    volumes:
-      - .:/code
-    command: python app.py
-    working_dir: /code
