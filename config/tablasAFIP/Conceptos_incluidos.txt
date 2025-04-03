@@ -1,0 +1,7 @@
+Conceptos incluidos	
+	
+Código	Descripción
+1	Producto / Exportación definitiva de bienes
+2	Servicios
+3	Productos y Servicios
+4	Otro

@@ -4,12 +4,15 @@ from PIL import Image
 
 import config.general_config as conf
 import gui.menu_gui as menu
-
 from gui.invoices import invoice
 from gui.company import company
+
+from gui.activitiesShow import ActivitiesShows
+from gui.docTypeShowAFIP import DocTypeShowAFIP
+from gui.invoicesShowAFIP import InvoicesShowAFIP
+from gui.provincesShowAFIP import ProvincesShowAFIP
 from gui.tax_status import tax_status
 from gui.jobData import SelectCompany
-
 
 
 class Login:
@@ -17,15 +20,15 @@ class Login:
         # Creación de la ventana principal
         self.root = ctk.CTk()
         self.root.title("CHardy© Estudios Contables - Login")
-        self.root.iconbitmap(os.path.join(conf.dir_images, "CH.ico"))
+        self.root.iconbitmap(os.path.join(conf.DIR_IMAGES, "CH.ico"))
         self.root.geometry("400x500")  # Tamaño de la ventana
         self.root.resizable(False, False)  # Bloqueo de redimensión de ventana en alto y ancho
 
         # Contenido de la ventana principal
         # Carga de la imagen
         logo = ctk.CTkImage(
-            light_image=Image.open((os.path.join(conf.dir_images, "logo_claro.png"))),  # Imagen modo claro
-            dark_image=Image.open((os.path.join(conf.dir_images, "logo_oscuro.png"))),  # Imagen modo oscuro
+            light_image=Image.open((os.path.join(conf.DIR_IMAGES, "logo_claro.png"))),  # Imagen modo claro
+            dark_image=Image.open((os.path.join(conf.DIR_IMAGES, "logo_oscuro.png"))),  # Imagen modo oscuro
             size=(250, 250))  # Tamaño de las imágenes
 
         # Etiqueta para mostrar la imagen
@@ -80,7 +83,7 @@ class Login:
         # Se destruye la ventana de login
         self.root.destroy()
         # Se instancia la ventana de opciones del programa
-        #ventana_opciones = VentanaOpciones()
+        # ventana_opciones = VentanaOpciones()
         app = App()
 
 
@@ -91,11 +94,9 @@ class App(ctk.CTk):
 
     def __init__(self):
         super().__init__()
-        #self.app = tk.Tk()
-
         self.title('Sistema de Registración IVA 1.0')
         self.configure(fg_color=App.COLOR_VENTANA)
-        self.iconbitmap(os.path.join(conf.dir_images, App.ICONO_VENTANA))
+        self.iconbitmap(os.path.join(conf.DIR_IMAGES, App.ICONO_VENTANA))
 
         # Configurar donde se muestra la ventana de la App
         ancho_app = 900
@@ -119,6 +120,8 @@ class App(ctk.CTk):
 
 def on_click_menu(event):
     print("Click en MENU: ", event)
+    if event == "Companys":
+        form = company('')
     if event == "NewCompany":
         form = company('new')
     if event == "workData":
@@ -127,6 +130,11 @@ def on_click_menu(event):
         form = invoice()
     if event == "tax_status":
         form = tax_status()
-
-
-    pass
+    if event == "provinces":
+        form = ProvincesShowAFIP(None)
+    if event == "activities":
+        form = ActivitiesShows(None)
+    if event == "invoicesAFIP":
+        form = InvoicesShowAFIP(None)
+    if event == "docTypeAFIP":
+        form = DocTypeShowAFIP(None)

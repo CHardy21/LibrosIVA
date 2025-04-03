@@ -1,0 +1,13 @@
+ Operación_Condición IVA	
+	
+Código	Descripción
+0	No Corresponde
+1	No Gravado
+2	Exento
+3	0%
+4	10,50%
+5	21%
+6	27%
+7	Gravado
+8	5%
+9	2,50%

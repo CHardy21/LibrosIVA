@@ -1,21 +1,16 @@
 import customtkinter as ctk
 from tkinter import StringVar, font
-
 from CTkMessagebox import CTkMessagebox
 from CTkTable import *
 
 from config import db
 import config.functions_grals as fn
+from gui.themes.myStyles import *
 
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 12, font.BOLD)
 selected_row = None
 tax_status_code = None
-ctk_style = """
-input[type=checkbox] {
-    transform: scale(1.5); /* Ajusta el factor de escala según tus necesidades */
-}
-"""
 
 
 def select_tax_status(objeto, e):
@@ -48,14 +43,16 @@ def select_tax_status(objeto, e):
 
 def fetch_records():
     query = "SELECT code, description FROM tax_status"
-    result = db.fetchRecords(query)
+    value = ''
+    result = db.fetchRecords(query, value)
     print("fetchall: ", result)
     return result
 
 
 def get_record(record):
-    query = f"SELECT * FROM tax_status WHERE code = '{record}'"
-    result = db.fetchRecord(query)
+    query = "SELECT * FROM tax_status WHERE code = ?"
+    value = (record,)
+    result = db.fetchRecord(query, value)
     print("fetchone: ", result)
     return result
 
@@ -206,18 +203,22 @@ class TaxStatusWidgets:
                                   width=300,
                                   )
         cancel_btn = ctk.CTkButton(marco_btns, text="Cancelar", width=100,
-                                   command=lambda: self.ventana_principal.cerrar_ventana())
+                                   command=lambda: self.ventana_principal.cerrar_ventana(),
+                                   **style_cancel)
         delete_btn = ctk.CTkButton(marco_btns, text="Borrar", width=100,
-                                   command=lambda: delete_tax_status(self)
+                                   command=lambda: delete_tax_status(self),
+                                   **style_clear
                                    )
         new_btn = ctk.CTkButton(marco_btns, text="Nuevo", width=100,
-                                command=lambda: tax_status("new", self.ventana_principal), )
+                                command=lambda: tax_status("new", self.ventana_principal),
+                                **style_ok)
         edit_btn = ctk.CTkButton(marco_btns, text="Editar", width=100,
                                  command=lambda: tax_status("edit", self.ventana_principal)
                                  if selected_row is not None
                                  else CTkMessagebox(title="Error",
                                                     message="Debe seleccionar un Comprobante para editar",
                                                     icon="cancel"),
+                                 **style_edit
                                  )
 
         marco_btns.pack(pady=15)
@@ -266,7 +267,6 @@ class TaxStatusWidgets:
 
         else:
             print("ERROR: opcion no valida")
-
 
         # Crea el frame con el formulario y lo añade a la ventana
         marco = ctk.CTkFrame(master=self.ventana_principal.root,
@@ -319,11 +319,14 @@ class TaxStatusWidgets:
 
         clear_btn = ctk.CTkButton(marco, text="Vaciar", width=80,
                                   fg_color='transparent',
-                                  command=lambda: limpiar_form(marco))
+                                  command=lambda: limpiar_form(marco),
+                                  **style_clear)
         cancel_btn = ctk.CTkButton(marco, text="Cancelar", width=80,
-                                   command=lambda: self.ventana_principal.cerrar_ventana())
+                                   command=lambda: self.ventana_principal.cerrar_ventana(),
+                                   **style_cancel)
         ok_btn = ctk.CTkButton(marco, text="Guardar", width=120,
-                               command=lambda: validation_form(self, datos, opt)
+                               command=lambda: validation_form(self, datos, opt),
+                               **style_ok
                                )
 
         clear_btn.place(x=12, y=215)

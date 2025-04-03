@@ -1,0 +1,17 @@
+Incoterms	
+	
+Código	
+EXW	Ex Works
+FCA	Free Carrier
+FAS	Free Alongside Ship
+FOB	Free On Board
+CFR	Cost and Freight
+CIF	Cost, Insurance and Freight
+CPT	Carriage Paid To
+CIP	Carriage and Insurance Paid To
+DAF	Delivered At Frontier
+DES	Delivered Ex Ship
+DEQ	Delivered Ex Quay
+DDU	Delivered Duty Unpaid
+DDP	Delivered Duty Paid
+DAP	Delivered At Port

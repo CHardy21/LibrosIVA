@@ -1,0 +1,18 @@
+01	Impuestos nacionales
+02	Impuestos provinciales	
+03	Impuestos municipales	
+04	Impuestos internos	
+05	IIBB	
+06	Percepción de IVA	
+07	Percepción de IIBB	
+08	Percepciones por Impuestos Municipales	
+09	Otras Percepciones	
+10	Impuesto interno a nivel item	Sólo Controladores Fiscales
+13	Percepción de IVA a no Categorizado 	Solo FE
+14	Retención IIGG - RG 830	Liquidaciones Pecuarias
+15	Retención IVA - RG 3873	Liquidaciones Pecuarias
+16	Pago a cuenta IVA - RG 3873	Liquidaciones Pecuarias
+17	Percepción IVA  RG 3873	Liquidaciones Pecuarias
+18	Retención IVA – RG 2616/2009	Liquidaciones Pecuarias
+19	Retención Ganancias – RG 2616/2009	Liquidaciones Pecuarias
+99	Otros	

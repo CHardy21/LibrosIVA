@@ -4,25 +4,31 @@ from tkinter.font import BOLD
 
 from config.SQLite_DB import Database
 
-# ---> Rutas
-dir_config = os.path.dirname(__file__)
+# ---> Definición de Rutas del sistema
+DIR_CONFIG = os.path.dirname(__file__)
 # Carpeta principal
-dir_ppal = dir_config[0:len(dir_config) - 6]
-dir_gui = os.path.join(dir_ppal, "gui")
-dir_images = os.path.join(dir_gui, "images")
+DIR_ROOT = DIR_CONFIG[0:len(DIR_CONFIG) - 6]
+DIR_GUI = os.path.join(DIR_ROOT, "gui")
+DIR_IMAGES = os.path.join(DIR_GUI, "images")
+DIR_THEMES = os.path.join(DIR_GUI, "themes")
+DIR_JOBDATA = os.path.join(DIR_ROOT, "data")
 
-# print(dir_ppal)
-# print(dir_gui)
-# print(dir_images)
+DB_SYS = os.path.join(DIR_CONFIG, "iva_data.db")
 
 # Configurando Apariencia General de la App
+my_theme = 'myBlue.json'
+theme_path = os.path.join(DIR_THEMES, my_theme)
+
+# theme_path = 'blue'
+appearance = 'dark'
 # Modo de color y tema
-ctk.set_appearance_mode("dark")
-ctk.set_default_color_theme("blue")
+ctk.set_appearance_mode(appearance)
+ctk.set_default_color_theme(theme_path)
 # Fuente para algunos widgets
 font_widgets = ('Raleway', 16, BOLD)
 
 # Objeto para manejar bases de datos MySQL
-#base_datos = sqlbd.BaseDatos(**sqlbd.acceso_bd)
-data = "../config/iva_data.db"
-db = Database(data)
+# data = "../config/iva_data.db"
+db = Database(DB_SYS)
+
+# print(DB_SYS)
